@@ -43,3 +43,47 @@ training_intervalle_natation = Training.create!(
   description: "Ma séance de natation par intervalle pour pour gagner en performance",
   user_sport_id: pierre_sport.id
 )
+
+# metrics_crawl_natation = Metric.create!(
+#   duration: "",
+#   average_speed: "",
+#   repetition: "",
+#   serie: "",
+#   weight: "",
+#   break_time: ""
+# )
+# exercice_crawl_natation = Exercice.create!(name: "Crawl", catagory_id: category_natation.id)
+
+# metrics_doscrawle_natation = Metric.create!(
+#   duration: "",
+#   average_speed: "",
+#   repetition: "",
+#   serie: "",
+#   weight: "",
+#   break_time: "",
+# )
+# exercice_doscrawle_natation = Exercice.create!(name: "Dos crawlé", catagory_id: category_natation.id)
+
+# exercice_pullbouy_natation = Exercice.create!(name: "Pull-bouy", catagory_id: category_natation.id)
+# metrics_pullbouyl_natation = Metric.create!(
+#     duration: "",
+#     average_speed: "",
+#     feeling: "",
+#     repetitions: "",
+#     series: "",
+#     weight: "",
+#     break_time: "",
+#     exercice_id: exercice_pullbouy_natation.id
+# )
+
+# exercice_brasse_natation = Exercice.create!(name: "Brasse", catagory_id: category_natation.id)
+# metrics_brasse_natation = Metric.create!(
+#     duration: "",
+#     average_speed: "",
+#     feeling: "",
+#     repetitions: "",
+#     series: "",
+#     weight: "",
+#     break_time: "",
+#     exercice_id: exercice_brasse_natation.id
+# )
