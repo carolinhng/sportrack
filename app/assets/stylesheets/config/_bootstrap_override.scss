@@ -1,0 +1,71 @@
+#boostrap-override {
+
+  $radius: 8px;
+
+  .container {
+    padding: 24px;
+  }
+
+  h1 {
+    font-family: $Epilogue-font;
+    font-size: 24px;
+    font-weight: 700;
+    color: $color-secondary;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  h2 {
+    font-family: $Epilogue-font;
+    font-size: 20px;
+    font-weight: 700;
+    color: $color-secondary;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  h3 {
+    font-family: $Epilogue-font;
+    font-size: 16px;
+    font-weight: 500;
+    color: $color-secondary;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  p {
+    font-family: $Outfit-font;
+    font-size: 16px;
+    font-weight: 400;
+    color: $color-secondary;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  a {
+    color: $color-secondary;
+  }
+
+  .btn {
+    border-radius: $radius;
+    padding: 12px 16px;
+    font-family: $Epilogue-font;
+    text-align: center;
+    color: $color-secondary;
+    display: inline-block;
+
+    &-primary {
+
+      background: $color-primary;
+      border: none;
+    }
+
+    &-secondary {
+      border: 1px solid $color-secondary;
+    }
+
+    &-disabled {
+      background: $color-grey;
+    }
+  }
+}
