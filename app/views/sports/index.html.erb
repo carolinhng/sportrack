@@ -1,0 +1,9 @@
+<h1>Choisir une activité</h1>
+
+<% @sports.each do |sport| %>
+  <%= simple_form_for [@user, sport] do |f| %>
+  <%= f.association :sport %>
+  <% f.input :name  %>
+  <%= f.submit :name, class: "btn btn-primary" %>
+  <% end %>
+<% end %>

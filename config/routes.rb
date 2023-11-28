@@ -10,14 +10,20 @@ Rails.application.routes.draw do
   # root "posts#index"
   root to: "user_sports#index"
 
-  resources :user_sports, only: [:index, :new, :create, :show] do
-    resources :trainings, only: [:new, :create] do
-      resources :training_exercices, only: [:new, :create]
-      resources :seances, only: [:create, :edit] do
-        resources :training_values, only: [:create]
-      end
-    end
+  resources :user_sports, only: [:index, :create, :show] do
+    resources :trainings, only: [:new, :create]
   end
 
   resources :trainings, only: [:show]
+  resources :sports, only: [:index]
+
+  resources :trainings, only: [] do
+    resources :training_exercices, only: [:new, :create]
+    resources :seances, only: [:create, :edit]
+  end
+
+  resources :seance, only: [] do
+    resources :training_values, only: [:create]
+  end
+
 end
