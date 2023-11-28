@@ -4,11 +4,12 @@ class UserSportsController < ApplicationController
   end
 
   def create
-
+    raise
   end
 
 
   def show
+
   end
 
 end
