@@ -2,8 +2,21 @@
 
   $radius: 8px;
 
+  .forminput {
+    border-radius: $radius;
+    border: 1px solid $color-grey;
+    background: #FFFFFF;
+    display: flex;
+    padding: 12px;
+    width: 100%;
+  }
+
   .container {
     padding: 24px;
+  }
+
+  .wrapper {
+    padding: 16px;
   }
 
   h1 {
