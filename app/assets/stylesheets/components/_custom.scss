@@ -1,18 +1,13 @@
 .sportcard {
-  display: flex;
   width: 390px;
-  padding: 0px 24px;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
+  padding: 10px 24px;
 }
 
 .formbutton {
-display: flex;
-padding: 15px 24px;
-justify-content: space-between;
-align-items: center;
-align-self: stretch;
-border-radius: 12px;
-background: var(--grey, #F5F5F6);
+  width: 342px;
+  height: 54px;
+  padding: 15px 24px;
+  justify-content: space-between;
+  border-radius: 12px;
+  background: var(--grey, #F5F5F6);
 }
