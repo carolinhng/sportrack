@@ -1,19 +1,17 @@
 @import "config/_bootstrap_override";
 
-.sportcard {
-  width: 390px;
-  padding: 10px 24px;
-}
-
+// button card sports
 .formbutton {
-  width: 342px;
-  height: 54px;
-  padding: 15px 24px;
+  width: 100%;
+  padding: 16px 24px;
+  margin-bottom: 8px;
   justify-content: space-between;
-  border-radius: 12px;
-  background: var(--grey, #F5F5F6);
+  border-radius: $radius * 1.5;
+  border: 1px solid $color-grey;
+  background: $color-grey;
   display: flex;
   align-items: center;
+  font-family: $Outfit-font;
 }
 
 .indexcard {
