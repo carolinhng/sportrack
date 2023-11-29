@@ -1,1 +1,31 @@
-<%= current_user.sport.name %>
+
+<div class="container">
+
+  <div>
+      <i class="ri-arrow-left-s-line"></i>
+    <h2>
+      <%= @user_sport.sport.name %>
+    </h2>
+  </div>
+
+  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Entrainements</button>
+    </li>
+
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Historique</button>
+    </li>
+
+  </ul>
+
+  <div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+      <%= link_to "Créer un nouvel entrainement", new_user_sport_training_path(training_url), class: "btn btn-primary" %>
+    </div>
+
+      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">Historique vide</div>
+  </div>
+
+</div>

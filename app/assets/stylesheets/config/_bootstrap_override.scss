@@ -4,7 +4,7 @@ $radius: 8px;
   .forminput {
     border-radius: $radius;
     border: 1px solid $color-grey;
-    background: #d2cbcb;
+    background: $color-white;
     display: flex;
     padding: 12px;
     width: 100%;
@@ -13,23 +13,6 @@ $radius: 8px;
   .container {
     padding: 24px;
   }
-
-  .pys {
-    padding: 16px 0px;
-  }
-
-  .pxs {
-    padding: 0px 16px;
-  }
-
-  .pym {
-    padding: 24px 0px;
-  }
-
-  .pxm {
-    padding: 0px 16px;
-  }
-
   .wrapper {
     padding: 16px;
   }
@@ -81,6 +64,7 @@ $radius: 8px;
     text-align: center;
     color: $color-secondary;
     display: inline-block;
+    width: 100%;
 
     &-primary {
 

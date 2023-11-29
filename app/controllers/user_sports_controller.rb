@@ -18,7 +18,7 @@ class UserSportsController < ApplicationController
 
 
   def show
-
+    @user_sport = UserSport.find(params[:id])
   end
 
   private
