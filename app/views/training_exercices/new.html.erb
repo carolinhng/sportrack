@@ -1,2 +1,31 @@
-<h1>TrainingExercices#new</h1>
-<p>Find me in app/views/training_exercices/new.html.erb</p>
+<div class="container">
+<div class="wrapper">
+<h1>Ajouter un exercice</h1>
+
+<div class="row justify-content-center">
+  <div class="col-sm-8 my-3">
+    <%= form_with url: new_training_training_exercice_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Rechercher un exercice"
+        %>
+<button class="btn btn-primary", name="", type= "submit">  <i class="ri-search-line"></i>
+</button>
+    <% end %>
+
+<button class="btn btn-secondary"><i class="ri-filter-3-line"></i></button>
+
+  </div>
+</div>
+
+<ul>
+<% @exercices.each do |exercice| %>
+<li class="card_exercice"> <%= exercice.name %> <i class="fa-regular fa-circle"></i>
+  <% end %>
+
+  </li>
+</ul>
+
+</div>
+</div>

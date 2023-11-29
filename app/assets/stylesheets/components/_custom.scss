@@ -34,3 +34,12 @@
     color: white!important;
   }
 }
+
+.card_exercice {
+  width: 342px;
+  height: 54px;
+  padding: 15px 24px;
+  justify-content: space-between;
+  border-radius: 12px;
+  background: var(--grey, #F5F5F6);
+}
