@@ -30,9 +30,10 @@ pierre = User.create!(nick_name: "Pierre", password: "azerty", email: "pierre@gm
 sport_natation = Sport.create!(name: "Natation")
 sport_musculation = Sport.create!(name: "Musculation")
 
-# Création d'une instance user_sport -> Table users_sports
+# Création d'une instance UserSport -> Table users_sports
 pierre_sport = UserSport.create!(user_id: pierre.id, sport_id: sport_natation.id)
 
+# Création d'instances Training -> Table trainings
 training_endurance_natation = Training.create!(
   name: "Endurance",
   description: "Ma séance d'endurance du lundi du soir pour pour gagner en cardio",
@@ -50,6 +51,8 @@ training_intervalle_natation = Training.create!(
   description: "Ma séance de natation par intervalle pour pour gagner en performance",
   user_sport_id: pierre_sport.id
 )
+
+# Création d'instances Metric & Exercice -> Table metrics & exercices
 
 metrics_crawl_natation = Metric.create!(
   duration: "",
@@ -91,21 +94,27 @@ metrics_brasse_natation = Metric.create!(
 )
 exercice_brasse_natation = Exercice.create!(name: "Brasse", sport_id: sport_natation.id, metric_id: metrics_brasse_natation.id)
 
+# Création d'instances TrainingExercice -> Table trainings_exercices
+
 training_endurance_natation_crawl = TrainingExercice.create!(training_id: training_endurance_natation.id, exercice_id: exercice_crawl_natation.id)
 training_endurance_natation_doscrawle = TrainingExercice.create!(training_id: training_endurance_natation.id, exercice_id: exercice_doscrawle_natation.id)
 
 training_sprint_natation_crawl = TrainingExercice.create!(training_id: training_sprint_natation.id, exercice_id: exercice_crawl_natation.id)
 training_sprint_natation_doscrawle = TrainingExercice.create!(training_id: training_sprint_natation.id, exercice_id: exercice_doscrawle_natation.id)
 
+# Création d'instances TrainingMetric -> Table trainings_metrics
+
 training_metrics_endurance_crawl = TrainingMetric.create!(training_exercice_id: training_endurance_natation_crawl.id)
 training_metrics_endurance_doscrawle = TrainingMetric.create!(training_exercice_id: training_endurance_natation_doscrawle.id)
 training_metrics_sprint_crawl = TrainingMetric.create!(training_exercice_id: training_sprint_natation_crawl.id)
 training_metrics_sprint_doscrawle = TrainingMetric.create!(training_exercice_id: training_sprint_natation_doscrawle.id)
 
+# Création d'instances Seance -> Table seances
 seance_endurance_natation = Seance.create!(date:"", training_id: training_endurance_natation.id )
 seance_sprint_natation = Seance.create!(date:"", training_id: training_sprint_natation.id )
 seance_intervalle_natation = Seance.create!(date:"", training_id: training_intervalle_natation.id )
 
+# Création d'instances TrainingVelue -> Table trainings_values
 
 training_values_endurance_crawl = TrainingValue.create!(
   comment:"",
