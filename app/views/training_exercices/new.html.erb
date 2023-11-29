@@ -1,2 +1,37 @@
-<h1>TrainingExercices#new</h1>
-<p>Find me in app/views/training_exercices/new.html.erb</p>
+<div class="container">
+  <div class="wrapper", data-controller="toggle" >
+    <h1>Ajouter un exercice</h1>
+<%# -------------------SEARCHBAR--------------------------------------- %>
+    <div class="row justify-content-center">
+      <div class="col-sm-8 my-3">
+        <%= form_with url: new_training_training_exercice_path, method: :get, class: "d-flex" do %>
+        <%= text_field_tag :query,
+            params[:query],
+            data: { action: "keyup->toggle#toggleButton" },
+            class: "form-control",
+            placeholder: "Rechercher un exercice"
+        %>
+        <button class="btn btn-primary" , name="" , type="submit"> <i class="ri-search-line"></i>
+        </button>
+        <button class="btn btn-disabled mx-2"><i class="ri-filter-3-line"></i></button>
+        <% end %>
+      </div>
+    </div>
+
+<%# -------------------EXERCICE LIST----------------------------- %>
+
+    <% @exercices.each do |exercice| %>
+    <div class="card_exercice"
+    data-toggle-target="card"
+    data-action="click->toggle#toggleCards">
+      <%= exercice.name %> <i class="fa-regular fa-circle"></i>
+    </div>
+    <% end %>
+
+
+<%# -------------------EXERCICE LIST----------------------------- %>
+
+<button class="btn_position_bas btn btn-primary" data-toggle-target="button">Ajouter ces exercices</button>
+  </div>
+
+</div>
