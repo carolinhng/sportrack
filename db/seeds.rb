@@ -42,7 +42,7 @@ training_endurance_natation = Training.create!(
 
 training_sprint_natation = Training.create!(
   name: "Sprint",
-  description: "Ma séance de srint du jundi du soir pour pour gagner en performance",
+  description: "Ma séance de sprint du jundi du soir pour pour gagner en performance",
   user_sport_id: pierre_sport.id
 )
 
