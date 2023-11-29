@@ -1,3 +1,5 @@
+@import "config/_bootstrap_override";
+
 .sportcard {
   display: flex;
   width: 390px;
@@ -15,4 +17,25 @@ align-items: center;
 align-self: stretch;
 border-radius: 12px;
 background: var(--grey, #F5F5F6);
+}
+
+.indexcard {
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  background: $color-secondary;
+  border-radius: $radius * 3;
+  text-decoration: none;
+  i {
+    height: 32px;
+    padding: 8px;
+    background: $color-primary;
+    border-radius: $radius * 4;
+    display: flex;
+    align-items: center;
+    transform: rotate(180deg);
+  }
+  h3 {
+    color: white!important;
+  }
 }

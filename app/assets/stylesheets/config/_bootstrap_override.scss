@@ -1,7 +1,6 @@
+$radius: 8px;
+
 #boostrap-override {
-
-  $radius: 8px;
-
   .forminput {
     border-radius: $radius;
     border: 1px solid $color-grey;
@@ -25,7 +24,7 @@
     font-weight: 700;
     color: $color-secondary;
     margin-top: 0;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
     line-height: 1.2;
   }
   h2 {
@@ -34,7 +33,7 @@
     font-weight: 700;
     color: $color-secondary;
     margin-top: 0;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
     line-height: 1.2;
   }
   h3 {
@@ -43,7 +42,7 @@
     font-weight: 500;
     color: $color-secondary;
     margin-top: 0;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
     line-height: 1.2;
   }
   p {
