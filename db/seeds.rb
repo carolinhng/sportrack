@@ -36,13 +36,13 @@ pierre_sport = UserSport.create!(user_id: pierre.id, sport_id: sport_natation.id
 # Création d'instances Training -> Table trainings
 training_endurance_natation = Training.create!(
   name: "Endurance",
-  description: "Ma séance d'endurance du lundi du soir pour pour gagner en cardio",
+  description: "Ma séance d'endurance du lundi du soir pour gagner en cardio",
   user_sport_id: pierre_sport.id
 )
 
 training_sprint_natation = Training.create!(
   name: "Sprint",
-  description: "Ma séance de sprint du jundi du soir pour pour gagner en performance",
+  description: "Ma séance de sprint du jundi du soir pour gagner en performance",
   user_sport_id: pierre_sport.id
 )
 
