@@ -1,2 +1,44 @@
-<h1>Trainings#show</h1>
-<p>Find me in app/views/trainings/show.html.erb</p>
+<div class="head-block-dark">
+  <div class="container">
+    <div class="flex align-center justify-between">
+      <%= link_to new_training_training_exercice_path(@training), class: "link-decoration-none" do %>
+        <div class="link-head">
+          <i class="ri-arrow-left-s-line"></i>
+          <h1 class="color-white">Entrainement</h1>
+        </div>
+      <% end %>
+          <div><i class="ri-more-2-line icone-sans-fond"></i></div>
+    </div>
+    <div class="margin-top-16">
+      <h2 class="color-white"><%= @training.name %></h2>
+      <div>
+        <p class="color-white"><%= @training.sport.name %> -
+        Crée le <%= @training.created_at.to_date.strftime('%d-%m-%Y') %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container flex-gap-16">
+  <h2>Description</h2>
+  <p><%= @training.description %></p>
+  <h2>Par défaut</h2>
+  <div class="bloc">
+    <div class="flex">
+      <i class="ri-file-text-line"></i>
+      <h3>Prise de note</h3>
+    </div>
+    <div class="flex">
+      <i class="ri-timer-flash-line"></i>
+      <h3>Durée</h3>
+    </div>
+    <div class="flex">
+      <i class="ri-calendar-line"></i>
+      <h3>Date</h3>
+    </div>
+
+
+  </div>
+
+</div>

@@ -1,0 +1,13 @@
+.link-head {
+  display: flex;
+  align-items: center;
+  i {
+    height: 32px;
+    padding: 8px;
+    background: $color-grey;
+    border-radius: $radius * 4;
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+  }
+}

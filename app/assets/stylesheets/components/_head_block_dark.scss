@@ -1,0 +1,40 @@
+.head-block-dark {
+  background-color: $color-secondary;
+  padding: 32px 0px;
+}
+
+.head-block-dark {
+  background-color: $color-secondary;
+}
+
+.color-white {
+  color: white!important;
+}
+
+.margin-top-16 {
+  margin-top: 16px;
+}
+
+.icone-sans-fond {
+  background: none!important;
+  color: white!important;
+  font-size: 24px;
+}
+
+.justify-between{
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.flex-gap-16 {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+}
+
+.flex {
+  display: flex;
+}
