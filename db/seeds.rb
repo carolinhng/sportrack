@@ -18,7 +18,7 @@ UserSport.destroy_all
 Sport.destroy_all
 User.destroy_all
 
-puts "Destroying users"
+puts "Destroying / create database"
 
 
 pierre = User.create!(nick_name: "Pierre", password: "azerty", email: "pierre@gmail.com")
@@ -29,6 +29,8 @@ pierre = User.create!(nick_name: "Pierre", password: "azerty", email: "pierre@gm
 # Création d'une instance Sport natation -> table sport
 sport_natation = Sport.create!(name: "Natation")
 sport_musculation = Sport.create!(name: "Musculation")
+sport_cyclisme = Sport.create!(name: "Cyclisme")
+sport_yoga = Sport.create!(name: "Yoga")
 
 # Création d'une instance UserSport -> Table users_sports
 pierre_sport = UserSport.create!(user_id: pierre.id, sport_id: sport_natation.id)
@@ -42,13 +44,13 @@ training_endurance_natation = Training.create!(
 
 training_sprint_natation = Training.create!(
   name: "Sprint",
-  description: "Ma séance de sprint du jundi du soir pour gagner en performance",
+  description: "Ma séance de sprint du jeudi du soir pour gagner en performance",
   user_sport_id: pierre_sport.id
 )
 
 training_intervalle_natation = Training.create!(
   name: "Intervalle",
-  description: "Ma séance de natation par intervalle pour pour gagner en performance",
+  description: "Ma séance de natation par intervalle pour gagner en performance",
   user_sport_id: pierre_sport.id
 )
 
@@ -74,7 +76,7 @@ metrics_doscrawle_natation = Metric.create!(
 )
 exercice_doscrawle_natation = Exercice.create!(name: "Dos crawlé", sport_id: sport_natation.id, metric_id: metrics_doscrawle_natation.id)
 
-metrics_pullbouyl_natation = Metric.create!(
+metrics_pullbouy_natation = Metric.create!(
   duration: "",
   average_speed: "",
   repetition: "",
@@ -82,7 +84,7 @@ metrics_pullbouyl_natation = Metric.create!(
   weight: "",
   breack_time: ""
 )
-exercice_pullbouy_natation = Exercice.create!(name: "Pull-bouy", sport_id: sport_natation.id, metric_id: metrics_pullbouyl_natation.id)
+exercice_pullbouy_natation = Exercice.create!(name: "Pull-bouy", sport_id: sport_natation.id, metric_id: metrics_pullbouy_natation.id)
 
 metrics_brasse_natation = Metric.create!(
   duration: "",
