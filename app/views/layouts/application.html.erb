@@ -13,7 +13,7 @@
   </head>
 
   <body id="boostrap-override">
-  <%= render "shared/navbar" %>
+  <%= render "shared/navbar" unless "training/show" %>
   <%= render "shared/flashes" %>
 
     <%= yield %>
