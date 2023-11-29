@@ -70,9 +70,25 @@
     /* Ajoutez d'autres styles au besoin */
 }
 
-.fond_blanc_button {
+.nav-pills, .nav-link, .nav-pills .show > .nav-link {
   width: 100%;
-  height: 70px;
-  background-color: red;
-  position: sticky;
+  background-color: $color-grey;
+  border-radius: $radius;
+  color: $color-secondary;
+  font-family: $Outfit-font;
+
+  &:hover {
+    color: $color-secondary;
+  }
+
+  .nav-link.active {
+    background-color: $color-secondary;
+  }
+
+
+}
+
+.nav-item {
+  width: 50%;
+  border-radius: $radius;
 }
