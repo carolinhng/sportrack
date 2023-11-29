@@ -1,9 +1,10 @@
 <h1>Choisir une activité</h1>
 
-<div class="sportcard">
+
 <% @sports.each do |sport| %>
-<div class="formbutton">
-<%= button_to sport.name, user_sports_path %>
-</div>
+  <div class="sportcard">
+  <%= button_to user_sports_path, method: :post, class: "formbutton" do %>
+    <%= sport.name %><i class="fa-solid fa-chevron-right"></i>
+  <% end %>
+  </div>
 <% end %>
-</div>
