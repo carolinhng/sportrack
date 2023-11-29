@@ -3,7 +3,7 @@
 
 <% @sports.each do |sport| %>
   <div class="sportcard">
-  <%= button_to user_sports_path, method: :post, class: "formbutton" do %>
+  <%= button_to sport_user_sports_path(sport), method: :post, class: "formbutton" do %>
     <%= sport.name %><i class="fa-solid fa-chevron-right"></i>
   <% end %>
   </div>

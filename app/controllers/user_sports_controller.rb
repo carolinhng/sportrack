@@ -5,17 +5,14 @@ class UserSportsController < ApplicationController
   end
 
   def create
-    raise
-    @user_sport = UserSport.new(user_sport_params)
-    raise
     @user = current_user
-    @sport.list = @user
-    if @sport.save
-      raise
-      redirect_to sport_path(@sport)
+    @sport = Sport.find(params[:sport_id])
+    @user_sport = UserSport.new({user_id: @user.id, sport_id: @sport.id})
+
+    if @user_sport.save
+      redirect_to user_sport_path(@user_sport)
     else
-      raise
-    render :new, status: :unprocessable_entity
+    render :index, status: :unprocessable_entity
     end
   end
 
