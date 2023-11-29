@@ -1,3 +1,5 @@
+<%# -------------------Block gris foncé----------------------------- %>
+
 <div class="head-block-dark">
   <div class="container">
     <div class="flex align-center justify-between">
@@ -19,6 +21,7 @@
   </div>
 </div>
 
+<%# -------------------RESUME DES DONNES----------------------------- %>
 
 <div class="container flex-gap-16">
   <h2>Description</h2>
@@ -42,15 +45,23 @@
     </div>
   </div>
 
+  <%# -------------------EXERCICE LIST----------------------------- %>
+
   <h2>Exercices</h2>
 
   <% @training.exercices.each do |exercice| %>
-    <div class="card_exercice">
+    <div class="card_exercice margin-top-0">
       <%= exercice.name %>
     </div>
   <% end %>
+</div>
 
+<%# -------------------BUTTON DU BAS----------------------------- %>
 
-
-
+<div class="container flex-gap-16">
+  <%= button_to training_seances_path(@training), method: :post, class: "formbutton btn-primary" do %>
+    <h3 class="link-decoration-none margin-auto">Saisir vos données</h3>
+  <% end %>
+  <%# Pensez à mettre le lien link_to pour modifier %>
+  <button class="formbutton btn-secondary btn-background-white"><h3 class="margin-auto">Modifier</h3></button>
 </div>
