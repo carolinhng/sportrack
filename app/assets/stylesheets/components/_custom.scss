@@ -12,6 +12,8 @@
   justify-content: space-between;
   border-radius: 12px;
   background: var(--grey, #F5F5F6);
+  display: flex;
+  align-items: center;
 }
 
 .indexcard {
@@ -36,10 +38,41 @@
 }
 
 .card_exercice {
-  width: 342px;
+  width: 310px;
   height: 54px;
+  margin-top: 20px;
   padding: 15px 24px;
   justify-content: space-between;
   border-radius: 12px;
   background: var(--grey, #F5F5F6);
+  display: flex;
+  align-items: center;
+}
+
+.card_exercice_select {
+  width: 310px;
+  height: 54px;
+  margin-top: 20px;
+  padding: 15px 24px;
+  justify-content: space-between;
+  border-radius: 12px;
+  background: $color-secondary;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+
+.btn_position_bas {
+    width: 310px;
+    position: fixed;
+    bottom: 100px;
+    /* Ajoutez d'autres styles au besoin */
+}
+
+.fond_blanc_button {
+  width: 100%;
+  height: 70px;
+  background-color: red;
+  position: sticky;
 }
