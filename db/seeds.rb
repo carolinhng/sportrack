@@ -117,7 +117,7 @@ seance_intervalle_natation = Seance.create!(date:"", training_id: training_inter
 # Création d'instances TrainingVelue -> Table trainings_values
 
 training_values_endurance_crawl = TrainingValue.create!(
-  comment:"",
+  comment: "",
   rating: "",
   duration: "",
   date: "",
@@ -126,7 +126,7 @@ training_values_endurance_crawl = TrainingValue.create!(
 )
 
 training_values_endurance_doscrawle = TrainingValue.create!(
-  comment:"",
+  comment: "",
   rating: "",
   duration: "",
   date: "",
@@ -135,7 +135,7 @@ training_values_endurance_doscrawle = TrainingValue.create!(
 )
 
 training_values_sprint_crawl = TrainingValue.create!(
-  comment:"",
+  comment: "",
   rating: "",
   duration: "",
   date: "",
@@ -144,7 +144,7 @@ training_values_sprint_crawl = TrainingValue.create!(
 )
 
 training_values_sprint_doscrawle = TrainingValue.create!(
-  comment:"",
+  comment: "",
   rating: "",
   duration: "",
   date: "",
