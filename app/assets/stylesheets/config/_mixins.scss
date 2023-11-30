@@ -1,0 +1,19 @@
+@mixin iconrounded {
+  height: 32px;
+  padding: 8px;
+  background: $color-grey;
+  border-radius: $radius * 4;
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+}
+
+@mixin headers {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid $color-grey;
+  padding-bottom: 24px;
+  i {
+   @include iconrounded;
+  }
+}
