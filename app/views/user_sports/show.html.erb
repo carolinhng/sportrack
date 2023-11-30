@@ -1,6 +1,4 @@
-
 <div class="container">
-
   <div>
       <i class="ri-arrow-left-s-line"></i>
     <h2>
@@ -27,5 +25,14 @@
 
       <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">Historique vide</div>
   </div>
+
+<%# ------------------- List des entrainements liés au user et à son sport ----------------------------- %>
+
+  <% @user_sport.trainings.each do | training |  %>
+    <%= link_to training_path(training.id), class: "formbutton btn-secondary link-decoration-none " do %>
+      <h3 class="link-decoration-none margin-auto"><%= training.name %></h3>
+    <% end %>
+  <% end %>
+
 
 </div>

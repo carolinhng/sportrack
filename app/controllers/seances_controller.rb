@@ -1,6 +1,8 @@
 class SeancesController < ApplicationController
   def edit
     @training = Training.find(params[:training_id])
+    @seance = Seance.find(params[:id])
+    @training_value = TrainingValue.new
   end
 
   def create
