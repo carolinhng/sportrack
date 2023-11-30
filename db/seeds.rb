@@ -114,26 +114,26 @@ training_metrics_sprint_doscrawle = TrainingMetric.create!(training_exercice_id:
 # Création d'instances Seance -> Table seances
 seance_endurance_natation = Seance.create!(
   training_id: training_endurance_natation.id,
-  comment: "C'est vr",
-  rating: "",
-  duration: "",
-  date: "",
- )
+  comment: "Cette séance était top ! J'ai rempli tous mes objectifs",
+  rating: 5,
+  duration: 45,
+  date: Date.today
+)
 
 seance_sprint_natation = Seance.create!(
   training_id: training_sprint_natation.id,
-  comment: "",
-  rating: "",
-  duration: "",
-  date: ""
+  comment: "Bof, j'ai mal dormi la veille, j'ai pu aller jusqu'au bout ",
+  rating: 2,
+  duration: 30,
+  date: Date.today
 )
 
 seance_intervalle_natation = Seance.create!(
   training_id: training_intervalle_natation.id,
-  comment: "",
-  rating: "",
-  duration: "",
-  date: ""
+  comment: "J'ai bien travaillé mon cardio, cet entrainement est vraiment top",
+  rating: 5,
+  duration: 35,
+  date: Date.today
 )
 
 # Création d'instances TrainingVelue -> Table trainings_values
