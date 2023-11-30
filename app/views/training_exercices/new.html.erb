@@ -7,7 +7,6 @@
         <%= form_with url: new_training_training_exercice_path, method: :get, class: "d-flex" do %>
         <%= text_field_tag :query,
             params[:query],
-            data: { action: "keyup->toggle#toggleButton" },
             class: "form-control",
             placeholder: "Rechercher un exercice"
         %>
@@ -31,7 +30,7 @@
 
 <%# -------------------EXERCICE LIST----------------------------- %>
 
-<button class="btn_position_bas btn btn-primary" data-toggle-target="button">Ajouter ces exercices</button>
+<button class="btn_position_bas btn btn-primary">Ajouter ces exercices</button>
   </div>
 
 </div>

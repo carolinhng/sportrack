@@ -1,3 +1,4 @@
+@import "config/mixins";
 // Import your components CSS files here.
 @import "alert";
 @import "avatar";
@@ -5,6 +6,7 @@
 @import "navbar";
 @import "link_head";
 @import "head_block_dark";
+@import "block_grey";
 
 ul {
   list-style-type: none;

@@ -1,2 +1,22 @@
-<h1>Seances#edit</h1>
-<p>Find me in app/views/seances/edit.html.erb</p>
+<%# -------------------Block gris foncé----------------------------- %>
+
+<div class="head-block-dark">
+  <div class="container">
+    <div class="flex align-center justify-between">
+      <%= link_to training_path(@training), class: "link-decoration-none" do %>
+        <div class="link-head">
+          <i class="ri-arrow-left-s-line"></i>
+          <h1 class="color-white">Saisir vos données</h1>
+        </div>
+      <% end %>
+          <div><i class="ri-more-2-line icone-sans-fond"></i></div>
+    </div>
+    <div class="margin-top-16">
+      <h2 class="color-white"><%= @training.name %></h2>
+      <div>
+        <p class="color-white"><%= @training.sport.name %> -
+        Crée le <%= @training.created_at.to_date.strftime('%d-%m-%Y') %></p>
+      </div>
+    </div>
+  </div>
+</div>
