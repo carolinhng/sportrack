@@ -1,10 +1,16 @@
 @import "config/_bootstrap_override";
 
+
 // button card sports
 .formbutton {
   width: 100%;
   padding: 16px 24px;
   margin-bottom: 8px;
+
+.sportcard {
+  // width: 390px;
+  padding: 10px 0px;
+}
   justify-content: space-between;
   border-radius: $radius * 1.5;
   border: 1px solid $color-grey;
@@ -44,9 +50,9 @@
 }
 
 .card_exercice {
-  width: 310px;
-  height: 54px;
-  margin-top: 20px;
+  // width: 310px;
+  // height: 54px;
+  margin-top: 15px;
   padding: 15px 24px;
   justify-content: space-between;
   border-radius: 12px;
@@ -91,10 +97,17 @@
     background-color: $color-secondary;
   }
 
-
 }
 
 .nav-item {
   width: 50%;
   border-radius: $radius;
+}
+
+.margin-top-0 {
+  margin-top: 0px;
+}
+
+.margin-auto {
+  margin: auto;
 }
