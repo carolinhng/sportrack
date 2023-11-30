@@ -8,11 +8,16 @@
   margin-right: 16px;
 }
 
+@mixin container-head {
+    padding:  24px;
+    border-bottom: 1px solid $color-grey;
+}
+
+
 @mixin headers {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid $color-grey;
-  padding-bottom: 24px;
+  @include container-head;
   i {
    @include iconrounded;
   }
