@@ -1,19 +1,20 @@
 @import "config/_bootstrap_override";
 
 .sportcard {
-  width: 390px;
-  padding: 10px 24px;
+  // width: 390px;
+  padding: 10px 0px;
 }
 
 .formbutton {
-  width: 342px;
-  height: 54px;
+  width: 100%;
+  // height: 54px;
   padding: 15px 24px;
   justify-content: space-between;
   border-radius: 12px;
   background: var(--grey, #F5F5F6);
   display: flex;
   align-items: center;
+  border: none;
 }
 
 .indexcard {
@@ -46,9 +47,9 @@
 }
 
 .card_exercice {
-  width: 310px;
-  height: 54px;
-  margin-top: 20px;
+  // width: 310px;
+  // height: 54px;
+  margin-top: 15px;
   padding: 15px 24px;
   justify-content: space-between;
   border-radius: 12px;
@@ -93,10 +94,17 @@
     background-color: $color-secondary;
   }
 
-
 }
 
 .nav-item {
   width: 50%;
   border-radius: $radius;
+}
+
+.margin-top-0 {
+  margin-top: 0px;
+}
+
+.margin-auto {
+  margin: auto;
 }
