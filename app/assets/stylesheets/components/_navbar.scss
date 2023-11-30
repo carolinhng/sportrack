@@ -3,10 +3,11 @@
   background: $color-white;
   display: flex;
   justify-content: space-between;
-  position: fixed;
   padding: 16px 24px;
-  bottom: 0;
   width: 100%;
+  position: fixed;
+  bottom: 0px;
+  overflow: hidden;
 
   .linknav {
     text-align: center;
