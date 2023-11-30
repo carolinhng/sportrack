@@ -1,4 +1,11 @@
 class TrainingsController < ApplicationController
+
+  def index
+    # index vers page entrainements
+    @user_sport = UserSport.find(params[:user_sport_id])
+    @trainings = @user_sport.trainings
+  end
+
   def new
     @training = Training.new
     @user_sport = UserSport.find(params[:user_sport_id])
