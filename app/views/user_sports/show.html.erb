@@ -1,6 +1,6 @@
-
 <%= link_to sports_path, class: "link-decoration-none" do %>
   <div class="link-head">
+
       <i class="ri-arrow-left-s-line"></i>
       <h1><%= @user_sport.sport.name %></h1>
   </div>
@@ -27,4 +27,25 @@
 
       <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">Historique vide</div>
   </div>
-</div>
+
+<%# ------------------- List des entrainements liés au user et à son sport ----------------------------- %>
+
+  <div class="flex-gap-16">
+    <% @user_sport.trainings.each do | training |  %>
+
+      <%= link_to training_path(training.id), class: "formbutton btn-secondary link-decoration-none " do %>
+        <div class="bloc-16 ">
+
+          <div class="defaultcard">
+            <h3><%= training.name %></h3>
+          </div>
+
+          <div class="defaultcard">
+            <i class="ri-timer-flash-line"></i>
+            <h3><%= training.exercices.count %> exercices</h3>
+          </div>
+        </div>
+      <% end %>
+
+    <% end %>
+  </div>
