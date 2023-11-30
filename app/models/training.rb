@@ -4,4 +4,8 @@ class Training < ApplicationRecord
   has_many :seances
   has_one :sport, through: :user_sport
   has_many :exercices, through: :training_exercices
+
+  accepts_nested_attributes_for :training_exercices,
+                                allow_destroy: true,
+                                reject_if: :all_blank
 end
