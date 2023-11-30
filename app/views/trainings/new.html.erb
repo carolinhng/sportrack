@@ -1,11 +1,10 @@
-<div class="container">
-  <%= link_to user_sport_path(@user_sport), class: "link-decoration-none" do %>
-    <div class="link-head">
-      <i class="ri-arrow-left-s-line"></i>
+
+<%= link_to user_sport_path(@user_sport), class: "link-decoration-none" do %>
+  <div class="link-head">
+    <i class="ri-arrow-left-s-line"></i>
       <h1>Créer un entrainement</h1>
-    </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
 
 <div class="container">
     <%= simple_form_for [@user_sport, @training] do |f| %>

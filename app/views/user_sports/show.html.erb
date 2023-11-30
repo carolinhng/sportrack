@@ -1,10 +1,12 @@
-<div class="container">
-  <div>
+<%= link_to sports_path, class: "link-decoration-none" do %>
+  <div class="link-head">
+
       <i class="ri-arrow-left-s-line"></i>
-    <h2>
-      <%= @user_sport.sport.name %>
-    </h2>
+      <h1><%= @user_sport.sport.name %></h1>
   </div>
+<% end %>
+
+<div class="container">
 
   <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
 
