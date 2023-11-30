@@ -8,4 +8,8 @@ class TrainingExercice < ApplicationRecord
   using: {
     tsearch: { prefix: true }
   }
+
+  def self.exercice?(exercice, training)
+    find_by(exercice: exercice, training: training).present?
+  end
 end
