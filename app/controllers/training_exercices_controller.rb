@@ -2,6 +2,8 @@ class TrainingExercicesController < ApplicationController
   def new
     @exercices = Exercice.all
     @training = Training.find(params[:training_id])
+    @user_sport = @training.user_sport_id
+    @number = TrainingExercice.all.count - Exercice.all.count
     @training_exercice = TrainingExercice.new
       if params[:query].present?
         @exercices = Exercice.search_exercices(params[:query])

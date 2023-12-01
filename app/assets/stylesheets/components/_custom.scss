@@ -61,6 +61,12 @@
 }
 
 .card_exercice_select {
+  h3 {
+    color: white!important;
+  }
+  .fa-regular {
+    color: white!important;
+  }
   width: 310px;
   height: 54px;
   margin-top: 20px;
@@ -68,16 +74,15 @@
   justify-content: space-between;
   border-radius: 12px;
   background: $color-secondary;
-  color: white;
   display: flex;
   align-items: center;
 }
 
 
 .btn_position_bas {
-    width: 310px;
     position: fixed;
     bottom: 100px;
+    width: 78%!important;
     /* Ajoutez d'autres styles au besoin */
 }
 
@@ -112,3 +117,25 @@
 .margin-auto {
   margin: auto;
 }
+
+a {
+  text-decoration: none;
+}
+
+.search {
+    border-radius: $radius;
+    text-align: center;
+    color: $color-secondary;
+    display: inline-block;
+      background: $color-primary;
+      border: none;
+    }
+
+.filter {
+  border-radius: $radius;
+  text-align: center;
+  color: $color-secondary;
+  display: inline-block;
+    background: $color-grey;
+    border: none;
+  }
