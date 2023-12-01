@@ -13,6 +13,7 @@ $radius: 8px;
   .container {
     padding: 24px;
   }
+
   .wrapper {
     padding: 16px;
   }
@@ -55,6 +56,7 @@ $radius: 8px;
   }
   a {
     color: $color-secondary;
+    text-decoration: none;
   }
 
   .btn {
@@ -81,4 +83,3 @@ $radius: 8px;
     }
   }
 }
-

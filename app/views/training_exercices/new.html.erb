@@ -1,7 +1,14 @@
+<%= link_to new_user_sport_training_path(@user_sport), class: "link-decoration-none" do %>
+<div class="link-head">
+  <i class="ri-arrow-left-s-line"></i>
+  <h1>Ajouter un exercice</h1>
+</div>
+<% end %>
+
+
 <div class="container">
-  <div class="wrapper", data-controller="toggle" >
-    <h1>Ajouter un exercice</h1>
-<%# -------------------SEARCHBAR--------------------------------------- %>
+  <div class="wrapper" , data-controller="toggle">
+    <%# -------------------SEARCHBAR--------------------------------------- %>
     <div class="row justify-content-center">
       <div class="col-sm-8 my-3">
         <%= form_with url: new_training_training_exercice_path, method: :get, class: "d-flex" do %>
@@ -10,27 +17,40 @@
             class: "form-control",
             placeholder: "Rechercher un exercice"
         %>
-        <button class="btn btn-primary" , name="" , type="submit"> <i class="ri-search-line"></i>
+        <button class="search" , name="" , type="submit"> <i class="ri-search-line"></i>
         </button>
-        <button class="btn btn-disabled mx-2"><i class="ri-filter-3-line"></i></button>
+        <button class="filter mx-1"><i class="ri-filter-3-line"></i></button>
         <% end %>
       </div>
     </div>
 
-<%# -------------------EXERCICE LIST----------------------------- %>
+    <%# -------------------EXERCICE LIST----------------------------- %>
 
     <% @exercices.each do |exercice| %>
-    <div class="card_exercice"
-    data-toggle-target="card"
-    data-action="click->toggle#toggleCards">
-      <%= exercice.name %> <i class="fa-regular fa-circle"></i>
+    <div>
+      <% unless TrainingExercice.exercice?(exercice, @training) %>
+      <%= link_to training_training_exercices_path(exercice_id: exercice.id, training: @training.id), data: { turbo_method: :post }, class: "card_exercice" do %>
+      <%= exercice.name %><i class="fa-regular fa-circle"></i>
+      <% end %>
+      <% else %>
+      <%= link_to training_exercice_path(TrainingExercice.find_by(exercice: exercice, training: @training)), data: { turbo_method: :delete }, class: "card_exercice_select" do %>
+      <h3><%= exercice.name %></h3><i class="fa-regular fa-circle"></i>
+      <% end %>
+      <% end %>
     </div>
     <% end %>
 
 
-<%# -------------------EXERCICE LIST----------------------------- %>
+    <%# -------------------EXERCICE LIST----------------------------- %>
 
+<<<<<<< HEAD
 <button class="btn_position_bas btn btn-primary">Ajouter ces exercices</button>
   </div>
+=======
+<%= link_to training_path(@training), class: "btn_position_bas btn btn-primary" do %>
+<h3>Ajouter <%= @number %> exercice</h3>
+<% end %>
+</div>
+>>>>>>> master
 
 </div>
