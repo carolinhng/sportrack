@@ -1,10 +1,19 @@
-<div class="container">
-
-  <h3>Bonjour <%= current_user.nick_name %>,</h3>
-  <h1>Prêt pour un entrainement ?</h1>
+<div class="container grey">
+  <%= image_tag "" %>
+  <div>
+    <h3>Bonjour <%= current_user.nick_name %>,</h3>
+    <h1>Prêt pour un entrainement ?</h1>
+  </div>
 
   <%= link_to sports_path, class:"indexcard" do %>
       <h3>Commencez par créer votre premier entrainement</h3>
       <i class="ri-arrow-left-s-line"></i>
   <% end %>
+</div>
+
+<div class="container">
+  <div class="flex jcsb">
+    <h2>Vos entrainements</h2>
+    <%= link_to "voir plus", trainings_path %>
+  </div>
 </div>
