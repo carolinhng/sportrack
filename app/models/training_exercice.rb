@@ -9,16 +9,16 @@ class TrainingExercice < ApplicationRecord
     tsearch: { prefix: true }
   }
 
-  after_create :create_training_metrics
+  # after_create :create_training_metrics
 
   def self.exercice?(exercice, training)
     find_by(exercice: exercice, training: training).present?
   end
 
-  def create_training_metrics
-    training_metrics = TrainingMetrics.new
-    training_metrics.training_exercices.id = self.id
-  end
+  # def create_training_metrics
+  #   training_metrics = TrainingMetrics.new
+  #   training_metrics.training_exercices.id = self.id
+  # end
 
 
 end
