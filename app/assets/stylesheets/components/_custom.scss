@@ -1,6 +1,15 @@
 @import "config/_bootstrap_override";
 
 
+
+// flex
+.flex {
+  display: flex;
+}
+.jcsb {
+  justify-content: space-between;
+}
+
 // button card sports
 .formbutton {
   width: 100%;
@@ -108,7 +117,10 @@
     /* Ajoutez d'autres styles au besoin */
 }
 
-
+// color pour le header de l'index
+.grey {
+  background: $color-grey;
+}
 // tab entrainement - historique
 .nav-pills, .nav-link, .nav-pills .show > .nav-link {
   width: 100%;
