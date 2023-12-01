@@ -20,10 +20,16 @@
 <%# -------------------EXERCICE LIST----------------------------- %>
 
     <% @exercices.each do |exercice| %>
-    <div class="card_exercice"
-    data-toggle-target="card"
-    data-action="click->toggle#toggleCards">
-      <%= exercice.name %> <i class="fa-regular fa-circle"></i>
+    <div>
+    <% unless TrainingExercice.exercice?(exercice, @training) %>
+      <%= link_to training_training_exercices_path(exercice_id: exercice.id, training: @training.id), data: { turbo_method: :post }, class: "card_exercice" do %>
+        <%= exercice.name %><i class="fa-regular fa-circle"></i>
+      <% end %>
+    <% else %>
+    <%= link_to training_exercice_path(TrainingExercice.find_by(exercice: exercice, training: @training)), data: { turbo_method: :delete }, class: "card_exercice_select" do %>
+       <%= exercice.name %><i class="fa-regular fa-circle"></i>
+    <% end %>
+    <% end %>
     </div>
     <% end %>
 
