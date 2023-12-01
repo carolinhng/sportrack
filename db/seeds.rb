@@ -67,30 +67,30 @@ metrics_crawl_natation = Metric.create!(
 exercice_crawl_natation = Exercice.create!(name: "Crawl", sport_id: sport_natation.id, metric_id: metrics_crawl_natation.id)
 
 metrics_doscrawle_natation = Metric.create!(
-  duration: 45,
-  average_speed: 14,
+  duration: 0,
+  average_speed: 0,
   repetition: "",
-  serie: 1,
+  serie: 0,
   weight: "",
   breack_time: Time.parse("01:00")
 )
 exercice_doscrawle_natation = Exercice.create!(name: "Dos crawlé", sport_id: sport_natation.id, metric_id: metrics_doscrawle_natation.id)
 
 metrics_pullbouy_natation = Metric.create!(
-  duration: 25,
-  average_speed: 11,
+  duration: 0,
+  average_speed: 0,
   repetition: "",
-  serie: 3,
+  serie: 0,
   weight: "",
   breack_time: Time.parse("02:00")
 )
 exercice_pullbouy_natation = Exercice.create!(name: "Pull-bouy", sport_id: sport_natation.id, metric_id: metrics_pullbouy_natation.id)
 
 metrics_brasse_natation = Metric.create!(
-  duration: 30,
-  average_speed: 9,
+  duration: 0,
+  average_speed: 0,
   repetition: "",
-  serie: 2,
+  serie: 0,
   weight: "",
   breack_time: Time.parse("01:00")
 )
@@ -108,40 +108,40 @@ training_sprint_natation_doscrawle = TrainingExercice.create!(training_id: train
 
 training_metrics_endurance_crawl = TrainingMetric.create!(
   training_exercice_id: training_endurance_natation_crawl.id,
-  duration: 30,
-  average_speed: 8,
+  duration: 0,
+  average_speed: 0,
   repetition: "",
-  serie: 2,
+  serie: 0,
   weight: "",
   breack_time: Time.parse("01:30")
 )
 
 training_metrics_endurance_doscrawle = TrainingMetric.create!(
   training_exercice_id: training_endurance_natation_doscrawle.id,
-  duration: 45,
-  average_speed: 14,
+  duration: 0,
+  average_speed: 0,
   repetition: "",
-  serie: 1,
+  serie: 0,
   weight: "",
   breack_time: Time.parse("01:00")
 )
 
 training_metrics_sprint_crawl = TrainingMetric.create!(
   training_exercice_id: training_sprint_natation_crawl.id,
-  duration: 30,
-  average_speed: 9,
+  duration: 0,
+  average_speed: 0,
   repetition: "",
-  serie: 2,
+  serie: 0,
   weight: "",
   breack_time: Time.parse("01:00")
 )
 
 training_metrics_sprint_doscrawle = TrainingMetric.create!(
   training_exercice_id: training_sprint_natation_doscrawle.id,
-  duration: 30,
-  average_speed: 9,
+  duration: 0,
+  average_speed: 0,
   repetition: "",
-  serie: 2,
+  serie: 0,
   weight: "",
   breack_time: Time.parse("01:00")
 )
