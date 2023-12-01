@@ -22,12 +22,12 @@
 
   <div class="tab-content" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-      <%= link_to "Créer un nouvel entrainement", new_user_sport_training_path(@user_sport), class: "btn btn-primary" %>
+      <%= link_to "Créer un nouvel entrainement", new_user_sport_training_path(@user_sport), class: "btn btn-primary padding-b" %>
 
       <% @user_sport.trainings.each do | training | %>
 
           <%= link_to training_path(training.id), class: "training_card" do %>
-          <div class"training_structure">
+          <div class="training_structure">
             <h3><%= training.name %></h3>
             <div class="training_content">
               <i class="ri-timer-flash-line"></i>
