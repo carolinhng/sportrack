@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :user_sports
+  has_many :trainings, through: :user_sports
 end

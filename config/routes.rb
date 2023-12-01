@@ -11,14 +11,14 @@ Rails.application.routes.draw do
   root to: "user_sports#index"
 
   resources :user_sports, only: [:index, :show] do
-    resources :trainings, only: [:new, :create, :index]
+    resources :trainings, only: [:new, :create]
   end
 
   resources :sports, only: [:index] do
     resources :user_sports, only: [:create]
   end
 
-  resources :trainings, only: [:show]
+  resources :trainings, only: [:show, :index]
   resources :training_exercices, only: [:destroy]
 
 
