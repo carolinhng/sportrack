@@ -5,6 +5,11 @@ i {
 }
 
 #boostrap-override {
+
+  .padding-b {
+    padding-bottom: 16px ;
+  }
+
   .forminput {
     border-radius: $radius;
     border: 1px solid $color-grey;
