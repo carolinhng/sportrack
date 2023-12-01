@@ -106,10 +106,45 @@ training_sprint_natation_doscrawle = TrainingExercice.create!(training_id: train
 
 # Création d'instances TrainingMetric -> Table trainings_metrics
 
-training_metrics_endurance_crawl = TrainingMetric.create!(training_exercice_id: training_endurance_natation_crawl.id)
-training_metrics_endurance_doscrawle = TrainingMetric.create!(training_exercice_id: training_endurance_natation_doscrawle.id)
-training_metrics_sprint_crawl = TrainingMetric.create!(training_exercice_id: training_sprint_natation_crawl.id)
-training_metrics_sprint_doscrawle = TrainingMetric.create!(training_exercice_id: training_sprint_natation_doscrawle.id)
+training_metrics_endurance_crawl = TrainingMetric.create!(
+  training_exercice_id: training_endurance_natation_crawl.id,
+  duration: 30,
+  average_speed: 8,
+  repetition: "",
+  serie: 2,
+  weight: "",
+  breack_time: Time.parse("01:30")
+)
+
+training_metrics_endurance_doscrawle = TrainingMetric.create!(
+  training_exercice_id: training_endurance_natation_doscrawle.id,
+  duration: 45,
+  average_speed: 14,
+  repetition: "",
+  serie: 1,
+  weight: "",
+  breack_time: Time.parse("01:00")
+)
+
+training_metrics_sprint_crawl = TrainingMetric.create!(
+  training_exercice_id: training_sprint_natation_crawl.id,
+  duration: 30,
+  average_speed: 9,
+  repetition: "",
+  serie: 2,
+  weight: "",
+  breack_time: Time.parse("01:00")
+)
+
+training_metrics_sprint_doscrawle = TrainingMetric.create!(
+  training_exercice_id: training_sprint_natation_doscrawle.id,
+  duration: 30,
+  average_speed: 9,
+  repetition: "",
+  serie: 2,
+  weight: "",
+  breack_time: Time.parse("01:00")
+)
 
 # Création d'instances Seance -> Table seances
 seance_endurance_natation = Seance.create!(
