@@ -1,7 +1,7 @@
 class TrainingExercice < ApplicationRecord
   belongs_to :training
   belongs_to :exercice
-  has_many :training_metrics, dependent: :destroy
+  has_one :training_metric, dependent: :destroy
   has_many :training_values
   include PgSearch::Model
   pg_search_scope :search_exercices,
@@ -19,8 +19,8 @@ class TrainingExercice < ApplicationRecord
   # def create_training_metrics
   #   training_metrics = TrainingMetric.new
   #   training_metrics.training_exercice_id = self.id
+  #   raise
   #   training_metrics.save!
   # end
-
 
 end
