@@ -1,5 +1,9 @@
 $radius: 8px;
 
+i {
+  font-size: 24px;
+}
+
 #boostrap-override {
   .forminput {
     border-radius: $radius;
@@ -51,7 +55,6 @@ $radius: 8px;
     font-weight: 400;
     color: $color-secondary;
     margin-top: 0;
-    margin-bottom: 0.5rem;
     line-height: 1.2;
   }
   a {

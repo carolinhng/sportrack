@@ -20,6 +20,29 @@
   font-family: $Outfit-font;
 }
 
+.training_card {
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  background: $color-grey;
+  border-radius: $radius;
+  border: 1px solid $color-grey-dark;
+  margin-bottom: 8px;
+
+  .training_structure {
+    display: flex;
+    align-items: center;
+  }
+
+  .training_content {
+    display: flex;
+    align-items: center;
+    h3 {
+      font-weight: 700;
+    }
+  }
+}
+
 .indexcard {
   padding: 24px;
   display: flex;
@@ -28,7 +51,7 @@
   border-radius: $radius * 3;
   text-decoration: none;
   i {
-    height: 32px;
+    height: 40px;
     padding: 8px;
     background: $color-primary;
     border-radius: $radius * 4;
@@ -48,9 +71,8 @@
 .btn-background-white {
   background-color: white!important;
 }
+
 .card_exercice {
-  // width: 310px;
-  // height: 54px;
   margin-top: 15px;
   padding: 15px 24px;
   justify-content: space-between;
