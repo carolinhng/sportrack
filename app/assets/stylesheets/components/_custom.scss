@@ -29,29 +29,6 @@
   font-family: $Outfit-font;
 }
 
-.training_card {
-  padding: 24px;
-  display: flex;
-  align-items: center;
-  background: $color-grey;
-  border-radius: $radius;
-  border: 1px solid $color-grey-dark;
-  margin-bottom: 8px;
-
-  .training_structure {
-    display: flex;
-    align-items: center;
-  }
-
-  .training_content {
-    display: flex;
-    align-items: center;
-    h3 {
-      font-weight: 700;
-    }
-  }
-}
-
 .indexcard {
   padding: 24px;
   display: flex;
@@ -173,3 +150,7 @@ a {
     background: $color-grey;
     border: none;
   }
+
+.padding-top-1 {
+  padding-top: 1px;
+}
