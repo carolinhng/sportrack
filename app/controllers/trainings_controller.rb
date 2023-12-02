@@ -28,6 +28,7 @@ class TrainingsController < ApplicationController
   def destroy
     @training = Training.find(params[:id])
     @training.destroy!
+    redirect_to trainings_path(@training), status: :see_other
   end
 
   private
