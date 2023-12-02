@@ -1,7 +1,6 @@
 class TrainingsController < ApplicationController
 
   def index
-
     # index vers page entrainements
     @trainings = current_user.trainings
   end
@@ -24,6 +23,11 @@ class TrainingsController < ApplicationController
 
   def show
     @training = Training.find(params[:id])
+  end
+
+  def destroy
+    @training = Training.find(params[:id])
+    @training.destroy!
   end
 
   private

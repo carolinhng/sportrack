@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :user_sports, only: [:create]
   end
 
-  resources :trainings, only: [:show, :index]
+  resources :trainings, only: [:show, :index, :destroy]
   resources :training_exercices, only: [:destroy]
 
 
