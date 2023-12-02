@@ -1,4 +1,4 @@
-<div class="container grey">
+<div class="container">
   <%= image_tag "" %>
   <div>
     <h3>Bonjour <%= current_user.nick_name %>,</h3>
@@ -12,8 +12,33 @@
 </div>
 
 <div class="container">
-  <div class="flex jcsb">
+  <div class="flex jcsb padding-b">
     <h2>Vos entrainements</h2>
     <%= link_to "voir plus", trainings_path %>
   </div>
+
+  <% @trainings.limit(1).each do |training| %>
+
+    <%= link_to training_path(training.id), class: "training_card" do %>
+      <div class"training_structure">
+        <h3><%= training.name %></h3>
+        <div class="training_content">
+          <i class="ri-timer-flash-line"></i>
+          <h3><%= training.exercices.count %> exercices</h3>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>
+
+<div class="container">
+  <h2>Vos données</h2>
+
+    <canvas
+      data-controller="chart"
+      data-chart-data-value="<%= @chart_data.to_json %>"
+      data-chart-options-value="<%= @chart_options.to_json %>">
+    </canvas>
+
 </div>
