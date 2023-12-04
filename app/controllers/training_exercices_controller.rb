@@ -19,7 +19,10 @@ class TrainingExercicesController < ApplicationController
 
   def create
    @training_exercice =  TrainingExercice.create!(exercice_id: params[:exercice_id], training_id: params[:training_id])
-    redirect_to new_training_training_exercice_path
+   redirect_to new_training_training_exercice_path
+   training_metrics = TrainingMetric.new
+   training_metrics.training_exercice_id = @training_exercice.id
+   training_metrics.save!
   end
 
   def destroy

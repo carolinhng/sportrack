@@ -22,25 +22,31 @@
 
   <div class="tab-content" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-      <%= link_to "Créer un nouvel entrainement", new_user_sport_training_path(@user_sport), class: "btn btn-primary padding-b" %>
+      <%= link_to "Créer un nouvel entrainement", new_user_sport_training_path(@user_sport), class: "btn btn-primary mb-3" %>
+
+<%# ------------------- List des entrainements liés au user et à son sport ----------------------------- %>
 
       <% @user_sport.trainings.each do | training | %>
-
-          <%= link_to training_path(training.id), class: "training_card" do %>
-          <div class="training_structure">
-            <h3><%= training.name %></h3>
-            <div class="training_content">
-              <i class="ri-timer-flash-line"></i>
-              <h3><%= training.exercices.count %> exercices</h3>
+          <%= link_to training_path(training) do %>
+            <div class="bloc mt-2 d-flex justify-content-between align-items-center">
+                <div>
+                  <h3><%= training.name %></h3>
+                  <div class="defaultcardt d-flex mt-2">
+                    <i class="fa-solid fa-person-walking me-2" style="color: #000000; font-size: 18px;"></i>
+                    <h3 class="padding-top-1"><%= training.exercices.count %> <%= training.exercices.count <= 1 ? 'exercice' : 'exercices' %></h3>
+                  </div>
+                </div>
+                <div>
+                  <%= link_to training_path(training), data: {turbo_method: :delete } do %>
+                    <i class="ri-delete-bin-line"></i>
+                  <% end %>
+                </div>
             </div>
-          </div>
           <% end %>
-
       <% end %>
-    </div>
 
+
+    </div>
       <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">Historique vide</div>
   </div>
-
 </div>
-<%# ------------------- List des entrainements liés au user et à son sport ----------------------------- %>

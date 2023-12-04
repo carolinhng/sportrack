@@ -9,7 +9,7 @@
           <h1 class="color-white">Saisir vos données</h1>
         </div>
       <% end %>
-          <div><i class="ri-more-2-line icone-sans-fond"></i></div>
+        <div><i class="ri-more-2-line icone-sans-fond"></i></div>
     </div>
     <div class="margin-top-16">
       <h2 class="color-white"><%= @training.name %></h2>
@@ -23,9 +23,8 @@
 
 <%# -------------------Form----------------------------- %>
 
- <%# <% @training_exercices.each do | training_exercice |  %>
-  <%# <%= training_exercice.exercice.name %>
-    <%# <%= training_exercice.training_metric %>
-    <%# <% raise  %>
-  <%# <%= training_exercice.training_metrics.first.serie %>
- <%# <% end %> 
+ <% @training_exercices.each do | training_exercice |  %>
+  <%= training_exercice.exercice.name %>
+    <%= training_exercice.training_metric.id %>
+  <%= training_exercice.training_metric.serie%>
+ <% end %>
