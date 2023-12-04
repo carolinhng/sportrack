@@ -27,6 +27,7 @@ class SeancesController < ApplicationController
   end
 
   def update
+
     @seance = Seance.find(params[:id])
     if @seance.update(seance_params)
      redirect_to @seance, notice: 'Séance mise à jour avec succès.'
