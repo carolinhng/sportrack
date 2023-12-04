@@ -1,7 +1,6 @@
 class TrainingExercicesController < ApplicationController
 
   def index
-    raise
     @training_exercices = TrainingExercice.all
     @training = Training.find(params[:training_id])
     @training_exercices = @training.training_exercices

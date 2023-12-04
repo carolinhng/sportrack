@@ -25,6 +25,13 @@
 
 <% @training_exercices.each do | training_exercice |  %>
 <%= training_exercice.exercice.name %>
+<% end %>
+<br>
+<% @training.training_exercices.each do |training_exercice| %>
+<% training_exercice.training_metrics.each do |training_metric| %>
+<%= training_metric.metric %>
+<% end %>
+<br>
 <%# <%= training_exercice.training_metric.id %>
 <% end %>
 
@@ -32,25 +39,23 @@
 
 <div class="container">
   <%= simple_form_for(@seance) do |seance_form| %>
-
     <div>
-      <%= seance_form.label :date %>
+      <%= seance_form.input :date, order: [:day, :month, :year] %>
       <%= seance_form.date_field :date %>
-
-      <%= seance_form.label :comment %>
-      <%= seance_form.text_field :comment %>
-      <%= seance_form.input :comment %>
+      <%= seance_form.input :comment, label: "Commentaire", placeholder: "Ajouter une note à l'entrainement", class: "forminput" %>
+      <%= seance_form.input :rating, label: "Note", placeholder: "Ajouter une note à l'entrainement", collection: 1..5 %>
+      <%= seance_form.input :duration, collection: 1..200, label: "Durée (minutes)", placeholder: "Durée de l'entrainement", class: "forminput" %>
+      <%= seance_form.button :submit, 'Enregistrer', class: "btn-primary forminput" %>
     </div>
 
-    <%= seance_form.fields_for :training_values do |training_value_form| %>
+    <%= seance_form.simple_fields_for :training_values do |training_value_form| %>
       <p>
         <div>
-          <%= training_value_form.label :value, 'training_value:' %>
-          <%= training_value_form.text_field :value %>
+        <%= training_value_form.input :value, label: "Metrics #{}", placeholder: "Ajouter mes données", class: "forminput" %>
         </div>
       </p>
     <% end %>
-    <%= seance_form.submit %>
+    <%= seance_form.button :submit, 'Enregistrer', class: "btn-primary forminput" %>
     <div style="height: 200px"></div>
 
   <% end %>
