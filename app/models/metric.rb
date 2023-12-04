@@ -1,3 +1,3 @@
 class Metric < ApplicationRecord
-  has_many :exercices
+  belongs_to :exercice
 end
