@@ -108,7 +108,7 @@ training_sprint_natation_doscrawle = TrainingExercice.create!(training_id: train
 
 training_metrics_endurance_crawl = TrainingMetric.create!(
   training_exercice_id: training_endurance_natation_crawl.id,
-  duration: 0,
+  duration: Time.parse("01:30"),
   average_speed: 0,
   repetition: "",
   serie: 0,
@@ -118,7 +118,7 @@ training_metrics_endurance_crawl = TrainingMetric.create!(
 
 training_metrics_endurance_doscrawle = TrainingMetric.create!(
   training_exercice_id: training_endurance_natation_doscrawle.id,
-  duration: 0,
+  duration: Time.parse("01:30"),
   average_speed: 0,
   repetition: "",
   serie: 0,
@@ -128,7 +128,7 @@ training_metrics_endurance_doscrawle = TrainingMetric.create!(
 
 training_metrics_sprint_crawl = TrainingMetric.create!(
   training_exercice_id: training_sprint_natation_crawl.id,
-  duration: 0,
+  duration: Time.parse("01:30"),
   average_speed: 0,
   repetition: "",
   serie: 0,
@@ -138,7 +138,7 @@ training_metrics_sprint_crawl = TrainingMetric.create!(
 
 training_metrics_sprint_doscrawle = TrainingMetric.create!(
   training_exercice_id: training_sprint_natation_doscrawle.id,
-  duration: 0,
+  duration: Time.parse("01:30"),
   average_speed: 0,
   repetition: "",
   serie: 0,
