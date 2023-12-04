@@ -26,9 +26,13 @@ class TrainingExercicesController < ApplicationController
   def create
    @training_exercice =  TrainingExercice.create!(exercice_id: params[:exercice_id], training_id: params[:training_id])
    redirect_to new_training_training_exercice_path
-   training_metrics = TrainingMetric.new
-   training_metrics.training_exercice_id = @training_exercice.id
-   training_metrics.save!
+    @training_exercice.exercice.metrics.each do |metric|
+      TrainingMetric.create!(
+        training_exercice: @training_exercice,
+        metric: metric.metric,
+        unit: metric.unit
+      )
+    end
   end
 
   def update
@@ -46,10 +50,4 @@ class TrainingExercicesController < ApplicationController
     @training_exercice.destroy
     redirect_to new_training_training_exercice_path(@training), status: :see_other
   end
-
-  private
-  def training_exercise_params
-    params.require(:training_exercise).permit(:name, :sport_id, training_metrics_attributes: [:id, :metric, :unit, :_destroy])
-  end
-
 end

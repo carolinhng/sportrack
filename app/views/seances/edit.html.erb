@@ -4,18 +4,18 @@
   <div class="container">
     <div class="flex align-center justify-between">
       <%= link_to training_path(@training), class: "link-decoration-none" do %>
-        <div class="link-head">
-          <i class="ri-arrow-left-s-line"></i>
-          <h1 class="color-white">Saisir vos données</h1>
-        </div>
+      <div class="link-head">
+        <i class="ri-arrow-left-s-line"></i>
+        <h1 class="color-white">Saisir vos données</h1>
+      </div>
       <% end %>
-        <div><i class="ri-more-2-line icone-sans-fond"></i></div>
+      <div><i class="ri-more-2-line icone-sans-fond"></i></div>
     </div>
     <div class="margin-top-16">
       <h2 class="color-white"><%= @training.name %></h2>
       <div>
         <p class="color-white"><%= @training.sport.name %> -
-        Crée le <%= @training.created_at.to_date.strftime('%d-%m-%Y') %></p>
+          Crée le <%= @training.created_at.to_date.strftime('%d-%m-%Y') %></p>
       </div>
     </div>
   </div>
@@ -23,7 +23,37 @@
 
 <%# -------------------Form----------------------------- %>
 
- <% @training_exercices.each do | training_exercice |  %>
-  <%= training_exercice.exercice.name %>
-    <%# <%= training_exercice.training_metric.id %>
- <% end %>
+<% @training_exercices.each do | training_exercice |  %>
+<%= training_exercice.exercice.name %>
+<%# <%= training_exercice.training_metric.id %>
+<% end %>
+
+<%# -------------------Form Nested----------------------------- %>
+
+<div class="container">
+  <%= simple_form_for(@seance) do |seance_form| %>
+
+    <div>
+      <%= seance_form.label :date %>
+      <%= seance_form.date_field :date %>
+
+      <%= seance_form.label :comment %>
+      <%= seance_form.text_field :comment %>
+      <%= seance_form.input :comment %>
+    </div>
+
+    <%= seance_form.fields_for :training_values do |training_value_form| %>
+      <p>
+        <div>
+          <%= training_value_form.label :value, 'training_value:' %>
+          <%= training_value_form.text_field :value %>
+        </div>
+      </p>
+    <% end %>
+    <%= seance_form.submit %>
+    <div style="height: 200px"></div>
+
+  <% end %>
+
+
+</div>

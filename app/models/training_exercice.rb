@@ -11,7 +11,7 @@ class TrainingExercice < ApplicationRecord
     tsearch: { prefix: true }
   }
 
-  # after_create :create_training_metrics
+  # after_create :create_training_metrics, codé dans le controller
 
   def self.exercice?(exercice, training)
     find_by(exercice: exercice, training: training).present?
@@ -34,5 +34,4 @@ class TrainingExercice < ApplicationRecord
   #   raise
   #   training_metrics.save!
   # end
-
 end
