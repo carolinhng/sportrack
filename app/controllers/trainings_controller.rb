@@ -31,6 +31,11 @@ class TrainingsController < ApplicationController
     redirect_to trainings_path(@training), status: :see_other
   end
 
+  def training_data
+    @training = Training.find(params[:id])
+    @training_exercices = @training.training_exercices
+  end
+
   private
 
   def params_training
