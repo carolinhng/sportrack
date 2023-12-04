@@ -1,7 +1,7 @@
 class TrainingExercice < ApplicationRecord
   belongs_to :training
   belongs_to :exercice
-  has_one :training_metric, dependent: :destroy
+  has_many :training_metrics, dependent: :destroy
   has_many :training_values
   include PgSearch::Model
   pg_search_scope :search_exercices,
