@@ -6,7 +6,6 @@ class SeancesController < ApplicationController
   end
 
   def create
-    raise
     @seance = Seance.new
     @training = Training.find(params[:training_id])
     @seance.training_id = @training.id
@@ -27,20 +26,17 @@ class SeancesController < ApplicationController
   end
 
   def update
-
     @seance = Seance.find(params[:id])
     if @seance.update(seance_params)
-     redirect_to @seance, notice: 'Séance mise à jour avec succès.'
+      redirect_to @seance, notice: 'Séance mise à jour avec succès.'
     else
-     render :edit
+      render :edit
     end
   end
-
 
   private
 
   def seance_params
     params.require(:seance).permit(:date, :comment, :rating, :duration, training_values_attributes: [:id, :value])
   end
-
 end
