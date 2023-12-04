@@ -67,7 +67,6 @@ metrics_crawl_natation = Metric.create!(
 exercice_crawl_natation = Exercice.create!(name: "Crawl", sport_id: sport_natation.id, metric_id: metrics_crawl_natation.id)
 
 metrics_doscrawle_natation = Metric.create!(
-  duration: 0,
   average_speed: 0,
   repetition: "",
   serie: 0,
@@ -77,7 +76,6 @@ metrics_doscrawle_natation = Metric.create!(
 exercice_doscrawle_natation = Exercice.create!(name: "Dos crawlé", sport_id: sport_natation.id, metric_id: metrics_doscrawle_natation.id)
 
 metrics_pullbouy_natation = Metric.create!(
-  duration: 0,
   average_speed: 0,
   repetition: "",
   serie: 0,
@@ -87,7 +85,6 @@ metrics_pullbouy_natation = Metric.create!(
 exercice_pullbouy_natation = Exercice.create!(name: "Pull-bouy", sport_id: sport_natation.id, metric_id: metrics_pullbouy_natation.id)
 
 metrics_brasse_natation = Metric.create!(
-  duration: 0,
   average_speed: 0,
   repetition: "",
   serie: 0,
@@ -108,42 +105,23 @@ training_sprint_natation_doscrawle = TrainingExercice.create!(training_id: train
 
 training_metrics_endurance_crawl = TrainingMetric.create!(
   training_exercice_id: training_endurance_natation_crawl.id,
-  duration: Time.parse("01:30"),
-  average_speed: 0,
-  repetition: "",
-  serie: 0,
-  weight: "",
-  breack_time: Time.parse("01:30")
+  metric: "",
+  unit: ""
 )
 
 training_metrics_endurance_doscrawle = TrainingMetric.create!(
   training_exercice_id: training_endurance_natation_doscrawle.id,
-  duration: Time.parse("01:30"),
-  average_speed: 0,
-  repetition: "",
-  serie: 0,
-  weight: "",
-  breack_time: Time.parse("01:00")
+  metric: "",
+  unit: ""
 )
 
 training_metrics_sprint_crawl = TrainingMetric.create!(
   training_exercice_id: training_sprint_natation_crawl.id,
-  duration: Time.parse("01:30"),
-  average_speed: 0,
-  repetition: "",
-  serie: 0,
-  weight: "",
-  breack_time: Time.parse("01:00")
+
 )
 
 training_metrics_sprint_doscrawle = TrainingMetric.create!(
   training_exercice_id: training_sprint_natation_doscrawle.id,
-  duration: Time.parse("01:30"),
-  average_speed: 0,
-  repetition: "",
-  serie: 0,
-  weight: "",
-  breack_time: Time.parse("01:00")
 )
 
 # Création d'instances Seance -> Table seances
