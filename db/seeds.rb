@@ -57,7 +57,6 @@ training_intervalle_natation = Training.create!(
 # Création d'instances Metric & Exercice -> Table metrics & exercices
 
 metrics_crawl_natation = Metric.create!(
-  duration: 30,
   average_speed: 8,
   repetition: "",
   serie: 2,
@@ -179,49 +178,49 @@ seance_intervalle_natation = Seance.create!(
 # Création d'instances TrainingVelue -> Table trainings_values
 
 training_values_endurance_crawl_one = TrainingValue.create!(
-  training_metric_id: training_metrics_endurance_crawl.id,
+  training_metric_id: training_metrics_endurance_crawl_one.id,
   seance_id: seance_endurance_natation.id,
   value: "4000"
 )
 
 training_values_endurance_crawl_two = TrainingValue.create!(
-  training_metric_id: training_metrics_endurance_crawl.id,
+  training_metric_id: training_metrics_endurance_crawl_two.id,
   seance_id: seance_endurance_natation.id,
   value: "70"
 )
 
 training_values_endurance_doscrawle_one = TrainingValue.create!(
-  training_metric_id: training_metrics_endurance_doscrawle.id,
+  training_metric_id: training_metrics_endurance_doscrawle_one.id,
   seance_id: seance_endurance_natation.id,
   value: "4000"
 )
 
 training_values_endurance_doscrawle_two = TrainingValue.create!(
-  training_metric_id: training_metrics_endurance_doscrawle.id,
+  training_metric_id: training_metrics_endurance_doscrawle_two.id,
   seance_id: seance_endurance_natation.id,
   value: "120"
 )
 
 training_values_sprint_crawl_one = TrainingValue.create!(
-  training_metric_id: training_metrics_sprint_crawl.id,
+  training_metric_id: training_metrics_sprint_crawl_one.id,
   seance_id: seance_sprint_natation.id,
   value: "200"
 )
 
 training_values_sprint_crawl_two = TrainingValue.create!(
-  training_metric_id: training_metrics_sprint_crawl.id,
+  training_metric_id: training_metrics_sprint_crawl_two.id,
   seance_id: seance_sprint_natation.id,
   value: "4"
 )
 
 training_values_sprint_doscrawle_one = TrainingValue.create!(
-  training_metric_id: training_metrics_sprint_doscrawle.id,
+  training_metric_id: training_metrics_sprint_doscrawle_one.id,
   seance_id: seance_sprint_natation.id,
   value: "200"
 )
 
 training_values_sprint_doscrawle_two = TrainingValue.create!(
-  training_metric_id: training_metrics_sprint_doscrawle.id,
+  training_metric_id: training_metrics_sprint_doscrawle_two.id,
   seance_id: seance_sprint_natation.id,
   value: "6"
 )
