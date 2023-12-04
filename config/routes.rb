@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :trainings, only: [:show, :index, :destroy]
-  resources :training_exercices, only: [:destroy]
+  resources :training_exercices, only: [:destroy, :index, :update]
 
 
   resources :trainings, only: [] do
