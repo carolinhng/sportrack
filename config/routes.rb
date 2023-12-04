@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
 
   resources :trainings, only: [] do
+    get 'training_data', on: :member
     resources :training_exercices, only: [:new, :create, :index,]
     resources :seances, only: [:create, :edit]
   end
