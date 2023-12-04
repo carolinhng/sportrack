@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     resources :seances, only: [:create, :edit]
   end
 
-  resources :seance, only: [] do
+  resources :seance, only: [:update] do
     resources :training_values, only: [:create]
   end
 

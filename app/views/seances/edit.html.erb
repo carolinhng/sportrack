@@ -28,3 +28,44 @@
     <%= training_exercice.training_metric.id %>
   <%= training_exercice.training_metric.serie = 5 %>
  <% end %>
+
+
+<%# -------------------Test----------------------------- %>
+
+<%= form_for @seance do |seance| %>
+  <!-- Les champs de la séance -->
+  <%# <%= seance.label :date %>
+  <%# <%= seance.text_seanceield :date %>
+
+  <%= seance.label :comment %>
+  <%= seance.text_field :comment %>
+
+  <%= seance.label :rating %>
+  <%= seance.text_field :rating %>
+
+  <%# <%= f.label :duration %>
+ <%# <%= f.text_field :duration %>
+  <!-- ... autres champs de la séance ... -->
+
+  <!-- Les champs pour les training_metrics -->
+<% @training_exercices.each do | training_exercice |  %>
+  <%= training_exercice.exercice.name %>
+  <!-- On récupère les champs de metrics pour chaque exo-->
+
+
+
+
+
+ <% end %>
+
+
+  <%= seance.fields_for @training_metric do |tm| %>
+    <%= tm.label :serie %>
+    <%= tm.text_field :serie %>
+    <%= tm.label :average_speed %>
+    <%= tm.text_field :average_speed %>
+    <!-- ... autres champs de training_metrics ... -->
+  <% end %>
+
+  <%= seance.submit "Mettre à jour" %>
+<% end %>
