@@ -1,0 +1,11 @@
+<h1><%= @training.name %></h1>
+
+<div data-controller="chart-data">
+  <% @training_exercices.each do |training_exercice| %>
+    <canvas data-chart-data-target="chart"
+            data-chart-data-training-exercice-name-value=<%= training_exercice.exercice.name %>
+            data-chart-data-training-exercice-metrics-value=<%= training_exercice.training_exercice_data.to_json  %>
+    >
+    </canvas>
+  <% end %>
+</div>
