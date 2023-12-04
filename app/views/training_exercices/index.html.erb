@@ -1,0 +1,33 @@
+
+<% @training_exercices.each do | training_exercice | %>
+
+  <% form_for training_exercice do |training_exercice_form| %>
+    <div>
+      <%= training_exercice_form.exercice.name :name training_exercice_form.exercice.name %>
+      <%= training_exercice_form.text_field :name %>
+    </div>
+
+    <% training_exercice.tasks.each do |task| %>
+      <% new_or_existing = task.new_record? ? 'new' : 'existing' %>
+      <% prefix = "project[#{new_or_existing}_task_attributes][]" %>
+      <% fields_for prefix, task do |task_form| %>
+        <p>
+          <div>
+            <%= task_form.label :name, 'Task:' %>
+            <%= task_form.text_field :name %>
+          </div>
+
+          <% unless task.new_record? %>
+            <div>
+              <%= task_form.label :_delete, 'Remove:' %>
+              <%= task_form.check_box :_delete %>
+            </div>
+          <% end %>
+        </p>
+      <% end %>
+    <% end %>
+
+    <%= training_exercice_form.submit %>
+  <% end %>
+
+<% end %>

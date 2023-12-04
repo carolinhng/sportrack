@@ -54,47 +54,48 @@ training_intervalle_natation = Training.create!(
   user_sport_id: pierre_sport.id
 )
 
-# Création d'instances Metric & Exercice -> Table metrics & exercices
+# Création d'instances Exercice -> Table exercices
 
-metrics_crawl_natation = Metric.create!(
-  duration: 30,
-  average_speed: 8,
-  repetition: "",
-  serie: 2,
-  weight: "",
-  breack_time: Time.parse("01:30")
-)
-exercice_crawl_natation = Exercice.create!(name: "Crawl", sport_id: sport_natation.id, metric_id: metrics_crawl_natation.id)
+exercice_crawl_natation = Exercice.create!(name: "Crawl", sport_id: sport_natation.id)
+exercice_doscrawle_natation = Exercice.create!(name: "Dos crawlé", sport_id: sport_natation.id)
+exercice_pullbouy_natation = Exercice.create!(name: "Pull-bouy", sport_id: sport_natation.id)
+exercice_brasse_natation = Exercice.create!(name: "Brasse", sport_id: sport_natation.id)
 
-metrics_doscrawle_natation = Metric.create!(
-  duration: 0,
-  average_speed: 0,
-  repetition: "",
-  serie: 0,
-  weight: "",
-  breack_time: Time.parse("01:00")
-)
-exercice_doscrawle_natation = Exercice.create!(name: "Dos crawlé", sport_id: sport_natation.id, metric_id: metrics_doscrawle_natation.id)
 
-metrics_pullbouy_natation = Metric.create!(
-  duration: 0,
-  average_speed: 0,
-  repetition: "",
-  serie: 0,
-  weight: "",
-  breack_time: Time.parse("02:00")
-)
-exercice_pullbouy_natation = Exercice.create!(name: "Pull-bouy", sport_id: sport_natation.id, metric_id: metrics_pullbouy_natation.id)
+# Création d'instances Metric -> Table metrics
 
-metrics_brasse_natation = Metric.create!(
-  duration: 0,
-  average_speed: 0,
-  repetition: "",
-  serie: 0,
-  weight: "",
-  breack_time: Time.parse("01:00")
-)
-exercice_brasse_natation = Exercice.create!(name: "Brasse", sport_id: sport_natation.id, metric_id: metrics_brasse_natation.id)
+sport_natation.exercices.each do |exercice|
+  metrics_duree = Metric.create!(
+    metric: "Durée",
+    unit: "minutes",
+    exercice_id: exercice.id
+  )
+
+  metrics_distance = Metric.create!(
+    metric: "Distance",
+    unit: "mètres",
+    exercice_id: exercice.id
+  )
+
+  metrics_vitesse = Metric.create!(
+    metric: "Vitesse",
+    unit: "km/h",
+    exercice_id: exercice.id
+  )
+
+  metrics_temps_de_repos = Metric.create!(
+    metric: "Temps de repos",
+    unit: "minutes",
+    exercice_id: exercice.id
+  )
+
+  metrics_serie = Metric.create!(
+    metric: "Série",
+    unit: "nombre",
+    exercice_id: exercice.id
+  )
+end
+
 
 # Création d'instances TrainingExercice -> Table trainings_exercices
 
@@ -108,42 +109,26 @@ training_sprint_natation_doscrawle = TrainingExercice.create!(training_id: train
 
 training_metrics_endurance_crawl = TrainingMetric.create!(
   training_exercice_id: training_endurance_natation_crawl.id,
-  duration: Time.parse("01:30"),
-  average_speed: 0,
-  repetition: "",
-  serie: 0,
-  weight: "",
-  breack_time: Time.parse("01:30")
+  metric: "Vitesse",
+  unit: "km/h"
 )
 
 training_metrics_endurance_doscrawle = TrainingMetric.create!(
   training_exercice_id: training_endurance_natation_doscrawle.id,
-  duration: Time.parse("01:30"),
-  average_speed: 0,
-  repetition: "",
-  serie: 0,
-  weight: "",
-  breack_time: Time.parse("01:00")
+  metric: "Vitesse",
+  unit: "km/h"
 )
 
 training_metrics_sprint_crawl = TrainingMetric.create!(
   training_exercice_id: training_sprint_natation_crawl.id,
-  duration: Time.parse("01:30"),
-  average_speed: 0,
-  repetition: "",
-  serie: 0,
-  weight: "",
-  breack_time: Time.parse("01:00")
+  metric: "Vitesse",
+  unit: "km/h"
 )
 
 training_metrics_sprint_doscrawle = TrainingMetric.create!(
   training_exercice_id: training_sprint_natation_doscrawle.id,
-  duration: Time.parse("01:30"),
-  average_speed: 0,
-  repetition: "",
-  serie: 0,
-  weight: "",
-  breack_time: Time.parse("01:00")
+  metric: "Vitesse",
+  unit: "km/h"
 )
 
 # Création d'instances Seance -> Table seances
@@ -175,20 +160,48 @@ seance_intervalle_natation = Seance.create!(
 
 training_values_endurance_crawl = TrainingValue.create!(
   training_metric_id: training_metrics_endurance_crawl.id,
-  seance_id: seance_endurance_natation.id
+  seance_id: seance_endurance_natation.id,
+  value: "20"
 )
 
-training_values_endurance_doscrawle = TrainingValue.create!(
+training_values_endurance_crawl_two = TrainingValue.create!(
+  training_metric_id: training_metrics_endurance_crawl.id,
+  seance_id: seance_endurance_natation.id,
+  value: "18"
+)
+
+training_values_endurance_doscrawle_one = TrainingValue.create!(
   training_metric_id: training_metrics_endurance_doscrawle.id,
-  seance_id: seance_endurance_natation.id
+  seance_id: seance_endurance_natation.id,
+  value: "14"
 )
 
-training_values_sprint_crawl = TrainingValue.create!(
+training_values_endurance_doscrawle_two = TrainingValue.create!(
+  training_metric_id: training_metrics_endurance_doscrawle.id,
+  seance_id: seance_endurance_natation.id,
+  value: "12"
+)
+
+training_values_sprint_crawl_one = TrainingValue.create!(
   training_metric_id: training_metrics_sprint_crawl.id,
-  seance_id: seance_sprint_natation.id
+  seance_id: seance_sprint_natation.id,
+  value: "8"
 )
 
-training_values_sprint_doscrawle = TrainingValue.create!(
+training_values_sprint_crawl_two = TrainingValue.create!(
+  training_metric_id: training_metrics_sprint_crawl.id,
+  seance_id: seance_sprint_natation.id,
+  value: "14"
+)
+
+training_values_sprint_doscrawle_one = TrainingValue.create!(
   training_metric_id: training_metrics_sprint_doscrawle.id,
-  seance_id: seance_sprint_natation.id
+  seance_id: seance_sprint_natation.id,
+  value: "200"
+)
+
+training_values_sprint_doscrawle_two = TrainingValue.create!(
+  training_metric_id: training_metrics_sprint_doscrawle.id,
+  seance_id: seance_sprint_natation.id,
+  value: "6"
 )
