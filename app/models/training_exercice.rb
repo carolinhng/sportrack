@@ -3,6 +3,7 @@ class TrainingExercice < ApplicationRecord
   belongs_to :exercice
   has_many :training_metrics, dependent: :destroy
   has_many :training_values
+  accepts_nested_attributes_for :training_metrics, allow_destroy: true
   include PgSearch::Model
   pg_search_scope :search_exercices,
   against: [ :name ],

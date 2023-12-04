@@ -10,28 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_04_102923) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_04_135439) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "exercices", force: :cascade do |t|
     t.string "name"
     t.bigint "sport_id", null: false
-    t.bigint "metric_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["metric_id"], name: "index_exercices_on_metric_id"
     t.index ["sport_id"], name: "index_exercices_on_sport_id"
   end
 
   create_table "metrics", force: :cascade do |t|
-    t.integer "average_speed"
-    t.integer "repetition"
-    t.integer "serie"
-    t.integer "weight"
-    t.time "breack_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "metric"
+    t.string "unit"
+    t.bigint "exercice_id"
+    t.index ["exercice_id"], name: "index_metrics_on_exercice_id"
   end
 
   create_table "seances", force: :cascade do |t|
@@ -110,8 +107,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_04_102923) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "exercices", "metrics"
   add_foreign_key "exercices", "sports"
+  add_foreign_key "metrics", "exercices"
   add_foreign_key "seances", "trainings"
   add_foreign_key "training_exercices", "exercices"
   add_foreign_key "training_exercices", "trainings"

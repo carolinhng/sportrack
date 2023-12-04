@@ -19,11 +19,11 @@ Rails.application.routes.draw do
   end
 
   resources :trainings, only: [:show, :index, :destroy]
-  resources :training_exercices, only: [:destroy, :index, :update]
+  resources :training_exercices, only: [:destroy, :update]
 
 
   resources :trainings, only: [] do
-    resources :training_exercices, only: [:new, :create]
+    resources :training_exercices, only: [:new, :create, :index,]
     resources :seances, only: [:create, :edit]
   end
 
