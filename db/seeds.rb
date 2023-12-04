@@ -11,8 +11,8 @@ TrainingValue.destroy_all
 Seance.destroy_all
 TrainingMetric.destroy_all
 TrainingExercice.destroy_all
-Exercice.destroy_all
 Metric.destroy_all
+Exercice.destroy_all
 Training.destroy_all
 UserSport.destroy_all
 Sport.destroy_all

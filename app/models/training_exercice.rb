@@ -10,7 +10,7 @@ class TrainingExercice < ApplicationRecord
     tsearch: { prefix: true }
   }
 
-  # after_create :create_training_metrics
+  after_create :create_training_metrics
 
   def self.exercice?(exercice, training)
     find_by(exercice: exercice, training: training).present?
@@ -22,5 +22,16 @@ class TrainingExercice < ApplicationRecord
   #   raise
   #   training_metrics.save!
   # end
+
+
+  def create_training_metrics
+    self.exercice.metrics.each do |metric|
+      TrainingMetric.create(
+        training_exercice: self,
+        name: metric.metric,
+        unit: metric.unit
+      )
+    end
+  end
 
 end
