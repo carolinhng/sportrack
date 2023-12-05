@@ -3,6 +3,7 @@ class TrainingsController < ApplicationController
   def index
     # index vers page entrainements
     @trainings = current_user.trainings
+    @seances = Seance.all
   end
 
   def new

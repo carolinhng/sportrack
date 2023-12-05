@@ -38,12 +38,47 @@
       <% end %>
     <% end %>
 <%# -------------------HISTORIQUE--------------------------------------- %>
-            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">Historique vide
-
-            </div>
-
-          </div>
 
     </div>
+      <div class="tab-pane fade <%= "show active" if @active %>" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+         <%# -------------------SEARCHBAR---------------------------- %>
+         <div class="row justify-content-center">
+
+          <div class="col-sm-8 my-3">
+            <%= form_with url: trainings_path, method: :get, class: "d-flex" do %>
+              <%= text_field_tag :query,
+                  params[:query],
+                  class: "form-control",
+                  placeholder: "Rechercher une seance"
+              %>
+              <button class="search" , name="" , type="submit"> <i class="ri-search-line"></i></button>
+              <button class="filter mx-1"><i class="ri-filter-3-line"></i></button>
+            <% end %>
+
+          </div>
+        </div>
+
+        <% @seances.each do |seance|%>
+          <%= link_to seance_path(seance) do %>
+            <div class="bloc mt-2 d-flex justify-content-between align-items-center">
+
+            <div>
+              <h3><%= seance.training.name %></h3>
+                <div class="defaultcardt d-flex mt-2">
+                  <i class="ri-time-fill me-2" style="color: #000000; font-size: 18px;"></i>
+                  <h3 class="padding-top-1"><%= seance.date %></h3>
+                </div>
+
+                <div class="defaultcardt d-flex mt-2">
+                    <i class="ri-heart-fill me-2" style="color: #000000; font-size: 18px;"></i>
+                    <h3 class="padding-top-1"><%= seance.rating%></h3>
+                </div>
+            </div>
+
+            </div>
+          <% end %>
+        <% end %>
+
+  </div>
 
 </div>
