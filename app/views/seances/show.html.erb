@@ -1,0 +1,43 @@
+<%# -------------------Block gris foncé----------------------------- %>
+
+<div class="head-block-dark">
+  <div class="container">
+    <div class="flex align-center justify-between">
+      <%= link_to user_sport_path(@seance.training.user_sport), class: "link-decoration-none" do %>
+        <div class="link-head">
+          <i class="ri-arrow-left-s-line"></i>
+          <h1 class="color-white"><%= @seance.training.name %></h1>
+        </div>
+      <% end %>
+          <div><i class="ri-more-2-line icone-sans-fond"></i></div>
+    </div>
+    <div class="margin-top-16">
+      <p class="color-white"> Réalisée le <%= @seance.date %></p>
+    </div>
+  </div>
+</div>
+
+<%# -------------------RESUME DES DONNES----------------------------- %>
+
+<div class="container flex-gap-16">
+  <h2>Description</h2>
+  <p><%= @seance.training.description %></p>
+</div>
+<% @seance.training_values.each do |v| %>
+<%= v.value %>
+<% end %>
+
+  <%# -------------------EXERCICE LIST----------------------------- %>
+
+  <h2>Exercices</h2>
+
+  <% @seance.training.exercices.each do |exercice| %>
+    <div class="card_exercice margin-top-0">
+    <h2><%= exercice.name %></h2>
+    </div>
+      <br>
+      <% exercice.metrics.each do |metric| %>
+      <p><%= metric.metric %> : <%= metric.unit %> </p>
+      <br>
+      <% end %>
+  <% end %>

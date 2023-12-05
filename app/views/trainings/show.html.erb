@@ -62,6 +62,8 @@
   <%= button_to training_seances_path(@training), method: :post, class: "formbutton btn-primary" do %>
     <h3 class="link-decoration-none margin-auto">Saisir vos données</h3>
   <% end %>
+  <%= link_to new_training_training_exercice_path(@training), class: "formbutton btn-secondary btn-background-white mb-4" do %>
+  <h3 class="margin-auto">Modifier</h3>
+  <% end %>
   <%# Pensez à mettre le lien link_to pour modifier %>
-  <button class="formbutton btn-secondary btn-background-white mb-4"><h3 class="margin-auto">Modifier</h3></button>
 </div>
