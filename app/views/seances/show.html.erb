@@ -34,9 +34,8 @@
       </div>
         <div class="container">
           <% training_exercice.training_values.each do |training_value| %>
-            <%= training_value.training_metric.metric %>
-            <%= training_value.training_metric.unit %> :
-            <%= training_value.value %> <br>
+            <%= training_value.training_metric.metric %> :
+            <%= training_value.value %> <%= training_value.training_metric.unit %><br>
           <% end %>
         </div>
     <% end %>
