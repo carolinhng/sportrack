@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   resources :trainings, only: [:show, :index, :destroy]
   resources :training_exercices, only: [:destroy, :update]
+  resources :seances, only: [:show]
 
 
   resources :trainings, only: [] do
