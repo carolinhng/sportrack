@@ -22,7 +22,10 @@
 <div class="container flex-gap-16">
   <h2>Description</h2>
   <p><%= @seance.training.description %></p>
-
+</div>
+<% @seance.training_values.each do |v| %>
+<%= v.value %>
+<% end %>
 
   <%# -------------------EXERCICE LIST----------------------------- %>
 
@@ -37,6 +40,4 @@
       <p><%= metric.metric %> : <%= metric.unit %> </p>
       <br>
       <% end %>
-
   <% end %>
-</div>
