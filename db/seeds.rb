@@ -99,30 +99,30 @@ training_exercice_sprint_doscrawle = TrainingExercice.create!(training_id: train
 # Création des TrainingMetrics lié à 1 TrainingExercice -> Table trainings_metrics -------------------------------------
 
 # Entrainement endurance
-training_metrics_endurance_crawl = TrainingMetric.create!(
-  training_exercice_id: training_exercice_endurance_crawl.id,
-  metric: "Température",
-  unit: "C°"
-)
+# training_metrics_endurance_crawl = TrainingMetric.create!(
+#   training_exercice_id: training_exercice_endurance_crawl.id,
+#   metric: "Température",
+#   unit: "C°"
+# )
 
-training_metrics_endurance_doscrawle = TrainingMetric.create!(
-  training_exercice_id: training_exercice_endurance_doscrawle.id,
-  metric: "Température",
-  unit: "C°"
-)
+# training_metrics_endurance_doscrawle = TrainingMetric.create!(
+#   training_exercice_id: training_exercice_endurance_doscrawle.id,
+#   metric: "Température",
+#   unit: "C°"
+# )
 
-# Entrainement sprint
-training_metrics_sprint_crawl = TrainingMetric.create!(
-  training_exercice_id: training_exercice_sprint_crawl.id,
-  metric: "Température",
-  unit: "C°"
-)
+# # Entrainement sprint
+# training_metrics_sprint_crawl = TrainingMetric.create!(
+#   training_exercice_id: training_exercice_sprint_crawl.id,
+#   metric: "Température",
+#   unit: "C°"
+# )
 
-training_metrics_sprint_doscrawle = TrainingMetric.create!(
-  training_exercice_id: training_exercice_sprint_doscrawle.id,
-  metric: "Température",
-  unit: "C°"
-)
+# training_metrics_sprint_doscrawle = TrainingMetric.create!(
+#   training_exercice_id: training_exercice_sprint_doscrawle.id,
+#   metric: "Température",
+#   unit: "C°"
+# )
 
 
 
