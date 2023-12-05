@@ -38,6 +38,12 @@ class UserSportsController < ApplicationController
 
   def show
     @user_sport = UserSport.find(params[:id])
+    @active = params[:query].present?
+    if @active
+      @seances = Seance.search_seance_exercice_and_training(params[:query])
+    else
+      @seances = Seance.all
+    end
   end
 
   private
