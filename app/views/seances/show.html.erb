@@ -13,6 +13,8 @@
     </div>
     <div class="margin-top-16">
       <p class="color-white"> Réalisée le <%= @seance.date.strftime('%d-%m-%Y') %></p>
+      <p class="color-white">Note : <%= @seance.rating %></p>
+      <p class="color-white">Durée : <%= @seance.duration.hour %> min</p>
     </div>
   </div>
 </div>
@@ -20,8 +22,8 @@
 <%# -------------------RESUME DES DONNES----------------------------- %>
 
   <div class="container">
-    <h2 class="mb-2">Description</h2>
-    <p class="mb-5"><%= @seance.training.description %></p>
+    <h2 class="mb-3">Description</h2>
+    <p class="mb-4"><%= @seance.training.description %></p>
 
 
   <%# -------------------EXERCICE LIST----------------------------- %>
@@ -34,8 +36,7 @@
       </div>
         <div class="container">
           <% training_exercice.training_values.each do |training_value| %>
-            <%= training_value.training_metric.metric %> :
-            <%= training_value.value %> <%= training_value.training_metric.unit %><br>
+            <p><span class="fw-bolder"><%= training_value.training_metric.metric %></span> : <%= training_value.value %> <%= training_value.training_metric.unit %></p>
           <% end %>
         </div>
     <% end %>
