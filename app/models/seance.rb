@@ -2,11 +2,14 @@ class Seance < ApplicationRecord
 
   belongs_to :training
   has_many :training_values, dependent: :destroy
+  has_many :training_metrics, through: :training_exercices
+
   has_many :training_exercices, through: :training
   has_many :exercices, through: :training_exercices
-  # has_many :training_metrics, through: :training_exercices
+
   # after_update :save_training_values
   accepts_nested_attributes_for :training_values
+  validates_associated :training_values
 
   include PgSearch::Model
   pg_search_scope :search_seance_exercice_and_training,
@@ -27,8 +30,6 @@ class Seance < ApplicationRecord
       training_value.save(false)
     end
   end
-
-  validates_associated :training_values
 
   def metricspoints(training_metric)
 
