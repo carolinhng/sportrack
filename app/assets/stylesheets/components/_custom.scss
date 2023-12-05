@@ -1,8 +1,10 @@
 @import "config/_bootstrap_override";
-
-
-
 // flex
+
+ul {
+  list-style-type: none;
+}
+
 .flex {
   display: flex;
 }
