@@ -6,7 +6,6 @@ class SeancesController < ApplicationController
   end
 
   def create
-    raise
     @seance = Seance.new
     @training = Training.find(params[:training_id])
     @seance.training_id = @training.id
