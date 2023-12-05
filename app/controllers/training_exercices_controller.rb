@@ -6,9 +6,11 @@ class TrainingExercicesController < ApplicationController
   end
 
   def new
-    @exercices = Exercice.all
     @training = Training.find(params[:training_id])
-    @user_sport = @training.user_sport_id
+    @user_sport_id = @training.user_sport_id
+    @user_sport = UserSport.find(@user_sport_id)
+    @sport = Sport.find(@user_sport.sport_id)
+    @exercices = @sport.exercices
     # -------------Decompte des exercices---------------------
     @number = @training.exercices.count
     @counter = @number > 1 ? "#{@number} exercices" : "#{@number} exercice"
