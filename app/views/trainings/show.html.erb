@@ -1,27 +1,25 @@
-<%# -------------------Block gris foncé----------------------------- %>
-<div class="head-block-dark">
-  <div class="container">
-    <div class="flex align-center justify-between">
+
+<div class="head-wrapper">
+    <div class="head-train">
       <%= link_to user_sport_path(@training.user_sport), class: "link-decoration-none" do %>
-        <div class="link-head">
-          <i class="ri-arrow-left-s-line"></i>
-          <h1 class="color-white">Entrainement</h1>
-        </div>
+        <i class="ri-arrow-left-s-line"></i>
       <% end %>
-          <div>
-            <p>data</p><i class="ri-pie-chart-line icone-sans-fond"></i>
-            <i class="ri-more-2-line icone-sans-fond"></i>
-          </div>
-    </div>
-    <div class="margin-top-16">
-      <h2 class="color-white"><%= @training.name %></h2>
-      <div>
-        <p class="color-white"><%= @training.sport.name %> -
-        Crée le <%= @training.created_at.to_date.strftime('%d-%m-%Y') %></p>
+      <h1 class="color-white"> <%= @training.name %></h1>
+      <div class="flex gap">
+        <%= link_to training_data_training_path, class: "link-decoration-none" do %>
+          <i class="ri-pie-chart-line"></i>
+        <% end %>
+        <i class="ri-more-2-line"></i>
       </div>
     </div>
-  </div>
+
+    <p class="color-white"><%= @training.sport.name %> -
+    Crée le <%= @training.created_at.to_date.strftime('%d-%m-%Y') %></p>
+
+
 </div>
+
+
 
 <%# -------------------RESUME DES DONNES----------------------------- %>
 

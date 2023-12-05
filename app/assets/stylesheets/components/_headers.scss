@@ -1,0 +1,26 @@
+.link-head {
+  @include headers;
+  i {
+   @include iconrounded;
+  }
+}
+
+.head-wrapper {
+  padding: 24px;
+  background: $color-secondary;
+  border-bottom: 1px solid $color-grey;
+}
+
+.head-train {
+  padding-bottom: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  i {
+   @include iconrounded;
+  }
+}
+
+.head-wrapper {
+  border-bottom: 1px solid $color-grey;
+}
