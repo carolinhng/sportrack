@@ -6,16 +6,13 @@ class TrainingExercicesController < ApplicationController
   end
 
   def new
-    @exercices = Exercice.all
     @training = Training.find(params[:training_id])
-    @user_sport = @training.user_sport_id
+    @user_sport_id = @training.user_sport_id
+    @user_sport = UserSport.find(@user_sport_id)
+    @sport = Sport.find(@user_sport.sport_id)
+    @exercices = @sport.exercices
     # -------------Decompte des exercices---------------------
     @number = @training.exercices.count
-    # @counter = if @number > 1
-    #   "#{@number} exercices"
-    # else
-    #   "#{@number} exercice"
-    # end
     @counter = @number > 1 ? "#{@number} exercices" : "#{@number} exercice"
     if params[:query].present?
       @exercices = Exercice.search_exercices(params[:query])
@@ -35,9 +32,9 @@ class TrainingExercicesController < ApplicationController
   end
 
   def update
-    @training_exercise = TrainingExercise.find(params[:id])
-    if @training_exercise.update(training_exercise_params)
-      redirect_to training_exercises_path, notice: 'Training Exercise updated successfully.'
+    @training_exercise = TrainingExercice.find(params[:training_exercice_id])
+    if @training_exercise.update(position: params[:exercice][:position])
+      redirect_to training_exercices_path, notice: 'Training Exercise updated successfully.'
     else
       render :edit
     end
