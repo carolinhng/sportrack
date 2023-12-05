@@ -26,19 +26,22 @@
 
     <%# -------------------EXERCICE LIST----------------------------- %>
 
+<ul data-controller="sortable" data-sortable-resource-name-value="exercice">
     <% @exercices.each do |exercice| %>
-    <div>
       <% unless TrainingExercice.exercice?(exercice, @training) %>
         <%= link_to training_training_exercices_path(exercice_id: exercice.id, training: @training.id), data: { turbo_method: :post }, class: "card_exercice" do %>
           <%= exercice.name %><i class="fa-regular fa-circle"></i>
         <% end %>
       <% else %>
-        <%= link_to training_exercice_path(TrainingExercice.find_by(exercice: exercice, training: @training)), data: { turbo_method: :delete }, class: "card_exercice_select" do %>
+      <% @training_exercice = TrainingExercice.find_by(exercice: exercice, training: @training) %>
+      <li data-sortable-update-url="<%= training_exercice_path(@training, training_exercice_id: @training_exercice.id) %>">
+        <%= link_to training_exercice_path(@training_exercice), data: { turbo_method: :delete }, class: "card_exercice_select" do %>
           <h3><%= exercice.name %></h3><i class="fa-regular fa-circle"></i>
         <% end %>
+      </li>
       <% end %>
     <% end %>
-    </div>
+    </ul>
 
 
     <%# -------------------EXERCICE LIST----------------------------- %>

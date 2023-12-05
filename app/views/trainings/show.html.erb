@@ -49,9 +49,9 @@
 
   <h2>Exercices</h2>
 
-  <% @training.exercices.each do |exercice| %>
+  <% @training.training_exercices.order(:position).each do |training_exercice| %>
     <div class="card_exercice margin-top-0">
-      <%= exercice.name %>
+      <%= training_exercice.exercice.name %>
     </div>
   <% end %>
 </div>

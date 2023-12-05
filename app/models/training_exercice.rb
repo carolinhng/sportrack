@@ -10,11 +10,19 @@ class TrainingExercice < ApplicationRecord
   using: {
     tsearch: { prefix: true }
   }
+  before_create :add_position
+  acts_as_list
+
 
   # after_create :create_training_metrics, codé dans le controller
 
   def self.exercice?(exercice, training)
     find_by(exercice: exercice, training: training).present?
+  end
+
+  def add_position
+    last_position = TrainingExercice.last.try(:position) || 0
+    self.position = last_position + 1
   end
 
   def training_exercice_data
