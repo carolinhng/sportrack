@@ -1,10 +1,11 @@
 class Seance < ApplicationRecord
   belongs_to :training
   has_many :training_values, dependent: :destroy
-  # has_many :training_exercices, through: :trainings
-  # has_many :training_metrics, through: :training_exercices
+  has_many :training_exercices, through: :trainings
+  has_many :training_metrics, through: :training_exercices
   # after_update :save_training_values
   accepts_nested_attributes_for :training_values
+  validates_associated :training_values
 
   private
 
@@ -13,8 +14,6 @@ class Seance < ApplicationRecord
       training_value.save(false)
     end
   end
-
-  validates_associated :training_values
 
   def metricspoints(training_metric)
 

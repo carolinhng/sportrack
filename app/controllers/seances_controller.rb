@@ -37,6 +37,7 @@ class SeancesController < ApplicationController
   private
 
   def seance_params
-    params.require(:seance).permit(:date, :comment, :rating, :duration, training_values_attributes: [:id, :value])
+    params.require(:seance).permit(:date, :comment, :rating, :duration, training_values_attributes: [:id, :value, :training_metric_id])
   end
+
 end
