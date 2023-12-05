@@ -9,15 +9,17 @@
 
     <%= link_to trainings_path do %>
       <div class="linknav">
-      <i class="ri-book-line"></i>
-      <p>Entrainements</p>
+        <i class="ri-book-line"></i>
+        <p>Entrainements</p>
       </div>
     <% end %>
 
-    <div class="linknav">
-    <i class="ri-pie-chart-line"></i>
-    <p></i>Données</p>
-    </div>
+    <%= link_to data_path do %>
+      <div class="linknav">
+        <i class="ri-pie-chart-line"></i>
+        <p></i>Données</p>
+      </div>
+    <% end %>
 
     <div class="linknav">
     <i class="ri-user-line"></i>

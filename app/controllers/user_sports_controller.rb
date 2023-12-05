@@ -2,25 +2,6 @@ class UserSportsController < ApplicationController
 
   def index
     @trainings = current_user.trainings
-    @chart_data = {
-      labels: %w[January February March April May June July],
-      datasets: [{
-        label: 'Mes entrainements',
-        backgroundColor: '#EBF362',
-        borderColor: '#262E35',
-        data: [37, 83, 78, 54, 12, 5, 99]
-      }]
-    }
-
-    @chart_options = {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    }
   end
 
   def create

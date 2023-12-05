@@ -22,7 +22,7 @@ class TrainingExercice < ApplicationRecord
       {
         unit: training_value.training_metric.unit,
         metric: training_value.training_metric.metric,
-        x: training_value.created_at.strftime("%B"),
+        x: training_value.created_at.strftime("%d-%b"),
         y: training_value.value
       }
     end
