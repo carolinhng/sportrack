@@ -9,7 +9,15 @@
 
   <div data-controller="chart-data">
     <% @training_exercices.each do |training_exercice| %>
-      <div class="chart-card">
+      <div class="chart-card" data-controller="dataindex">
+        <div data-action="click->dataindex#delete" class="delete-chart d-none">
+          <i class="ri-close-line" style="font-size: 20px;"></i>
+        </div>
+      <%# ajout de la data sur le dashboard avec data-action %>
+        <div class="widget-chart" data-action="click->chart-data#inject">
+          <p>Ajouter</p>
+          <i class="ri-dashboard-line" style="font-size: 20px;"></i>
+        </div>
         <canvas data-chart-data-target="chart"
                 data-chart-data-training-exercice-name-value="<%= training_exercice.exercice.name %>"
                 data-chart-data-training-exercice-metrics-value=<%= training_exercice.training_exercice_data.to_json  %>
@@ -18,4 +26,5 @@
       </div>
     <% end %>
   </div>
+
 </div>

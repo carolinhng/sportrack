@@ -1,4 +1,46 @@
 .chart-card {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   margin-bottom: 24px;
   border-radius: $radius * 2;
+  padding: 16px;
+  border: 1px solid $color-grey;
+  padding-bottom: 60px;
+  position: relative;
+}
+
+.widget-chart {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+  background: $color-grey;
+  border-radius: 0px 0px 12px 12px;
+  width: 100%;
+  transition: background 0.3s ease-in-out;
+  p {
+    margin-bottom: 0!important;
+  }
+
+  &:hover {
+    background: $color-secondary;
+    p {
+      color: $color-white!important;
+    }
+    color: $color-white!important;
+  }
+}
+
+.delete-chart {
+  position: absolute;
+  padding: 2px;
+  background: $color-grey;
+  color: $color-secondary;
+  right: 2%;
+  top: 3%;
+  border-radius: 40px;
+  width: 34px;
+  text-align: center;
 }

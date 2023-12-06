@@ -5,14 +5,20 @@ Chart.defaults.font.family = "Outfit"
 Chart.defaults.font.size = 14;
 Chart.defaults.color = '#262E35';
 
-
-// Connects to data-controller="chart-data"
+// Connects to data-controller="dataindex"
 export default class extends Controller {
-  static targets = ["chart"]
-
+  static targets = ["container"]
   connect() {
 
-    this.chartTargets.forEach(char => {
+  console.log(localStorage.divToInject)
+  const storedDiv = localStorage.getItem('divToInject');
+    if (storedDiv) {
+      // Créer un élément div temporaire pour contenir la div récupérée
+      this.containerTarget.innerHTML = storedDiv
+      this.containerTarget.querySelector('.chart-card').classList.add("pb-chart")
+      this.containerTarget.querySelector(".widget-chart").classList.add("d-none")
+      this.containerTarget.querySelector(".delete-chart").classList.remove("d-none")
+      const char = this.containerTarget.querySelector("canvas")
       const serializedData = char.dataset.chartDataTrainingExerciceMetricsValue
       const data = JSON.parse(serializedData)
       const labels = data.map((metric) => metric.x)
@@ -79,15 +85,11 @@ export default class extends Controller {
           },
       }
       });
-    });
+    };
   }
-  inject(event) {
-    // this.containerTarget.innerHTML = event.currentTarget.parentElement
-    // console.log(this.containerTarget)
-    // const dataToStore = { key: event.currentTarget.parentElement };
-    // sessionStorage.setItem('maCle', JSON.stringify(dataToStore));
-    const divToInject = event.currentTarget.parentElement;
-    // Stocker la div dans localStorage
-    localStorage.setItem('divToInject', divToInject.outerHTML);
+
+  delete(event) {
+    event.currentTarget.parentElement.remove()
+    localStorage.removeItem('divToInject');
   }
 }

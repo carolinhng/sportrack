@@ -35,7 +35,8 @@
           <h3><%= training_exercice.exercice.name %></h3>
       </div>
         <div class="container">
-          <% training_exercice.training_values.each do |training_value| %>
+        <%# training_exercice.training_values.each do MARCHE PAS %>
+          <% TrainingValue.where(training_metric: training_exercice.training_metrics, seance: @seance).each do |training_value| %>
             <p><span class="fw-bolder"><%= training_value.training_metric.metric %></span> : <%= training_value.value %> <%= training_value.training_metric.unit %></p>
           <% end %>
         </div>
