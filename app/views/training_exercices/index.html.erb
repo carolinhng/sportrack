@@ -65,15 +65,10 @@
                 <% end %>
               </template>
 
-              <%# <%= training_exercice_form.fields_for :training_metrics do |training_metric_fields| %>
-                <%#<%= render "shared/training_metric_form", training_exercice_form: training_metric_fields %>
-              <%#<% end %>
-
-              <div data-nested-form-target="target"></div>
-                <button type="button" data-action="nested-form#add">Ajouter une donnée</button>
-
             <% end %>
-            <%= training_exercice_form.submit 'Confirmer' %>
+            <div data-nested-form-target="target"></div>
+              <button class="btn btn-secondary btn-background-white mb-2" type="button" data-action="nested-form#add">Ajouter une donnée</button>
+            <%= training_exercice_form.submit 'Confirmer', class: "btn btn-secondary btn-background-white" %>
         <% end %>
       </div>
     <% end %>

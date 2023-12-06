@@ -39,13 +39,14 @@ class TrainingExercicesController < ApplicationController
     # else
     #   render :edit
     # end
-      @training_exercice = TrainingExercice.find(params[:id])
-      @training = @training_exercice.training
-      if @training_exercice.update(training_exercice_params)
-        redirect_to training_exercice_path
-      else
-        render :edit
-      end
+
+    @training_exercice = TrainingExercice.find(params[:id])
+    @training = @training_exercice.training
+    if @training_exercice.update(training_exercice_params)
+      redirect_to training_exercice_path
+    else
+      render :edit
+    end
   end
 
   def destroy

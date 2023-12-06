@@ -1,11 +1,10 @@
 <div class="nested-form-wrapper" data-new-record="<%= training_exercice_form.object.new_record? %>">
-  <%= training_exercice_form.label :metric %>
-  <%= training_exercice_form.text_field :metric %>
 
-  <%= training_exercice_form.label :unit %>
-  <%= training_exercice_form.text_field :unit %>
 
-  <button type="button" data-action="nested-form#remove">Supprimer la donnée</button>
+    <%= training_exercice_form.label :metric, class: "ms-1" %>
+    <%= training_exercice_form.text_field :metric, class: "forminput ms-1" %>
 
-  <%= training_exercice_form.hidden_field :_destroy %>
+    <%= training_exercice_form.label :unit, class: "ms-1" %>
+    <%= training_exercice_form.text_field :unit, class: "forminput ms-1" %>
+
 </div>
