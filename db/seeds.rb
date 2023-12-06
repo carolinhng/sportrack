@@ -24,184 +24,80 @@ puts "Destroying / create database"
 pierre = User.create!(nick_name: "Pierre", password: "azerty", email: "pierre@gmail.com")
 
 
-# NATATION :
 
-# Création d'une instance Sport natation -> table sport
-sport_natation = Sport.create!(name: "Natation")
-sport_musculation = Sport.create!(name: "Musculation")
-sport_cyclisme = Sport.create!(name: "Cyclisme")
-sport_yoga = Sport.create!(name: "Yoga")
-
-# Création d'une instance UserSport -> Table users_sports
-pierre_sport = UserSport.create!(user_id: pierre.id, sport_id: sport_natation.id)
-
-# Création d'instances Training -> Table trainings
-training_endurance_natation = Training.create!(
-  name: "Endurance",
-  description: "Ma séance d'endurance du lundi du soir pour gagner en cardio",
-  user_sport_id: pierre_sport.id
-)
-
-training_sprint_natation = Training.create!(
-  name: "Sprint",
-  description: "Ma séance de sprint du jeudi du soir pour gagner en performance",
-  user_sport_id: pierre_sport.id
-)
-
-training_intervalle_natation = Training.create!(
-  name: "Intervalle",
-  description: "Ma séance de natation par intervalle pour gagner en performance",
-  user_sport_id: pierre_sport.id
-)
-
-# Création d'instances Exercice -> Table exercices
-
-exercice_crawl_natation = Exercice.create!(name: "Crawl", sport_id: sport_natation.id)
-exercice_doscrawle_natation = Exercice.create!(name: "Dos crawlé", sport_id: sport_natation.id)
-exercice_pullbouy_natation = Exercice.create!(name: "Pull-bouy", sport_id: sport_natation.id)
-exercice_brasse_natation = Exercice.create!(name: "Brasse", sport_id: sport_natation.id)
+# Création des sports
+natation = Sport.create(name: 'Natation')
 
 
-# Création d'instances Metric -> Table metrics
+# Associer l'utilisateur au sport (Natation)
+user_sport = UserSport.create(user: pierre, sport: natation)
 
-sport_natation.exercices.each do |exercice|
-  metrics_duree = Metric.create!(
-    metric: "Durée",
-    unit: "minutes",
-    exercice_id: exercice.id
-  )
+# Création des exercices pour la natation
+crawl = Exercice.create(name: 'Crawl', sport: natation)
+dos_crawl = Exercice.create(name: 'Dos crawlé', sport: natation)
+papillon = Exercice.create(name: 'Papillon', sport: natation)
+brasse = Exercice.create(name: 'Brasse', sport: natation)
 
-  metrics_distance = Metric.create!(
-    metric: "Distance",
-    unit: "mètres",
-    exercice_id: exercice.id
-  )
+# Création des métriques
+distance = Metric.create(metric: 'Distance', unit: 'mètres')
+vitesse = Metric.create(metric: 'Vitesse', unit: 'm/s')
+vitesse_moyenne = Metric.create(metric: 'Vitesse moyenne', unit: 'm/s')
+temps = Metric.create(metric: 'Temps', unit: 'secondes')
+temperature_eau = Metric.create(metric: "Température de l'eau", unit: 'degrés Celsius')
 
-  metrics_vitesse = Metric.create!(
-    metric: "Vitesse",
-    unit: "km/h",
-    exercice_id: exercice.id
-  )
+# Création des entraînements
+endurance = Training.create(user_sport: user_sport, name: 'Endurance', description: 'Entraînement axé sur l\'endurance')
+sprint = Training.create(user_sport: user_sport, name: 'Sprint', description: 'Entraînement axé sur la vitesse')
 
-  metrics_temps_de_repos = Metric.create!(
-    metric: "Temps de repos",
-    unit: "minutes",
-    exercice_id: exercice.id
-  )
+# Création des entraînements_exercices
+# Pour l'endurance, ajoutons 3 exercices
+endurance_exercices = [crawl, dos_crawl, brasse]
 
-  metrics_serie = Metric.create!(
-    metric: "Série",
-    unit: "nombre",
-    exercice_id: exercice.id
-  )
+endurance_exercices.each_with_index do |exercice, position|
+  # Assurez-vous de lier chaque exercice à l'entraînement
+  training_exercice = TrainingExercice.create(training: endurance, exercice: exercice, position: position + 1)
+  endurance.training_exercices << training_exercice
 end
 
+# Pour le sprint, ajoutons 2 exercices
+sprint_exercices = [papillon, crawl]
 
-# Création d'instances TrainingExercice -> Table trainings_exercices
+sprint_exercices.each_with_index do |exercice, position|
+  # Assurez-vous de lier chaque exercice à l'entraînement
+  training_exercice = TrainingExercice.create(training: sprint, exercice: exercice, position: position + 1)
+  sprint.training_exercices << training_exercice
+end
 
-training_endurance_natation_crawl = TrainingExercice.create!(training_id: training_endurance_natation.id, exercice_id: exercice_crawl_natation.id)
-training_endurance_natation_doscrawle = TrainingExercice.create!(training_id: training_endurance_natation.id, exercice_id: exercice_doscrawle_natation.id)
+# Création des séances
+7.times do |i|
+  date = Date.today - i.days
+  seance = Seance.create(
+    date: date,
+    training: (i % 2 == 0) ? endurance : sprint,
+    comment: "Commentaire sur la séance #{i + 1}",
+    rating: rand(1..5),
+    duration: "#{rand(20..60)}:#{rand(0..59)}:#{rand(0..59)}"
+  )
 
-training_sprint_natation_crawl = TrainingExercice.create!(training_id: training_sprint_natation.id, exercice_id: exercice_crawl_natation.id)
-training_sprint_natation_doscrawle = TrainingExercice.create!(training_id: training_sprint_natation.id, exercice_id: exercice_doscrawle_natation.id)
-
-# Création d'instances TrainingMetric -> Table trainings_metrics
-
-training_metrics_endurance_crawl = TrainingMetric.create!(
-  training_exercice_id: training_endurance_natation_crawl.id,
-  metric: "Vitesse",
-  unit: "km/h"
-)
-
-training_metrics_endurance_doscrawle = TrainingMetric.create!(
-  training_exercice_id: training_endurance_natation_doscrawle.id,
-  metric: "Vitesse",
-  unit: "km/h"
-)
-
-training_metrics_sprint_crawl = TrainingMetric.create!(
-  training_exercice_id: training_sprint_natation_crawl.id,
-  metric: "Vitesse",
-  unit: "km/h"
-)
-
-training_metrics_sprint_doscrawle = TrainingMetric.create!(
-  training_exercice_id: training_sprint_natation_doscrawle.id,
-  metric: "Vitesse",
-  unit: "km/h"
-)
-
-# Création d'instances Seance -> Table seances
-seance_endurance_natation = Seance.create!(
-  training_id: training_endurance_natation.id,
-  comment: "Cette séance était top ! J'ai rempli tous mes objectifs",
-  rating: 5,
-  duration: 45,
-  date: Date.today
-)
-
-seance_sprint_natation = Seance.create!(
-  training_id: training_sprint_natation.id,
-  comment: "Bof, j'ai mal dormi la veille, j'ai pu aller jusqu'au bout ",
-  rating: 2,
-  duration: 30,
-  date: Date.today
-)
-
-seance_intervalle_natation = Seance.create!(
-  training_id: training_intervalle_natation.id,
-  comment: "J'ai bien travaillé mon cardio, cet entrainement est vraiment top",
-  rating: 5,
-  duration: 35,
-  date: Date.today
-)
-
-# Création d'instances TrainingVelue -> Table trainings_values
-
-training_values_endurance_crawl = TrainingValue.create!(
-  training_metric_id: training_metrics_endurance_crawl.id,
-  seance_id: seance_endurance_natation.id,
-  value: "20"
-)
-
-training_values_endurance_crawl_two = TrainingValue.create!(
-  training_metric_id: training_metrics_endurance_crawl.id,
-  seance_id: seance_endurance_natation.id,
-  value: "18"
-)
-
-training_values_endurance_doscrawle_one = TrainingValue.create!(
-  training_metric_id: training_metrics_endurance_doscrawle.id,
-  seance_id: seance_endurance_natation.id,
-  value: "14"
-)
-
-training_values_endurance_doscrawle_two = TrainingValue.create!(
-  training_metric_id: training_metrics_endurance_doscrawle.id,
-  seance_id: seance_endurance_natation.id,
-  value: "12"
-)
-
-training_values_sprint_crawl_one = TrainingValue.create!(
-  training_metric_id: training_metrics_sprint_crawl.id,
-  seance_id: seance_sprint_natation.id,
-  value: "8"
-)
-
-training_values_sprint_crawl_two = TrainingValue.create!(
-  training_metric_id: training_metrics_sprint_crawl.id,
-  seance_id: seance_sprint_natation.id,
-  value: "14"
-)
-
-training_values_sprint_doscrawle_one = TrainingValue.create!(
-  training_metric_id: training_metrics_sprint_doscrawle.id,
-  seance_id: seance_sprint_natation.id,
-  value: "200"
-)
-
-training_values_sprint_doscrawle_two = TrainingValue.create!(
-  training_metric_id: training_metrics_sprint_doscrawle.id,
-  seance_id: seance_sprint_natation.id,
-  value: "6"
-)
+  # Création des valeurs métriques pour chaque séance
+  TrainingMetric.all.each do |metric|
+    TrainingValue.create(
+      training_metric: metric,
+      seance: seance,
+      value: case metric.metric
+             when 'Distance'
+               rand(500..1500).to_s
+             when 'Vitesse'
+               "#{rand(2..5)}.#{rand(0..9)}"
+             when 'Vitesse moyenne'
+               "#{rand(2..5)}.#{rand(0..9)}"
+             when 'Temps'
+               "#{rand(20..60)}:#{rand(0..59)}:#{rand(0..59)}"
+             when "Température de l'eau"
+               "#{rand(10..30)}.#{rand(0..9)}"
+             else
+               'N/A'
+             end
+    )
+  end
+end
