@@ -31,7 +31,7 @@
 </div>
 
 
- <%# -------------------FORM NESTE----------------------------- %>
+<%# -------------------IERATION DES TRAINING EXERCICES----------------------------- %>
 
 <div class="container">
   <h2 class="mb-3">Choix de vos données</h2>
@@ -45,20 +45,30 @@
 
         <h3 class="ps-3 mb-2 mt-2">Données recommandées</h3>
 
-        <%# <ul class="padding-0" data-controller="sortable" data-sortable-resource-name-value="training_metric"> %>
+        <%# -------------------SORTABLE DES TRAINING METRICS----------------------------- %>
+
+        <ul class="padding-0" data-controller="sortable" data-sortable-resource-name-value="training_metric">
           <% training_exercice.training_metrics.each do |training_metric| %>
-              <%# <li> %>
-                <div class="card-metric">
+
+              <li>
+                <div class="card-metric mt-2">
                   <p class="margin-0"><%= training_metric.metric %> \ <%= training_metric.unit %></p>
+
+                  <div class="d-flex">
+                    <i class="ri-drag-move-2-fill font-size-15 pe-2"></i>
                     <%= link_to training_metric_path(training_metric), data: { turbo_method: :delete } do %>
                       <div><i class="ri-close-line"></i></i></div>
                     <% end %>
+                  </div>
                 </div>
-              <%# </li> %>
+              </li>
+
           <% end %>
-        <%# </ul> %>
+        </ul>
 
         <h3 class="ps-3 mb-2 mt-2">Données personelles</h3>
+
+        <%# -------------------FORM NESTE----------------------------- %>
 
         <%= form_with model: training_exercice, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |training_exercice_form| %>
             <%= training_exercice_form.simple_fields_for :training_metrics do |f| %>

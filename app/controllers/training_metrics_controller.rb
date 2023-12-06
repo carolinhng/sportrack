@@ -8,6 +8,7 @@ class TrainingMetricsController < ApplicationController
 
   def update
     # -------------------  Sortable -----------------------------
+    raise
     @training_metric = TrainingMetric.find(params[:id])
     @training = @training_metric.training_exercice.training
     if @training_metric.update(position: params[:position])
