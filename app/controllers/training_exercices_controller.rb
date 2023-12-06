@@ -32,12 +32,20 @@ class TrainingExercicesController < ApplicationController
   end
 
   def update
-    @training_exercise = TrainingExercice.find(params[:training_exercice_id])
-    if @training_exercise.update(position: params[:exercice][:position])
-      redirect_to training_exercices_path, notice: 'Training Exercise updated successfully.'
-    else
-      render :edit
-    end
+    # -------------------  Sortable -----------------------------
+    # @training_exercise = TrainingExercice.find(params[:training_exercice_id])
+    # if @training_exercise.update(position: params[:exercice][:position])
+    #   redirect_to training_exercices_path, notice: 'Training Exercise updated successfully.'
+    # else
+    #   render :edit
+    # end
+      @training_exercice = TrainingExercice.find(params[:id])
+      @training = @training_exercice.training
+      if @training_exercice.update(training_exercice_params)
+        redirect_to training_exercice_path
+      else
+        render :edit
+      end
   end
 
   def destroy
@@ -46,4 +54,11 @@ class TrainingExercicesController < ApplicationController
     @training_exercice.destroy
     redirect_to new_training_training_exercice_path(@training), status: :see_other
   end
+
+  private
+
+  def training_exercice_params
+    params.require(:training_exercice).permit(:position, :id, :training_id, :exercice_id, training_metrics_attributes: [:id, :_destroy, :metric, :unit])
+  end
+
 end

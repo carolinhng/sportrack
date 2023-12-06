@@ -40,7 +40,7 @@
 
       <div class="cardform flex-gap-16">
         <div class="border-bottom">
-          <h3 class="entete-card"><%= training_exercice.exercice.name %></h3>
+          <h3 class="entete-card font-weight-700"><%= training_exercice.exercice.name %></h3>
         </div>
 
         <h3 class="ps-3 mb-2 mt-2">Données recommandées</h3>
@@ -49,27 +49,37 @@
             <div class="card-metric">
               <p class="margin-0"><%= training_metric.metric %> \ <%= training_metric.unit %></p>
                 <%= link_to training_metric_path(training_metric), data: { turbo_method: :delete } do %>
-                  <div><i class="fa-regular fa-circle-xmark"></i></div>
+                  <div><i class="ri-close-line"></i></i></div>
                 <% end %>
             </div>
         <% end %>
 
-        <%= simple_form_for(training_exercice) do |training_exercice_form| %>
-            <%= training_exercice_form.simple_fields_for :training_metrics do |f| %>
-              <div>
-                <%# <%= f.input :metric,
-                  # label: "coucou",
-                  class: "forminput" %>
-              </div>
+        <h3 class="ps-3 mb-2 mt-2">Données personelles</h3>
 
+        <%= form_with model: training_exercice, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |training_exercice_form| %>
+            <%= training_exercice_form.simple_fields_for :training_metrics do |f| %>
+
+              <template data-nested-form-target="template">
+                <%= training_exercice_form.fields_for :training_metrics, TrainingMetric.new, child_index: 'NEW_RECORD' do |training_metric_fields| %>
+                  <%= render "shared/training_metric_form", training_exercice_form: training_metric_fields %>
+                <% end %>
+              </template>
+
+              <%# <%= training_exercice_form.fields_for :training_metrics do |training_metric_fields| %>
+                <%#<%= render "shared/training_metric_form", training_exercice_form: training_metric_fields %>
+              <%#<% end %>
+
+              <div data-nested-form-target="target"></div>
+                <button type="button" data-action="nested-form#add">Ajouter une donnée</button>
 
             <% end %>
-            <%= training_exercice_form.button :submit, 'Enregistrer', class: "btn-primary forminput mb-2" %>
+            <%= training_exercice_form.submit 'Confirmer' %>
         <% end %>
-
       </div>
-
     <% end %>
 
+    <%= link_to training_path(@training), class: "btn btn-primary mb-5" do %>
+        <h3>Enregistrer</h3>
+    <% end %>
 
 </div>
