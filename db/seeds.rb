@@ -63,23 +63,23 @@ sprint_brasse = TrainingExercice.create!(training: sprint, exercice: brasse, pos
 endurance_crawl = TrainingExercice.create!(training: endurance, exercice: crawl, position: 1)
 endurance_dos_crawle = TrainingExercice.create!(training: endurance, exercice: dos_crawle, position: 2)
 
-TrainingMetric.create!(training_exercice: sprint_crawl, metric: distance.metric, unit: "", position: 1)
-TrainingMetric.create!(training_exercice: sprint_crawl, metric: vitesse.metric, unit: "", position: 2)
+TrainingMetric.create!(training_exercice: sprint_crawl, metric: distance.metric, unit: "mètres", position: 1)
+TrainingMetric.create!(training_exercice: sprint_crawl, metric: vitesse.metric, unit: "km/h", position: 2)
 
-TrainingMetric.create!(training_exercice: sprint_dos_crawle, metric: distance.metric, unit: "", position: 1)
-TrainingMetric.create!(training_exercice: sprint_dos_crawle, metric: vitesse.metric, unit: "", position: 2)
+TrainingMetric.create!(training_exercice: sprint_dos_crawle, metric: distance.metric, unit: "mètres", position: 1)
+TrainingMetric.create!(training_exercice: sprint_dos_crawle, metric: vitesse.metric, unit: "km/h", position: 2)
 
-TrainingMetric.create!(training_exercice: sprint_papillon, metric: distance.metric, unit: "", position: 1)
-TrainingMetric.create!(training_exercice: sprint_papillon, metric: vitesse.metric, unit: "", position: 2)
+TrainingMetric.create!(training_exercice: sprint_papillon, metric: distance.metric, unit: "mètres", position: 1)
+TrainingMetric.create!(training_exercice: sprint_papillon, metric: vitesse.metric, unit: "km/h", position: 2)
 
-TrainingMetric.create!(training_exercice: sprint_brasse, metric: distance.metric, unit: "", position: 1)
-TrainingMetric.create!(training_exercice: sprint_brasse, metric: vitesse.metric, unit: "", position: 2)
+TrainingMetric.create!(training_exercice: sprint_brasse, metric: distance.metric, unit: "mètres", position: 1)
+TrainingMetric.create!(training_exercice: sprint_brasse, metric: vitesse.metric, unit: "km/h", position: 2)
 
-TrainingMetric.create!(training_exercice: endurance_crawl, metric: distance.metric, unit: "", position: 1)
-TrainingMetric.create!(training_exercice: endurance_crawl, metric: vitesse.metric, unit: "", position: 2)
+TrainingMetric.create!(training_exercice: endurance_crawl, metric: distance.metric, unit: "mètres", position: 1)
+TrainingMetric.create!(training_exercice: endurance_crawl, metric: vitesse.metric, unit: "km/h", position: 2)
 
-TrainingMetric.create!(training_exercice: endurance_dos_crawle, metric: distance.metric, unit: "", position: 1)
-TrainingMetric.create!(training_exercice: endurance_dos_crawle, metric: vitesse.metric, unit: "", position: 2)
+TrainingMetric.create!(training_exercice: endurance_dos_crawle, metric: distance.metric, unit: "mètres", position: 1)
+TrainingMetric.create!(training_exercice: endurance_dos_crawle, metric: vitesse.metric, unit: "km/h", position: 2)
 
 
 seance_dates.each do |date|
@@ -102,83 +102,97 @@ end
   #   metric_values[temps] = rand(10..120) # Temps entre 10 et 120 minutes
   #   metric_values[temperature_eau] = rand(10..30) # Température de l'eau entre 10 et 30 degrés
 
-  #   metric_values.each do |_, value|
-  #     TrainingValue.create!(training_metric: TrainingMetric.find_by(training_exercice: training_exercice), seance: seance, value: value)
-  #   end
-  # end
+puts "Seed natation success"
+#------------------------------------------------------------------------------------------------------------
+# Destroy existing data
 
-  # TrainingExercice.where(training: endurance).each do |training_exercice|
-  #   metric_values = {}
-  #   metric_values[distance] = rand(100..2000) # Distance entre 100 et 2000 mètres
-  #   metric_values[vitesse] = rand(5..25)
-  #   metric_values.each do |_, value|
-  #     TrainingValue.create!(training_metric: TrainingMetric.find_by(training_exercice: training_exercice), seance: seance, value: value)
-  #   end
-  # end
-# end
-puts "Seed success"
+## Création du sport (Musculation)
+musculation = Sport.create!(name: 'Musculation')
+pierre_muscu = UserSport.create!(user: pierre, sport: musculation)
+
+# Création des exercices pour la musculation
+squat = Exercice.create!(name: 'Squat', sport: musculation)
+presse_jambes = Exercice.create!(name: 'Presse Jambes', sport: musculation)
+developpe_couché = Exercice.create!(name: 'Developpé Couché', sport: musculation)
+tirage_horizontal = Exercice.create!(name: 'Tirage Horizontal', sport: musculation)
+curl_biceps = Exercice.create!(name: 'Curl Biceps', sport: musculation)
+extension_triceps = Exercice.create!(name: 'Extension Triceps', sport: musculation)
+elevation_laterale = Exercice.create!(name: 'Élévation Latérale', sport: musculation)
+
+[squat, presse_jambes, developpe_couché, tirage_horizontal, curl_biceps, extension_triceps, elevation_laterale].each do |exo|
+  Metric.create!(metric: 'Repetitions', unit: 'reps', exercice: exo)
+  Metric.create!(metric: 'Poids', unit: 'kg', exercice: exo)
+  Metric.create!(metric: 'Series', unit: 'series', exercice: exo)
+end
+
+# Création des métriques
+repetitions = Metric.create!(metric: 'Repetitions', unit: 'reps', exercice: squat)
+poids_leve = Metric.create!(metric: 'Poids', unit: 'kg', exercice: squat)
+series_terminees = Metric.create!(metric: 'Series', unit: 'series', exercice: squat)
+
+# Création des entraînements
+force = Training.create!(user_sport: pierre_muscu, name: 'Entraînement de Force', description: 'Entraînement de musculation axé sur le développement de la force')
+hypertrophie = Training.create!(user_sport: pierre_muscu, name: 'Entraînement d\'Hypertrophie', description: 'Entraînement de musculation pour stimuler la croissance musculaire')
 
 
+# Séances (50 séances sur une période de 6 mois)
+start_date = Date.today - 6.months
+end_date = Date.today
+seance_dates = (start_date..end_date).to_a.sample(50)
+
+# Création des TrainingExercice
+squat_training = TrainingExercice.create!(training: force, exercice: squat, position: 1)
+presse_jambes_training = TrainingExercice.create!(training: force, exercice: presse_jambes, position: 2)
+developpe_couché_training = TrainingExercice.create!(training: force, exercice: developpe_couché, position: 3)
+tirage_horizontal_training = TrainingExercice.create!(training: force, exercice: tirage_horizontal, position: 4)
+
+curl_biceps_training = TrainingExercice.create!(training: hypertrophie, exercice: curl_biceps, position: 1)
+extension_triceps_training = TrainingExercice.create!(training: hypertrophie, exercice: extension_triceps, position: 2)
+elevation_laterale_training = TrainingExercice.create!(training: hypertrophie, exercice: elevation_laterale, position: 3)
 
 
-# # db/seeds.rb
+# Création des TrainingMetric
+TrainingMetric.create!(training_exercice: squat_training, metric: repetitions.metric, unit: "reps")
+TrainingMetric.create!(training_exercice: squat_training, metric: poids_leve.metric, unit: "kg")
+TrainingMetric.create!(training_exercice: squat_training, metric: series_terminees.metric, unit: "series")
+
+TrainingMetric.create!(training_exercice: presse_jambes_training, metric: repetitions.metric, unit: "reps")
+TrainingMetric.create!(training_exercice: presse_jambes_training, metric: poids_leve.metric, unit: "kg")
+TrainingMetric.create!(training_exercice: presse_jambes_training, metric: series_terminees.metric, unit: "series")
+
+TrainingMetric.create!(training_exercice: developpe_couché_training, metric: repetitions.metric, unit: "reps")
+TrainingMetric.create!(training_exercice: developpe_couché_training, metric: poids_leve.metric, unit: "kg")
+TrainingMetric.create!(training_exercice: developpe_couché_training, metric: series_terminees.metric, unit: "series")
+
+TrainingMetric.create!(training_exercice: tirage_horizontal_training, metric: repetitions.metric, unit: "reps")
+TrainingMetric.create!(training_exercice: tirage_horizontal_training, metric: poids_leve.metric, unit: "kg")
+TrainingMetric.create!(training_exercice: tirage_horizontal_training, metric: series_terminees.metric, unit: "series")
+
+TrainingMetric.create!(training_exercice: curl_biceps_training, metric: repetitions.metric, unit: "reps")
+TrainingMetric.create!(training_exercice: curl_biceps_training, metric: poids_leve.metric, unit: "kg")
+TrainingMetric.create!(training_exercice: curl_biceps_training, metric: series_terminees.metric, unit: "series")
+
+TrainingMetric.create!(training_exercice: extension_triceps_training, metric: repetitions.metric, unit: "reps")
+TrainingMetric.create!(training_exercice: extension_triceps_training, metric: poids_leve.metric, unit: "kg")
+TrainingMetric.create!(training_exercice: extension_triceps_training, metric: series_terminees.metric, unit: "series")
+
+TrainingMetric.create!(training_exercice: elevation_laterale_training, metric: repetitions.metric, unit: "reps")
+TrainingMetric.create!(training_exercice: elevation_laterale_training, metric: poids_leve.metric, unit: "kg")
+TrainingMetric.create!(training_exercice: elevation_laterale_training, metric: series_terminees.metric, unit: "series")
 
 
+seance_dates.each do |date|
+  seance = Seance.create!(date: date, training: [force, hypertrophie].sample, comment: 'Commentaire de la séance', rating: rand(1..5), duration: Time.at(rand * Time.now.to_i))
+  seance.training_metrics.each do |training_metric|
+      case training_metric.metric
+      when "Repetitions"
+        TrainingValue.create(seance: seance, training_metric: training_metric, value: rand(5..15))
+      when "Poids"
+        TrainingValue.create(seance: seance, training_metric: training_metric, value: rand(20..100))
+      when "Series"
+        TrainingValue.create(seance: seance, training_metric: training_metric, value: rand(3..5))
+    end
+  end
+end
 
-
-# # Création des entraînements_exercices
-# # Pour l'endurance, ajoutons 3 exercices
-# endurance_exercices = [crawl, dos_crawle, brasse]
-
-# endurance_exercices.each_with_index do |exercice, position|
-#   # Assurez-vous de lier chaque exercice à l'entraînement
-#   training_exercice = TrainingExercice.create(training: endurance, exercice: exercice, position: position + 1)
-#   endurance.training_exercices << training_exercice
-# end
-
-# # Pour le sprint, ajoutons 2 exercices
-# sprint_exercices = [papillon, crawl]
-
-# sprint_exercices.each_with_index do |exercice, position|
-#   # Assurez-vous de lier chaque exercice à l'entraînement
-#   training_exercice = TrainingExercice.create(training: sprint, exercice: exercice, position: position + 1)
-#   sprint.training_exercices << training_exercice
-# end
-
-# Création des séances sur une période de deux ans (730 jours)
-# 100.times do |i|
-#   date = Date.today - i.days
-#   training = (i % 2 == 0) ? endurance : sprint
-
-#   seance = Seance.create(
-#     date: date,
-#     training: training,
-#     comment: "Commentaire sur la séance du #{date}",
-#     rating: rand(1..5),
-#     duration: "#{rand(20..60)}:#{rand(0..59)}:#{rand(0..59)}"
-#   )
-
-#   # Création des valeurs métriques pour chaque séance
-#   TrainingMetric.all.each do |metric|
-#     value = case metric.metric
-#             when 'Distance'
-#               rand(500..1500).to_s
-#             when 'Vitesse'
-#               "#{rand(2..5)}.#{rand(0..9)}"
-#             when 'Vitesse moyenne'
-#               "#{rand(2..5)}.#{rand(0..9)}"
-#             when 'Temps'
-#               "#{rand(20..60)}:#{rand(0..59)}:#{rand(0..59)}"
-#             when "Température de l'eau"
-#               "#{rand(10..30)}.#{rand(0..9)}"
-#             else
-#               'N/A'
-#             end
-
-#     TrainingValue.create(
-#       training_metric: metric,
-#       seance: seance,
-#       value: value
-#     )
-#   end
-# end
+puts "Seed muscu ok"
