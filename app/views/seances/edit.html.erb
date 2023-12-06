@@ -21,44 +21,48 @@
   </div>
 </div>
 
-<%# -------------------Form----------------------------- %>
-
-<% @training_exercices.each do | training_exercice |  %>
-<%= training_exercice.exercice.name %>
-<% end %>
-<br>
-<% @training.training_exercices.each do |training_exercice| %>
-<% training_exercice.training_metrics.each do |training_metric| %>
-<%= training_metric.metric %>
-<% end %>
-<br>
-<%# <%= training_exercice.training_metric.id %>
-<% end %>
-
 <%# -------------------Form Nested----------------------------- %>
 
 <div class="container">
+
+
   <%= simple_form_for(@seance) do |seance_form| %>
+    <h2 class="mb-3 mt-3">Données de votre séance</h2>
     <div>
+      <%# -------------------input seance----------------------------- %>
       <%= seance_form.input :date, order: [:day, :month, :year] %>
-      <%= seance_form.date_field :date %>
-      <%= seance_form.input :comment, label: "Commentaire", placeholder: "Ajouter une note à l'entrainement", class: "forminput" %>
-      <%= seance_form.input :rating, label: "Note", placeholder: "Ajouter une note à l'entrainement", collection: 1..5 %>
-      <%= seance_form.input :duration, collection: 1..200, label: "Durée (minutes)", placeholder: "Durée de l'entrainement", class: "forminput" %>
-      <%= seance_form.button :submit, 'Enregistrer', class: "btn-primary forminput" %>
+      <%#<%= seance_form.date_field :date %>
+      <%= seance_form.input :comment,
+        label: "Commentaire",
+        placeholder: "Ajouter un commentaire à votre entrainement",
+        class: "forminput" %>
+
+      <%= seance_form.input :rating,
+        label: "Note",
+        placeholder: "Ajouter une note à l'entrainement",
+        collection: 1..5 %>
+
+      <%= seance_form.input :duration,
+        collection: 1..200,
+        label: "Durée (minutes)",
+        placeholder: "Durée de l'entrainement",
+        class: "forminput" %>
     </div>
-
-    <%= seance_form.simple_fields_for :training_values do |training_value_form| %>
-      <p>
-        <div>
-        <%= training_value_form.input :value, label: "Metrics #{}", placeholder: "Ajouter mes données", class: "forminput" %>
-        </div>
-      </p>
+    <h2 class="mb-3 mt-5">Données par exercices</h2>
+    <% @training_exercices.each do |training_exercice|  %>
+      <p class="fw-bold"><%= training_exercice.exercice.name %></p>
+      <% training_exercice.training_metrics.each do |training_metric| %>
+        <%= seance_form.simple_fields_for :training_values, training_metric.training_values.find_by(seance: @seance) do |f| %>
+        <%# -------------------input training_value----------------------------- %>
+            <div>
+              <%= f.input :value,
+                label: "#{training_metric.metric} (#{training_metric.unit})",
+                class: "forminput" %>
+            </div>
+        <% end %>
+      <% end %>
     <% end %>
-    <%= seance_form.button :submit, 'Enregistrer', class: "btn-primary forminput" %>
-    <div style="height: 200px"></div>
-
+      <%= seance_form.button :submit, 'Enregistrer', class: "btn-primary forminput mb-5" %>
   <% end %>
-
 
 </div>

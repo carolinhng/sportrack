@@ -3,5 +3,4 @@ class SportsController < ApplicationController
     @sports = Sport.all
     @user = current_user
   end
-
 end

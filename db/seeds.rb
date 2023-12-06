@@ -1,28 +1,19 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-TrainingValue.destroy_all
 Seance.destroy_all
+TrainingValue.destroy_all
 TrainingMetric.destroy_all
-TrainingExercice.destroy_all
 Metric.destroy_all
+TrainingExercice.destroy_all
 Exercice.destroy_all
 Training.destroy_all
 UserSport.destroy_all
 Sport.destroy_all
 User.destroy_all
 
-puts "Destroying / create database"
+puts "Seed success"
 
+#  Création d'une instance User -> users -------------------------------------------------------------------------------
 
 pierre = User.create!(nick_name: "Pierre", password: "azerty", email: "pierre@gmail.com")
-
 
 
 # Création des sports
@@ -45,6 +36,7 @@ vitesse_moyenne = Metric.create(metric: 'Vitesse moyenne', unit: 'm/s')
 temps = Metric.create(metric: 'Temps', unit: 'secondes')
 temperature_eau = Metric.create(metric: "Température de l'eau", unit: 'degrés Celsius')
 
+
 # Création des entraînements
 endurance = Training.create(user_sport: user_sport, name: 'Endurance', description: 'Entraînement axé sur l\'endurance')
 sprint = Training.create(user_sport: user_sport, name: 'Sprint', description: 'Entraînement axé sur la vitesse')
@@ -61,6 +53,7 @@ end
 
 # Pour le sprint, ajoutons 2 exercices
 sprint_exercices = [papillon, crawl]
+
 
 sprint_exercices.each_with_index do |exercice, position|
   # Assurez-vous de lier chaque exercice à l'entraînement

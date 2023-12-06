@@ -22,7 +22,6 @@ Rails.application.routes.draw do
   resources :training_exercices, only: [:destroy, :update]
   resources :seances, only: [:show]
 
-
   resources :trainings, only: [] do
     get 'training_data', on: :member
     resources :training_exercices, only: [:new, :create, :index,]
@@ -33,4 +32,5 @@ Rails.application.routes.draw do
     resources :training_values, only: [:create]
   end
 
+  get 'data', to: 'data#index'
 end

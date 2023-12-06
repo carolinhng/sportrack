@@ -1,13 +1,22 @@
 @import "config/_bootstrap_override";
-
-
-
 // flex
+
+.color-white {
+  color: $color-white!important;
+}
+
+ul {
+  list-style-type: none;
+}
+
 .flex {
   display: flex;
 }
 .jcsb {
   justify-content: space-between;
+}
+.gap {
+  gap: 8px;
 }
 
 // button card sports

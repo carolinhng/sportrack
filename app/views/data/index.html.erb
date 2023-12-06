@@ -1,0 +1,11 @@
+
+<div class="container">
+  <h1>Rapport</h1>
+
+  <h3>Nombre d'entrainement</h3>
+  <div data-controller="data-user"
+      data-data-user-seance-value="<%= @seances_by_dates.to_json %>">
+    <canvas data-data-user-target="chart">
+    </canvas>
+  </div>
+</div>
