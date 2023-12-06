@@ -25,7 +25,8 @@ class TrainingExercicesController < ApplicationController
       TrainingMetric.create!(
         training_exercice: @training_exercice,
         metric: metric.metric,
-        unit: metric.unit
+        unit: metric.unit,
+        position: ""
       )
     end
     redirect_to new_training_training_exercice_path

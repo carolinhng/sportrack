@@ -45,14 +45,18 @@
 
         <h3 class="ps-3 mb-2 mt-2">Données recommandées</h3>
 
-        <% training_exercice.training_metrics.each do |training_metric| %>
-            <div class="card-metric">
-              <p class="margin-0"><%= training_metric.metric %> \ <%= training_metric.unit %></p>
-                <%= link_to training_metric_path(training_metric), data: { turbo_method: :delete } do %>
-                  <div><i class="ri-close-line"></i></i></div>
-                <% end %>
-            </div>
-        <% end %>
+        <%# <ul class="padding-0" data-controller="sortable" data-sortable-resource-name-value="training_metric"> %>
+          <% training_exercice.training_metrics.each do |training_metric| %>
+              <%# <li> %>
+                <div class="card-metric">
+                  <p class="margin-0"><%= training_metric.metric %> \ <%= training_metric.unit %></p>
+                    <%= link_to training_metric_path(training_metric), data: { turbo_method: :delete } do %>
+                      <div><i class="ri-close-line"></i></i></div>
+                    <% end %>
+                </div>
+              <%# </li> %>
+          <% end %>
+        <%# </ul> %>
 
         <h3 class="ps-3 mb-2 mt-2">Données personelles</h3>
 
