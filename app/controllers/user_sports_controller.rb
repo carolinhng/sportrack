@@ -27,6 +27,10 @@ class UserSportsController < ApplicationController
     end
   end
 
+  def dashboard
+    @name = current_user.name
+  end
+
   private
 
   def user_sport_params
