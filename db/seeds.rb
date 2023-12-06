@@ -126,14 +126,13 @@ training_metrics_sprint_doscrawle = TrainingMetric.create!(
 
 
 
-
 # Création d'1 Seance endurance et sprint -> Table seances -------------------------------------------------------------
 
 seance_endurance = Seance.create!(
   training_id: training_endurance.id,
   comment: "Cette séance était top ! J'ai rempli tous mes objectifs",
   rating: 5,
-  duration: 45,
+  duration: "2000-01-01 20:00:00 UTC",
   date: Date.today
 )
 
@@ -141,7 +140,7 @@ seance_sprint = Seance.create!(
   training_id: training_sprint.id,
   comment: "Bof, j'ai mal dormi la veille, j'ai pu aller jusqu'au bout ",
   rating: 2,
-  duration: 30,
+  duration: "2000-01-01 20:00:00 UTC",
   date: Date.today
 )
 
