@@ -1,3 +1,4 @@
+# Destroy existing data
 Seance.destroy_all
 TrainingValue.destroy_all
 TrainingMetric.destroy_all
@@ -11,86 +12,61 @@ User.destroy_all
 
 puts "Seed success"
 
-#  Création d'une instance User -> users -------------------------------------------------------------------------------
-
+# Création d'une instance User
 pierre = User.create!(nick_name: "Pierre", password: "azerty", email: "pierre@gmail.com")
 
-
-# Création des sports
+# Création du sport (Natation)
 natation = Sport.create(name: 'Natation')
-
-
-# Associer l'utilisateur au sport (Natation)
 user_sport = UserSport.create(user: pierre, sport: natation)
 
-# Création des exercices pour la natation
-crawl = Exercice.create(name: 'Crawl', sport: natation)
+# Création des exercices
+crawll = Exercice.create(name: 'Crawll', sport: natation)
 dos_crawl = Exercice.create(name: 'Dos crawlé', sport: natation)
 papillon = Exercice.create(name: 'Papillon', sport: natation)
 brasse = Exercice.create(name: 'Brasse', sport: natation)
 
-# Création des métriques
-distance = Metric.create(metric: 'Distance', unit: 'mètres')
-vitesse = Metric.create(metric: 'Vitesse', unit: 'm/s')
-vitesse_moyenne = Metric.create(metric: 'Vitesse moyenne', unit: 'm/s')
-temps = Metric.create(metric: 'Temps', unit: 'secondes')
-temperature_eau = Metric.create(metric: "Température de l'eau", unit: 'degrés Celsius')
+# Création des metrics
+distance = Metric.create(metric: 'Distance', unit: 'mètre', exercice: crawll)
+vitesse = Metric.create(metric: 'Vitesse', unit: 'km/h', exercice: crawll)
+vitesse_moyenne = Metric.create(metric: 'Vitesse moyenne', unit: 'km/h', exercice: crawll)
+temps = Metric.create(metric: 'Temps', unit: 'minutes', exercice: crawll)
+temperature_eau = Metric.create(metric: "Température de l'eau", unit: 'degré', exercice: crawll)
 
+# Création des trainings_metrics associées aux metrics
+sprint = Training.create(user_sport: UserSport.first, name: 'Sprint', description: 'Entraînement de sprint')
+endurance = Training.create(user_sport: UserSport.first, name: 'Endurance', description: 'Entraînement d\'endurance')
 
-# Création des entraînements
-endurance = Training.create(user_sport: user_sport, name: 'Endurance', description: 'Entraînement axé sur l\'endurance')
-sprint = Training.create(user_sport: user_sport, name: 'Sprint', description: 'Entraînement axé sur la vitesse')
-
-# Création des entraînements_exercices
-# Pour l'endurance, ajoutons 3 exercices
-endurance_exercices = [crawl, dos_crawl, brasse]
-
-endurance_exercices.each_with_index do |exercice, position|
-  # Assurez-vous de lier chaque exercice à l'entraînement
-  training_exercice = TrainingExercice.create(training: endurance, exercice: exercice, position: position + 1)
-  endurance.training_exercices << training_exercice
-end
-
-# Pour le sprint, ajoutons 2 exercices
-sprint_exercices = [papillon, crawl]
-
-
-sprint_exercices.each_with_index do |exercice, position|
-  # Assurez-vous de lier chaque exercice à l'entraînement
-  training_exercice = TrainingExercice.create(training: sprint, exercice: exercice, position: position + 1)
-  sprint.training_exercices << training_exercice
-end
+TrainingExercice.create(training: sprint, exercice: crawll, position: 1)
+TrainingExercice.create(training: sprint, exercice: dos_crawl, position: 2)
+TrainingExercice.create(training: endurance, exercice: papillon, position: 1)
+TrainingExercice.create(training: endurance, exercice: brasse, position: 2)
 
 # Création des séances
-7.times do |i|
-  date = Date.today - i.days
-  seance = Seance.create(
-    date: date,
-    training: (i % 2 == 0) ? endurance : sprint,
-    comment: "Commentaire sur la séance #{i + 1}",
-    rating: rand(1..5),
-    duration: "#{rand(20..60)}:#{rand(0..59)}:#{rand(0..59)}"
-  )
+start_date = Date.today - 1.year
+end_date = Date.today
+seance_dates = (start_date..end_date).to_a.sample(200)
 
-  # Création des valeurs métriques pour chaque séance
-  TrainingMetric.all.each do |metric|
-    TrainingValue.create(
-      training_metric: metric,
+seance_dates.each do |date|
+  training_exercice = TrainingExercice.all.sample
+  seance = Seance.create(date: date, training: training_exercice.training, comment: 'Commentaire de la séance', rating: rand(1..5), duration: Time.at(rand * Time.now.to_i))
+
+  puts "Creating Seance with ID #{seance.id} and TrainingExercice with ID #{training_exercice.id}"
+
+  training_exercice.exercice.metrics.each do |metric|
+    training_metric = TrainingMetric.create!(
+      training_exercice: training_exercice,
+      metric: metric.metric,
+      unit: metric.unit
+    )
+
+    puts "Creating TrainingMetric with ID #{training_metric.id} for TrainingExercice with ID #{training_exercice.id}"
+
+    TrainingValue.create!(
+      training_metric: training_metric,
       seance: seance,
-      value: case metric.metric
-             when 'Distance'
-               rand(500..1500).to_s
-             when 'Vitesse'
-               "#{rand(2..5)}.#{rand(0..9)}"
-             when 'Vitesse moyenne'
-               "#{rand(2..5)}.#{rand(0..9)}"
-             when 'Temps'
-               "#{rand(20..60)}:#{rand(0..59)}:#{rand(0..59)}"
-             when "Température de l'eau"
-               "#{rand(10..30)}.#{rand(0..9)}"
-             else
-               'N/A'
-             end
+      value: rand(100..1000)
     )
   end
 end
+
+puts "Seed completed successfully!"
