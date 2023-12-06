@@ -1,10 +1,10 @@
 class Seance < ApplicationRecord
 
   belongs_to :training
+  has_many :training_exercices, through: :training
   has_many :training_values, dependent: :destroy
   has_many :training_metrics, through: :training_exercices
 
-  has_many :training_exercices, through: :training
   has_many :exercices, through: :training_exercices
 
   # after_update :save_training_values

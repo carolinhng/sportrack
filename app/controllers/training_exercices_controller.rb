@@ -21,7 +21,6 @@ class TrainingExercicesController < ApplicationController
 
   def create
     @training_exercice = TrainingExercice.create!(exercice_id: params[:exercice_id], training_id: params[:training_id])
-    redirect_to new_training_training_exercice_path
     @training_exercice.exercice.metrics.each do |metric|
       TrainingMetric.create!(
         training_exercice: @training_exercice,
@@ -29,6 +28,7 @@ class TrainingExercicesController < ApplicationController
         unit: metric.unit
       )
     end
+    redirect_to new_training_training_exercice_path
   end
 
   def update

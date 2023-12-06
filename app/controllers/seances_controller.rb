@@ -10,9 +10,6 @@ class SeancesController < ApplicationController
     @training_exercices = @seance.training.training_exercices
   end
 
-
-
-
   def create
     @seance = Seance.new
     @training = Training.find(params[:training_id])
