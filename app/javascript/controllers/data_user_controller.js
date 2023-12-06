@@ -13,7 +13,6 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log(this.seanceValue.y)
     new Chart(this.chartTarget, {
       type: 'bar',
       data: {
