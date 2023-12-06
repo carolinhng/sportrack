@@ -36,7 +36,7 @@ end
 # Création des metrics
 distance = Metric.create!(metric: 'Distance', unit: 'mètre', exercice: crawl)
 vitesse = Metric.create!(metric: 'Vitesse', unit: 'km/h', exercice: crawl)
-vitesse_moyenne = Metric.create!(metric: 'Vitesse moyenne', unit: 'km/h', exercice: crawl)
+# vitesse_moyenne = Metric.create!(metric: 'Vitesse moyenne', unit: 'km/h', exercice: crawl)
 temps = Metric.create!(metric: 'Temps', unit: 'minutes', exercice: crawl)
 temperature_eau = Metric.create!(metric: "Température de l'eau", unit: 'degrés', exercice: crawl)
 
