@@ -15,9 +15,10 @@
     text-align: center;
 
     .active-icon {
-      background: #EBF367;
+      background: $color-primary;
       padding: 8px 13px;
       border-radius: 16px;
+      color: $color-secondary;
     }
   }
 
