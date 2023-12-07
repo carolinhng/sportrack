@@ -9,6 +9,7 @@
 <div class="container">
   <div class="wrapper" , data-controller="toggle">
     <%# -------------------SEARCHBAR--------------------------------------- %>
+
     <div class="row justify-content-center">
       <div class="col-sm-8 my-3">
         <%= form_with url: new_training_training_exercice_path, method: :get, class: "d-flex" do %>
@@ -26,29 +27,34 @@
 
     <%# -------------------EXERCICE LIST----------------------------- %>
 
-<ul data-controller="sortable" data-sortable-resource-name-value="exercice">
-    <% @exercices.each do |exercice| %>
-      <% unless TrainingExercice.exercice?(exercice, @training) %>
-        <%= link_to training_training_exercices_path(exercice_id: exercice.id, training: @training.id), data: { turbo_method: :post }, class: "card_exercice" do %>
-          <%= exercice.name %><i class="fa-regular fa-circle"></i>
+    <ul class="padding-0" data-controller="sortable" data-sortable-resource-name-value="exercice">
+      <% @exercices.each do |exercice| %>
+        <% unless TrainingExercice.exercice?(exercice, @training) %>
+          <%= link_to training_training_exercices_path(exercice_id: exercice.id, training: @training.id), data: { turbo_method: :post }, class: "card_exercice" do %>
+            <%= exercice.name %><i class="fa-regular fa-circle"></i>
+          <% end %>
+        <% else %>
+        <% @training_exercice = TrainingExercice.find_by(exercice: exercice, training: @training) %>
+        <li data-sortable-update-url="<%= training_exercice_path(@training, training_exercice_id: @training_exercice.id) %>">
+          <%= link_to training_exercice_path(@training_exercice), data: { turbo_method: :delete }, class: "card_exercice_select" do %>
+            <h3><%= exercice.name %></h3>
+            <div>
+              <i class="ri-drag-move-2-fill color-white"></i>
+              <%# <i class="fa-regular fa-circle"></i> %>
+            </div>
+          <% end %>
+        </li>
         <% end %>
-      <% else %>
-      <% @training_exercice = TrainingExercice.find_by(exercice: exercice, training: @training) %>
-      <li data-sortable-update-url="<%= training_exercice_path(@training, training_exercice_id: @training_exercice.id) %>">
-        <%= link_to training_exercice_path(@training_exercice), data: { turbo_method: :delete }, class: "card_exercice_select" do %>
-          <h3><%= exercice.name %></h3><i class="fa-regular fa-circle"></i>
-        <% end %>
-      </li>
       <% end %>
-    <% end %>
     </ul>
 
 
     <%# -------------------EXERCICE LIST----------------------------- %>
 
-    <%= link_to training_path(@training), class: "btn_position_bas btn btn-primary mb-4" do %>
+    <%= link_to training_training_exercices_path(@training), class: "btn_position_bas btn btn-primary mb-4" do %>
     <h3>Ajouter <%= @counter %> </h3>
     <% end %>
   </div>
 
 </div>
+
