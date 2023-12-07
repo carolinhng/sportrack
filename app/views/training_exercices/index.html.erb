@@ -34,7 +34,7 @@
 <%# ------------------- TEST ACCORDEON----------------------------- %>
 
 
-<div class="container">
+<div class="container flex-gap-16">
   <h2 class="mb-3">Choix de vos données</h2>
 
     <% @training_exercices.each do |training_exercice|  %>
@@ -44,14 +44,14 @@
         <div class="accordion" id="accordionPanelsStayOpenExample">
           <div class="accordion-item">
 
-            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+            <h2 class="accordion-header" id="panelsStayOpen-heading<%= training_exercice.id %>">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%= training_exercice.id %>" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
 
                 <h3 class="entete-card font-weight-700 padding-0-entete"><%= training_exercice.exercice.name %></h3>
 
               </button>
               </h2>
-              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+              <div id="panelsStayOpen-collapse<%= training_exercice.id %>" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading<%= training_exercice.id %>">
               <div class="accordion-body">
 
         <%# -------------------CONTENUE ACCORDEON----------------------------- %>
@@ -107,7 +107,7 @@
 
 
 
-  <%= link_to training_path(@training), class: "btn btn-primary mb-5" do %>
+  <%= link_to training_path(@training), class: "btn btn-primary mb-5 mt-5" do %>
       <h3>Enregistrer</h3>
   <% end %>
 
