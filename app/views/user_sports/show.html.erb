@@ -73,7 +73,8 @@
          <h3><%= seance.training.name %></h3>
          <div class="defaultcardt d-flex mt-2">
          <i class="ri-time-fill me-2" style="color: #000000; font-size: 18px;"></i>
-        <h3 class="padding-top-1"><%= seance.date.strftime("%d/%m/%Y") %></h3>
+        <h3 class="padding-top-1"><%= seance.date %></h3>
+        <%# .strftime("%d/%m/%Y") %>
         </div>
         <div class="defaultcardt d-flex mt-2">
         <i class="ri-heart-fill me-2" style="color: #000000; font-size: 18px;"></i>
