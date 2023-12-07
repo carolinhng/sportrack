@@ -72,13 +72,13 @@
         </div>
       </div>
 
-   <% @seances.each do |seance|%>
+   <% @seances.order(date: :desc).each do |seance|%>
       <%= link_to seance_path(seance) do %>
 
       <div class="wrapper training-card">
         <div class="flex jcsb mb-3 aicenter">
           <% if seance.date.present? %>
-            <h3 class="mt-2">Séance du <%= seance.date.strftime('%d-%m-%g').downcase %></h3>
+            <h3 class="mt-2">Séance du <%= seance.date.strftime('%e %b %G').downcase %></h3>
             <% else %>
             <h3 class="mt-2">Séance </h3>
             <% end %>

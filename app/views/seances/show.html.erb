@@ -1,14 +1,14 @@
 <%# -------------------Block gris foncé----------------------------- %>
 
-<div class="head-block-dark">
-  <div class="container">
+<div class="head-wrapper">
+
     <div class="flex align-center justify-between">
       <%= link_to user_sport_path(@seance.training.user_sport), class: "link-decoration-none" do %>
-        <div class="link-head">
+        <div class="link-head padding-0-24 border-bottom-none">
           <i class="ri-arrow-left-s-line"></i>
           <% if @seance.date.present? %>
-          <h1 class="color-white"> Séance du <%= @seance.date.strftime('%e %b %G') %> </h1>
-       <% end %>
+            <h1 class="color-white"> Séance du <%= @seance.date.strftime('%e %b %G') %> </h1>
+          <% end %>
         </div>
       <% end %>
           <div><i class="ri-more-2-line icone-sans-fond"></i></div>
@@ -16,13 +16,15 @@
     <div class="margin-top-16">
 
 
-      <h3 class="color-white"><%= @seance.training.name %> </h3>
 
+      <div class="flex aicenter pt-2">
+        <h3 class="color-white"><%= @seance.training.name %> </h3>
+        <p class="color-white ms-2"><i class="ri-star-s-fill"></i><%= @seance.rating %></p>
+      </div>
 
-      <p class="color-white"><i class="ri-star-s-fill"></i><%= @seance.rating %></p>
-      <p class="color-white">Durée : <%= @seance.duration %> min</p>
+        <p class="color-white mt-2">Durée : <%= @seance.duration %> min</p>
     </div>
-  </div>
+
 </div>
 
 <%# -------------------RESUME DES DONNES----------------------------- %>
