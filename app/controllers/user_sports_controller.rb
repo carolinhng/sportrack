@@ -16,14 +16,14 @@ class UserSportsController < ApplicationController
     end
   end
 
-
   def show
     @user_sport = UserSport.find(params[:id])
     @active = params[:query].present?
+    @seances = Seance.all.select do |seance|
+      seance.training.user_sport.sport == @user_sport.sport
+    end
     if @active
       @seances = Seance.search_seance_exercice_and_training(params[:query])
-    else
-      @seances = Seance.all
     end
   end
 
