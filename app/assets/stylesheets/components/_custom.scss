@@ -46,6 +46,15 @@ ul {
 
 
 // button card sports
+.exo-cache {
+  position: fixed;
+  background-color: white;
+  bottom: 100px;
+  height: 70px;
+  width: 100%;
+}
+
+
 .tag {
   background-color: $color-tertiary ;
   border-radius: $radius * 4;

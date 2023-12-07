@@ -62,7 +62,7 @@
         <div id="panelsStayOpen-collapse<%=training_exercice.id%>" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading<%=training_exercice.id%>">
           <div class="accordion-body">
             <% training_exercice.training_metrics.order(:position).each do |training_metric| %>
-              <p><span class="fw-bolder"><%= training_metric.metric %></span> \ <%= training_metric.unit %></p>
+              <p class="py-2"><span class="fw-bolder"><%= training_metric.metric %></span> \ <%= training_metric.unit %></p>
             <% end %>
           </div>
         </div>
