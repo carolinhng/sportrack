@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :user_sports, only: [:create]
   end
 
+  patch '/update_sortable_training_exercice/:id', to: 'training_exercices#sortable_update', as: 'update_sortable_training_exercice'
   resources :trainings, only: [:show, :index, :destroy]
   resources :training_exercices, only: [:destroy, :update]
   resources :seances, only: [:show]

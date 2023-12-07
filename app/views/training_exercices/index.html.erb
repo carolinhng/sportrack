@@ -48,9 +48,10 @@
         <%# -------------------SORTABLE DES TRAINING METRICS----------------------------- %>
 
         <ul class="padding-0" data-controller="sortable" data-sortable-resource-name-value="training_metric">
-          <% training_exercice.training_metrics.each do |training_metric| %>
 
-              <li>
+          <% training_exercice.training_metrics.order(:position).each do |training_metric| %>
+
+              <li data-sortable-update-url="<%= training_metric_path(training_metric) %>">
                 <div class="card-metric mt-2">
                   <p class="margin-0"><%= training_metric.metric %> \ <%= training_metric.unit %></p>
 
@@ -88,18 +89,6 @@
     <% end %>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
