@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :user_sports
   has_many :trainings, through: :user_sports
   has_many :seances, through: :trainings
+
 end
