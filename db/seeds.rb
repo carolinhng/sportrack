@@ -17,12 +17,9 @@ pierre = User.create!(nick_name: "Pierre", password: "azerty", email: "pierre@gm
 
 # Création du sport (Natation)
 
-yoga = Sport.create!(name: 'Yoga')
-cyclisme = Sport.create!(name: 'Cyclisme')
 natation = Sport.create!(name: 'Natation')
 user_sport = UserSport.create!(user: pierre, sport: natation)
-UserSport.create!(user: pierre, sport: yoga)
-UserSport.create!(user: pierre, sport: cyclisme)
+
 
 # # Création des exercices pour la natation
 crawl = Exercice.create!(name: 'Crawl', sport: natation)
@@ -199,5 +196,10 @@ seance_dates.each do |date|
     end
   end
 end
+
+yoga = Sport.create!(name: 'Yoga')
+cyclisme = Sport.create!(name: 'Cyclisme')
+UserSport.create!(user: pierre, sport: yoga)
+UserSport.create!(user: pierre, sport: cyclisme)
 
 puts "Seed muscu ok"

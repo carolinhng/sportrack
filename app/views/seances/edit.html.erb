@@ -42,12 +42,15 @@
       <%= seance_form.input :rating,
         label: "Note",
         placeholder: "Ajouter une note à l'entrainement",
-        collection: 1..5 %>
+        collection: 1..5,
+        class: "forminput" %>
 
       <%= seance_form.input :duration,
         label: "Durée (minutes)",
         placeholder: "Durée de l'entrainement",
         class: "forminput" %>
+
+
     </div>
     <h2 class="mb-3 mt-5">Données par exercices</h2>
     <% @training_exercices.each do |training_exercice|  %>
