@@ -21,26 +21,24 @@
 
     <% @trainings.each do |training| %>
       <%= link_to training_path(training) do %>
-        <div class="bloc mt-2 d-flex justify-content-between align-items-center">
-          <div>
 
-            <div class="d-flex">
-              <h3>Sport <%= training.user_sport.sport.name.downcase %> : <%= training.name %></h3>
-            </div>
-
-            <div class="defaultcardt d-flex mt-2">
-              <i class="fa-solid fa-person-walking me-2" style="color: #000000; font-size: 18px;"></i>
-              <p class="padding-top-1"><%= training.exercices.count %> <%= training.exercices.count <= 1 ? 'exercice' : 'exercices' %></p>
-            </div>
-
-
+        <div class="wrapper training-card">
+          <div class="flex jcsb mb-3 aicenter">
+            <h3><%= training.name %></h3>
+            <p class="tag"><%= training.user_sport.sport.name %></p>
           </div>
-          <div>
+
+          <div class="flex jcsb">
+            <div class="flex">
+              <i class="fa-solid fa-person-walking me-2" style=""></i>
+              <p class=""><%= training.exercices.count %> <%= training.exercices.count <= 1 ? 'exercice' : 'exercices' %></p>
+            </div>
             <%= link_to training_path(training), data: {turbo_method: :delete } do %>
               <i class="ri-delete-bin-line"></i>
             <% end %>
           </div>
         </div>
+
       <% end %>
     <% end %>
 <%# -------------------HISTORIQUE--------------------------------------- %>
