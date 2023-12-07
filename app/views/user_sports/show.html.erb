@@ -37,12 +37,12 @@
                   </div>
                 </div>
 
-                <%# Commenté car le redirect to doit etre sur la show de usersport, à voir plus tard %>
-                <%# <div> %>
-                  <%#<%= link_to training_path(training), data: {turbo_method: :delete } do %>
-                    <%#i class="ri-delete-bin-line"></i>
+                <div>
+                  <%= link_to training_path(training), data: {turbo_method: :delete } do %>
+                    <i class="ri-delete-bin-line"></i>
                   <% end %>
-                <%# <%div> %>
+                </div>
+
             </div>
           <% end %>
       <% end %>
