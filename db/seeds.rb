@@ -54,7 +54,7 @@ endurance = Training.create!(user_sport: UserSport.first, name: 'Endurance', des
 # Seances (200 séances sur une période de 1 an)
 start_date = Date.today - 1.year
 end_date = Date.today
-seance_dates = (start_date..end_date).to_a.sample(100)
+seance_dates = (start_date..end_date).to_a.sample(30)
 
 
 sprint_crawl = TrainingExercice.create!(training: sprint, exercice: crawl, position: 1)

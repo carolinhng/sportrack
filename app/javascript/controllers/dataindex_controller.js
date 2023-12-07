@@ -20,29 +20,33 @@ export default class extends Controller {
       this.containerTarget.querySelector(".delete-chart").classList.remove("d-none")
       const char = this.containerTarget.querySelector("canvas")
       const serializedData = char.dataset.chartDataTrainingExerciceMetricsValue
+      const serializeSeanceDate = char.dataset.chartDataSeanceDateValue
+      const serializeExerciceName = char.dataset.chartDataTrainingExerciceNameValue
+      console.log(serializeExerciceName)
       const data = JSON.parse(serializedData)
-      const labels = data.map((metric) => metric.x)
-      const dataset = data.map((metric) => metric.y)
-      dataset.unshift("0")
+      const labels = JSON.parse(serializeSeanceDate)
+
 
       const gradient = char.getContext('2d').createLinearGradient(0, 0, 0, char.height);
-      gradient.addColorStop(0, '#D0B3E1');
-      gradient.addColorStop(1, 'rgba(208, 179, 225, 0.00)');
+      gradient.addColorStop(0, '#D0B3E1');  // You can replace this color as well if needed
+      gradient.addColorStop(1, 'rgba(183, 195, 243, 00.00)');
 
-      new Chart(char, {
+      const data2 = {
+        labels: labels,
+        datasets: [{
+          label: serializeExerciceName,
+          data: data.data,
+          borderColor: '#D0B3E1',
+          backgroundColor: gradient,
+          borderWidth: true,
+          fill: true,
+          tension: 0.5
+        }]
+      };
+
+      const stackedLine = new Chart(char, {
         type: 'line',
-        data: {
-          labels: labels,
-          datasets: [{
-            label: char.dataset.chartDataTrainingExerciceNameValue,
-            data: dataset,
-            backgroundColor : gradient,
-            borderColor: 'rgba(13, 19, 33, 1)',
-            borderWidth: true,
-            fill: true,
-            tension: .5
-          }]
-        },
+        data: data2,
         options: {
           plugins: {
             legend: {
@@ -53,13 +57,13 @@ export default class extends Controller {
               display: true,
               text: char.dataset.chartDataTrainingExerciceNameValue,
             }
-        },
-          scales: {
+          },
+            scales: {
               y: {
                 beginAtZero: true,
                 title: {
                   display: true,
-                  text: 'X-Axis Label'
+                  text: data.label,
                 },
                 ticks: {
                   font: {
@@ -82,8 +86,8 @@ export default class extends Controller {
                 }
               },
 
-          },
-      }
+            }
+        }
       });
     };
   }
