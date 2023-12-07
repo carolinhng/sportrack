@@ -67,7 +67,7 @@
     </div>
 
 
-        <% @seances.order(date: :desc).each do |seance|%>
+        <% @seances.each do |seance|%>
 
           <%= link_to seance_path(seance) do %>
             <div class="bloc mt-2 d-flex justify-content-between align-items-center">
@@ -80,7 +80,7 @@
                    <% else %>
                   <h3 class="mt-2">Séance </h3>
                <% end %>
-                  
+
                 </div>
 
                 <p><%= seance.training.name %></p>
@@ -94,7 +94,7 @@
 
             </div>
           <% end %>
-        
+
         <% end %>
 
 
