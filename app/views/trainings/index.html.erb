@@ -5,17 +5,17 @@
       <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
 
         <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Entrainements</button>
+          <button class="nav-link <%= "active" unless @active %>" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Entrainements</button>
         </li>
 
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Historique</button>
+          <button class="nav-link <%= "active" if @active %>" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Historique</button>
         </li>
 
       </ul>
 
       <div class="tab-content" id="pills-tabContent">
-          <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+          <div class="tab-pane fade <%= "show active" unless @active %>" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
 
   <%# ------------------- List des entrainements liés au user et à son sport ----------------------------- %>
 
@@ -72,15 +72,20 @@
 
                 <div class="defaultcardt d-flex mt-2">
                   <i class="ri-time-fill me-2" style="color: #000000; font-size: 18px;"></i>
-                  <h3 class="padding-top-1">Séance du <%= seance.date %></h3>
+                   <% if seance.date.present? %>
+                  <h3 class="mt-2">Séance du <%= seance.date.strftime('%d-%m-%g').downcase %></h3>
+                   <% else %>
+                  <h3 class="mt-2">Séance </h3>
+               <% end %>
+
                 </div>
 
                 <div class="d-flex">
-                  <p>Sport <%= seance.training.user_sport.sport.name.downcase %> : <%= seance.training.name %></p>
+                  <p> <%= seance.training.user_sport.sport.name.capitalize %> : <%= seance.training.name %></p>
                 </div>
 
                 <div class="defaultcardt d-flex mt-2">
-                    <i class="ri-heart-fill me-2" style="color: #000000; font-size: 18px;"></i>
+                    <i class="ri-star-s-fill me-2" style="color: #000000; font-size: 18px;"></i>
                     <h3 class="padding-top-1"><%= seance.rating%></h3>
                 </div>
 
