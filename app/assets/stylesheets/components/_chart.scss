@@ -46,12 +46,13 @@
 }
 
 .temporary-card {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   background-color: $color-grey;
-  height: 200px;
   border-radius: $radius;
+  padding: 24px;
   text-align: center;
 
   .data-img {
-    height: 150px;
+    height: 50px;
   }
 }
