@@ -1,10 +1,14 @@
 
 <div class="head-wrapper">
     <div class="head-train">
-      <%= link_to user_sport_path(@training.user_sport), class: "link-decoration-none" do %>
-        <i class="ri-arrow-left-s-line"></i>
-      <% end %>
-      <h1 class="color-white"> <%= @training.name %></h1>
+
+      <div class="flex aicenter">
+        <%= link_to user_sport_path(@training.user_sport), class: "link-decoration-none" do %>
+          <i class="ri-arrow-left-s-line"></i>
+        <% end %>
+        <h1 class="color-white"> <%= @training.name %></h1>
+      </div>
+
       <div class="flex gap">
         <%= link_to training_data_training_path, class: "link-decoration-none" do %>
           <i class="ri-pie-chart-line"></i>
@@ -13,8 +17,8 @@
       </div>
     </div>
 
-    <p class="color-white"><%= @training.sport.name %> -
-    Crée le <%= @training.created_at.to_date %></p>
+    <h3 class="color-white"><%= @training.sport.name %> <br></h3>
+    <p class="color-white mt-2">Crée le <%= @training.created_at.to_date.strftime('%e-%b-%Y') %></p>
 
 
 </div>

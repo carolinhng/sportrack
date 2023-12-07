@@ -31,9 +31,6 @@
         <div class="flex jcsb mb-3 aicenter">
           <h3><%= training.name %></h3>
 
-
-
-
           <p class="<%= training.user_sport.sport.name == 'Natation' ? 'tag' : 'tag-other' %>">
             <%= training.user_sport.sport.name %>
           </p>
@@ -75,13 +72,13 @@
         </div>
       </div>
 
-   <% @seances.each do |seance|%>
+   <% @seances.order(date: :desc).each do |seance|%>
       <%= link_to seance_path(seance) do %>
 
       <div class="wrapper training-card">
         <div class="flex jcsb mb-3 aicenter">
           <% if seance.date.present? %>
-            <h3 class="mt-2">Séance du <%= seance.date.strftime('%d-%m-%g').downcase %></h3>
+            <h3 class="mt-2">Séance du <%= seance.date.strftime('%e %b %G').downcase %></h3>
             <% else %>
             <h3 class="mt-2">Séance </h3>
             <% end %>
@@ -93,7 +90,7 @@
         <div class="flex jcsb">
         <div class="flex">
           <p><%= seance.training.name %></p>
-</div>
+        </div>
           <div class = "flex aicenter">
           <i class="ri-star-s-fill me-2" style="color: #000000; font-size: 18px;"></i>
           <p><%= seance.rating%></p>

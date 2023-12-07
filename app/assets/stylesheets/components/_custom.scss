@@ -10,7 +10,6 @@
   color: $color-white!important;
 }
 
-
 .background-grey {
   background: $color-grey;
 }
@@ -91,7 +90,7 @@ ul {
   padding: 16px 24px;
   display: flex;
   align-items: center;
-  background: $color-grey;
+  background: $color-secondary;
   border-radius: $radius;
   text-decoration: none;
   i {
@@ -224,4 +223,12 @@ hr {
 
 .padding-0-entete {
   padding: 0px!important;
+}
+
+.padding-0-24 {
+  padding: 0px 0px;
+}
+
+.border-bottom-none {
+  border-bottom: none;
 }
