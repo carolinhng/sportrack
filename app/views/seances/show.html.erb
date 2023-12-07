@@ -54,7 +54,7 @@
           <div id="panelsStayOpen-collapse<%= training_exercice.id %>" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading<%= training_exercice.id %>">
             <div class="accordion-body">
               <% TrainingValue.where(training_metric: training_exercice.training_metrics, seance: @seance).each do |training_value| %>
-                <p><span class="fw-bolder"><%= training_value.training_metric.metric %></span> : <%= training_value.value %> <%= training_value.training_metric.unit %></p>
+                <p class="py-2"><span class="fw-bolder"><%= training_value.training_metric.metric %></span> : <%= training_value.value %> <%= training_value.training_metric.unit %></p>
               <% end %>
             </div>
           </div>
