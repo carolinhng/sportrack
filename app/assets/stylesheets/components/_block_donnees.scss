@@ -1,0 +1,29 @@
+.block1 {
+  background-color: $color-tertiary;
+  border-radius: $radius;
+  padding: 8px 12px;
+  width: 50%;
+  text-align: center;
+  padding: 16px;
+
+  p {
+    font-size: 45px!important;
+  }
+}
+
+.block2 {
+  background-color: $color-pink_pastel;
+  border-radius: $radius;
+  padding: 8px 12px;
+  width: 50%;
+  text-align: center;
+  padding: 16px;
+
+  p {
+    font-size: 45px!important;
+  }
+}
+
+.gap {
+  gap: 10px;
+}

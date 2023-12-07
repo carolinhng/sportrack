@@ -10,7 +10,6 @@
   color: $color-white!important;
 }
 
-
 .background-grey {
   background: $color-grey;
 }
@@ -46,8 +45,24 @@ ul {
 
 
 // button card sports
+.exo-cache {
+  position: fixed;
+  background-color: white;
+  bottom: 100px;
+  height: 70px;
+  width: 100%;
+}
+
+
 .tag {
   background-color: $color-tertiary ;
+  border-radius: $radius * 4;
+  padding: 8px 12px;
+  width: fit-content;
+}
+
+.tag-other {
+  background-color: $color-pink_pastel ;
   border-radius: $radius * 4;
   padding: 8px 12px;
   width: fit-content;
@@ -84,7 +99,7 @@ ul {
   padding: 16px 24px;
   display: flex;
   align-items: center;
-  background: $color-grey;
+  background: $color-secondary;
   border-radius: $radius;
   text-decoration: none;
   i {
@@ -217,4 +232,12 @@ hr {
 
 .padding-0-entete {
   padding: 0px!important;
+}
+
+.padding-0-24 {
+  padding: 0px 0px;
+}
+
+.border-bottom-none {
+  border-bottom: none;
 }

@@ -1,14 +1,14 @@
 <%# -------------------Block gris foncé----------------------------- %>
 
-<div class="head-block-dark">
-  <div class="container">
+<div class="head-wrapper">
+
     <div class="flex align-center justify-between">
       <%= link_to user_sport_path(@seance.training.user_sport), class: "link-decoration-none" do %>
-        <div class="link-head">
+        <div class="link-head padding-0-24 border-bottom-none">
           <i class="ri-arrow-left-s-line"></i>
           <% if @seance.date.present? %>
-          <h1 class="color-white"> Séance du <%= @seance.date.strftime('%e %b %G') %> </h1>
-       <% end %>
+            <h1 class="color-white"> Séance du <%= @seance.date.strftime('%e %b %G') %> </h1>
+          <% end %>
         </div>
       <% end %>
           <div><i class="ri-more-2-line icone-sans-fond"></i></div>
@@ -16,47 +16,52 @@
     <div class="margin-top-16">
 
 
-      <h3 class="color-white"><%= @seance.training.name %> </h3>
 
+      <div class="flex aicenter pt-2">
+        <h3 class="color-white"><%= @seance.training.name %> </h3>
+        <p class="color-white ms-2"><i class="ri-star-s-fill"></i><%= @seance.rating %></p>
+      </div>
 
-      <p class="color-white"><i class="ri-star-s-fill"></i><%= @seance.rating %></p>
-      <p class="color-white">Durée : <%= @seance.duration %> min</p>
+        <p class="color-white mt-2">Durée : <%= @seance.duration %> min</p>
     </div>
-  </div>
+
 </div>
 
 <%# -------------------RESUME DES DONNES----------------------------- %>
 
   <div class="container">
+
     <h2 class="mb-3">Commentaire</h2>
     <p class="mb-4"><%= @seance.comment %></p>
 
 
   <%# -------------------EXERCICE LIST----------------------------- %>
 
+
+<div class="container flex-gap-16">
+
     <h2 class="mb-4">Exercices</h2>
 
     <% @training_exercices.each do |training_exercice| %>
-      <div class="card_exercice mt-3 mb-3">
-          <h3><%= training_exercice.exercice.name %></h3>
-      </div>
-        <div class="ps-3">
-        <%# training_exercice.training_values.each do MARCHE PAS %>
-          <% TrainingValue.where(training_metric: training_exercice.training_metrics, seance: @seance).each do |training_value| %>
-            <p><span class="fw-bolder"><%= training_value.training_metric.metric %></span> : <%= training_value.value %> <%= training_value.training_metric.unit %></p>
-          <% end %>
+
+      <div class="accordion" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-heading<%= training_exercice.id %>">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%= training_exercice.id %>" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+              <h3><%= training_exercice.exercice.name %></h3>
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapse<%= training_exercice.id %>" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading<%= training_exercice.id %>">
+            <div class="accordion-body">
+              <% TrainingValue.where(training_metric: training_exercice.training_metrics, seance: @seance).each do |training_value| %>
+                <p class="py-2"><span class="fw-bolder"><%= training_value.training_metric.metric %></span> : <%= training_value.value %> <%= training_value.training_metric.unit %></p>
+              <% end %>
+            </div>
+          </div>
         </div>
+      </div>
     <% end %>
 
+  <div class="mb-5"></div>
 
-
-
-
-
-
-
-
-
-    <div class="mb-5"></div>
-
-  </div>
+</div>

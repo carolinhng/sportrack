@@ -1,9 +1,9 @@
 <%= link_to sports_path, class: "link-decoration-none" do %>
-  <div class="link-head">
+<div class="link-head">
 
-      <i class="ri-arrow-left-s-line"></i>
-      <h1><%= @user_sport.sport.name %></h1>
-  </div>
+  <i class="ri-arrow-left-s-line"></i>
+  <h1><%= @user_sport.sport.name %></h1>
+</div>
 <% end %>
 
 <div class="container">
@@ -11,95 +11,106 @@
   <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
 
     <li class="nav-item" role="presentation">
-      <button class="nav-link  <%= "active" unless @active %>" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Entrainements</button>
+      <button class="nav-link  <%= "active" unless @active %>" id="pills-home-tab" data-bs-toggle="pill"
+        data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+        aria-selected="true">Entrainements</button>
     </li>
 
     <li class="nav-item" role="presentation">
-      <button class="nav-link <%= "active" if @active %>" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Historique</button>
+      <button class="nav-link <%= "active" if @active %>" id="pills-profile-tab" data-bs-toggle="pill"
+        data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+        aria-selected="false">Historique</button>
     </li>
 
   </ul>
 
   <div class="tab-content" id="pills-tabContent">
-    <div class="tab-pane fade <%= "show active" unless @active %>" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+    <div class="tab-pane fade <%= "show active" unless @active %>" id="pills-home" role="tabpanel"
+      aria-labelledby="pills-home-tab" tabindex="0">
       <%= link_to "Créer un nouvel entrainement", new_user_sport_training_path(@user_sport), class: "btn btn-primary mb-3" %>
 
-<%# ------------------- List des entrainements liés au user et à son sport ----------------------------- %>
+      <%# ------------------- List des entrainements liés au user et à son sport ----------------------------- %>
 
       <% @user_sport.trainings.each do | training | %>
-          <%= link_to training_path(training) do %>
-            <div class="bloc mt-2 d-flex justify-content-between align-items-center">
-                <div>
-                  <h3><%= training.name %></h3>
-                  <div class="defaultcardt d-flex mt-2">
-                    <i class="fa-solid fa-person-walking me-2" style="color: #000000; font-size: 18px;"></i>
-                    <p><%= training.exercices.count %> <%= training.exercices.count <= 1 ? 'exercice' : 'exercices' %></p>
-                  </div>
-                </div>
+      <%= link_to training_path(training) do %>
 
-                <div>
-                  <%= link_to training_path(training), data: {turbo_method: :delete } do %>
-                    <i class="ri-delete-bin-line"></i>
-                  <% end %>
-                </div>
 
-            </div>
+      <div class="wrapper training-card">
+        <div class="flex jcsb mb-3 aicenter">
+          <h3><%= training.name %></h3>
+          <p>
+            <i class="ri-bookmark-3-line"></i>
+          </p>
+        </div>
+
+        <div class="flex jcsb">
+          <div class="flex">
+            <i class="fa-solid fa-person-walking me-2" style=""></i>
+            <p class=""><%= training.exercices.count %> <%= training.exercices.count <= 1 ? 'exercice' : 'exercices' %>
+            </p>
+          </div>
+          <%= link_to training_path(training), data: {turbo_method: :delete } do %>
+          <i class="ri-delete-bin-line"></i>
           <% end %>
+        </div>
+      </div>
+
+      <% end %>
       <% end %>
 
- <%# -------------------HISTORIQUE---------------------------- %>
+
+
+
     </div>
-      <div class="tab-pane fade <%= "show active" if @active %>" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
-         <%# -------------------SEARCHBAR---------------------------- %>
-         <div class="row justify-content-center">
-      <div class="col-sm-8 my-3">
-        <%= form_with url: user_sport_path(@user_sport), method: :get, class: "d-flex" do %>
-        <%= text_field_tag :query,
+    <div class="tab-pane fade <%= "show active" if @active %>" id="pills-profile" role="tabpanel"
+      aria-labelledby="pills-profile-tab" tabindex="0">
+      <%# -------------------SEARCHBAR---------------------------- %>
+      <div class="row justify-content-center">
+        <div class="col-sm-8 my-3">
+          <%= form_with url: user_sport_path(@user_sport), method: :get, class: "d-flex" do %>
+          <%= text_field_tag :query,
             params[:query],
             class: "form-control",
             placeholder: "Rechercher une seance"
         %>
-        <button class="search" , name="" , type="submit"> <i class="ri-search-line"></i>
-        </button>
-        <button class="filter mx-1"><i class="ri-filter-3-line"></i></button>
-        <% end %>
-      </div>
-    </div>
-
-
-        <% @seances.each do |seance|%>
-
-          <%= link_to seance_path(seance) do %>
-            <div class="bloc mt-2 d-flex justify-content-between align-items-center">
-              <div>
-
-                <div class="defaultcardt d-flex mt-2">
-                  <i class="ri-time-fill me-2" style="color: #000000; font-size: 18px;"></i>
-                   <% if seance.date.present? %>
-                  <h3 class="mt-2">Séance du <%= seance.date.strftime('%d-%m-%g').downcase %></h3>
-                   <% else %>
-                  <h3 class="mt-2">Séance </h3>
-               <% end %>
-
-                </div>
-
-                <p><%= seance.training.name %></p>
-
-                <div class="defaultcardt d-flex">
-                  <i class="ri-star-s-fill me-2" style="color: #000000; font-size: 18px;"></i>
-                  <p><%= seance.rating%></p>
-                </div>
-
-              </div>
-
-            </div>
+          <button class="search" , name="" , type="submit"> <i class="ri-search-line"></i>
+          </button>
+          <button class="filter mx-1"><i class="ri-filter-3-line"></i></button>
           <% end %>
+        </div>
+      </div>
 
-        <% end %>
+      <%# -------------------LISTE DES SEANCES---------------------------- %>
 
+      <% @seances.each do |seance|%>
+      <%= link_to seance_path(seance) do %>
 
+      <div class="wrapper training-card">
+        <div class="flex jcsb mb-3 aicenter">
+          <% if seance.date.present? %>
+            <h3 class="mt-2">Séance du <%= seance.date.strftime('%d-%m-%g').downcase %></h3>
+            <% else %>
+            <h3 class="mt-2">Séance </h3>
+            <% end %>
+          <p class="<%= seance.training.user_sport.sport.name == 'Natation' ? 'tag' : 'tag-other' %>">
+            <%= seance.training.user_sport.sport.name %>
+          </p>
+        </div>
 
-  </div>
+        <div class="flex jcsb">
+        <div class="flex">
+          <p><%= seance.training.name %></p>
 </div>
+          <div class = "flex aicenter">
+          <i class="ri-star-s-fill me-2" style="color: #000000; font-size: 18px;"></i>
+          <p><%= seance.rating%></p>
+          </div>
+        </div>
+      </div>
+          <% end %>
+           <% end %>
 
-<div class="mb-5"></div>
+    </div>
+  </div>
+
+  <div class="mb-5"></div>

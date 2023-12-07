@@ -1,35 +1,49 @@
 
 <div class="container">
 
-  <div>
-    <div>
-      <p>Nombre d'entrainement</p><%= current_user.trainings.count %>
+  <h1 class="mb-4">Rapport</h1>
+
+  <div class="flex gap">
+    <div class="block1">
+      <h3 class="mb-2">Nombre <br>d'entrainements</h3>
+      <p><%= current_user.trainings.count %></p>
     </div>
 
-    <div>
-      <p>Nombre de séances</p><%= current_user.seances.count %>
+    <div class="block2">
+      <h3 class="mb-2">Nombre <br>de séances</h3>
+      <p><%= current_user.seances.count %></p>
     </div>
-
-    <div>
-      <%# <p>Nombre de sport</p><%= current_user.sports.count %> 
-    </div>
-
-
-
-
-
-
 
   </div>
 
-
-
-  <h1>Rapport</h1>
-
-  <h3>Nombre d'entrainement</h3>
+  <h3 class="mt-4">Nombre d'entrainement</h3>
   <div data-controller="data-user"
       data-data-user-seance-value="<%= @seances_by_dates.to_json %>">
     <canvas data-data-user-target="chart">
     </canvas>
   </div>
+
+ <% training = current_user.user_sports.first.trainings.first %>
+
+    <div class="wrapper training-card mt-4">
+      <div class="flex jcsb mb-3 aicenter">
+        <h3><%= training.name %></h3>
+        <p class="<%= training.user_sport.sport.name == 'Natation' ? 'tag' : 'tag-other' %>">
+          <%= training.user_sport.sport.name %></p>
+      </div>
+
+      <div class="flex jcsb">
+        <div class="flex">
+          <i class="fa-solid fa-person-walking me-2" style=""></i>
+          <p class=""><%= training.exercices.count %> <%= training.exercices.count <= 1 ? 'exercice' : 'exercices' %></p>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
 </div>

@@ -50,10 +50,11 @@
 
 
     <%# -------------------EXERCICE LIST----------------------------- %>
-
-    <%= link_to training_training_exercices_path(@training), class: "btn_position_bas btn btn-primary mb-4" do %>
-    <h3>Ajouter <%= @counter %> </h3>
-    <% end %>
+    <div class="exo-cache">
+      <%= link_to training_training_exercices_path(@training), class: "btn_position_bas btn btn-primary mb-4" do %>
+      <h3>Ajouter <%= @counter %> </h3>
+      <% end %>
+    </div>
   </div>
 
 </div>

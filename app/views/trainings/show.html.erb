@@ -1,10 +1,14 @@
 
 <div class="head-wrapper">
     <div class="head-train">
-      <%= link_to user_sport_path(@training.user_sport), class: "link-decoration-none" do %>
-        <i class="ri-arrow-left-s-line"></i>
-      <% end %>
-      <h1 class="color-white"> <%= @training.name %></h1>
+
+      <div class="flex aicenter">
+        <%= link_to user_sport_path(@training.user_sport), class: "link-decoration-none" do %>
+          <i class="ri-arrow-left-s-line"></i>
+        <% end %>
+        <h1 class="color-white"> <%= @training.name %></h1>
+      </div>
+
       <div class="flex gap">
         <%= link_to training_data_training_path, class: "link-decoration-none" do %>
           <i class="ri-pie-chart-line"></i>
@@ -13,8 +17,8 @@
       </div>
     </div>
 
-    <p class="color-white"><%= @training.sport.name %> -
-    Crée le <%= @training.created_at.to_date %></p>
+    <h3 class="color-white"><%= @training.sport.name %> <br></h3>
+    <p class="color-white mt-2">Crée le <%= @training.created_at.to_date.strftime('%e-%b-%Y') %></p>
 
 
 </div>
@@ -50,18 +54,29 @@
   <h2 class="mt-2">Exercices</h2>
 
   <% @training.training_exercices.order(:position).each do |training_exercice| %>
-    <div class="card_exercice margin-top-0">
-      <%= training_exercice.exercice.name %>
-    </div>
 
-    <div class="ps-3">
-      <% training_exercice.training_metrics.order(:position).each do |training_metric| %>
-          <p><span class="fw-bolder"><%= training_metric.metric %></span> \ <%= training_metric.unit %></p>
-        <% end %>
+
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-heading<%=training_exercice.id%>">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=training_exercice.id%>" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+            <%= training_exercice.exercice.name %>
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapse<%=training_exercice.id%>" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading<%=training_exercice.id%>">
+          <div class="accordion-body">
+            <% training_exercice.training_metrics.order(:position).each do |training_metric| %>
+              <p class="py-2"><span class="fw-bolder"><%= training_metric.metric %></span> \ <%= training_metric.unit %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
 
   <% end %>
 </div>
+
+
 
 <%# -------------------BUTTON DU BAS----------------------------- %>
 
