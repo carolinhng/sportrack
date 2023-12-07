@@ -8,7 +8,10 @@
 <div class="container">
 
   <div data-controller="chart-data">
+
     <% @training_exercices.each do |training_exercice| %>
+
+
 
           <% training_exercice.training_metrics.each_with_index do |training_metric, i| %>
             <div class="chart-card" data-controller="dataindex">

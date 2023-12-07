@@ -19,11 +19,11 @@ class UserSportsController < ApplicationController
   def show
     @user_sport = UserSport.find(params[:id])
     @active = params[:query].present?
-    @seances = Seance.all.select do |seance|
+    @seances = Seance.all.order(date: :desc).select do |seance|
       seance.training.user_sport.sport == @user_sport.sport
     end
     if @active
-      @seances = Seance.search_seance_exercice_and_training(params[:query])
+      @seances = Seance.search_seance_exercice_and_training(params[:query]).order(date: :desc)
     end
   end
 
