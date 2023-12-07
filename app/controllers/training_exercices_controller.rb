@@ -32,15 +32,12 @@ class TrainingExercicesController < ApplicationController
     redirect_to new_training_training_exercice_path
   end
 
-  def update
-    # -------------------  Sortable -----------------------------
-    # @training_exercise = TrainingExercice.find(params[:training_exercice_id])
-    # if @training_exercise.update(position: params[:exercice][:position])
-    #   redirect_to training_exercices_path, notice: 'Training Exercise updated successfully.'
-    # else
-    #   render :edit
-    # end
+  def sortable_update
+    @training_exercise = TrainingExercice.find(params[:id])
+    @training_exercise.update(position: params[:exercice][:position])
+  end
 
+  def update
     @training_exercice = TrainingExercice.find(params[:id])
     @training = @training_exercice.training
     if @training_exercice.update(training_exercice_params)
