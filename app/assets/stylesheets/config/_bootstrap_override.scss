@@ -6,6 +6,14 @@ i {
 
 #boostrap-override {
 
+  .avatar {
+    border-radius: 45px;
+    border: 2px solid $color-secondary;
+    height: 54px;
+    width: 54px;
+    object-fit: cover;
+  }
+
   .padding-b {
     padding-bottom: 16px ;
   }

@@ -1,12 +1,14 @@
-<div class="container">
-  <%= image_tag "" %>
-  <div>
-    <h3 class="mb-3">Bonjour <%= current_user.nick_name %>,</h3>
-    <h1>Prêt pour un entrainement ?</h1>
+<div class="background-grey container">
+  <div class="flex jcsb gap mb-3">
+    <%= image_tag "profil.jpg", class:"avatar"%>
+    <div>
+      <h3 class="mb-2">Bonjour <%= current_user.nick_name %>,</h3>
+      <h1>Prêt pour un entrainement ?</h1>
+    </div>
   </div>
 
   <%= link_to sports_path, class:"indexcard" do %>
-      <h3>Commencez par créer votre premier entrainement</h3>
+      <h3>Créer votre entrainement</h3>
       <i class="ri-arrow-left-s-line"></i>
   <% end %>
 </div>
