@@ -1,36 +1,94 @@
+ <%# -------------------EN-TETE----------------------------- %>
 
+<%= link_to new_training_training_exercice_path(@training), class: "link-decoration-none" do %>
+  <div class="link-head">
+    <i class="ri-arrow-left-s-line"></i>
+      <h1>Personnalisation de vos données</h1>
+  </div>
+<% end %>
 
+<%# -------------------RESUME DES DONNES----------------------------- %>
 
+<div class="container flex-gap-16">
+  <h2>Par défaut</h2>
 
-<% @training_exercices.each do | training_exercice | %>
-
-  <% form_for training_exercice do |training_exercice_form| %>
-    <div>
-      <%= training_exercice_form.exercice.name :name training_exercice_form.exercice.name %>
-      <%= training_exercice_form.text_field :name %>
+  <div class="bloc">
+    <div class="defaultcard">
+      <i class="ri-file-text-line"></i>
+      <h3>Prise de notes</h3>
     </div>
 
-    <% training_exercice.tasks.each do |task| %>
-      <% new_or_existing = task.new_record? ? 'new' : 'existing' %>
-      <% prefix = "project[#{new_or_existing}_task_attributes][]" %>
-      <% fields_for prefix, task do |task_form| %>
-        <p>
-          <div>
-            <%= task_form.label :name, 'Task:' %>
-            <%= task_form.text_field :name %>
-          </div>
+    <div class="defaultcard">
+      <i class="ri-timer-flash-line"></i>
+      <h3>Durée</h3>
+    </div>
 
-          <% unless task.new_record? %>
-            <div>
-              <%= task_form.label :_delete, 'Remove:' %>
-              <%= task_form.check_box :_delete %>
-            </div>
+    <div class="defaultcard">
+      <i class="ri-calendar-line"></i>
+      <h3>Date</h3>
+    </div>
+  </div>
+</div>
+
+
+<%# -------------------IERATION DES TRAINING EXERCICES----------------------------- %>
+
+<div class="container">
+  <h2 class="mb-3">Choix de vos données</h2>
+
+    <% @training_exercices.each do |training_exercice|  %>
+
+      <div class="cardform flex-gap-16">
+        <div class="border-bottom">
+          <h3 class="entete-card font-weight-700"><%= training_exercice.exercice.name %></h3>
+        </div>
+
+        <h3 class="ps-3 mb-2 mt-2">Données recommandées</h3>
+
+        <%# -------------------SORTABLE DES TRAINING METRICS----------------------------- %>
+
+        <ul class="padding-0" data-controller="sortable" data-sortable-resource-name-value="training_metric">
+          <% training_exercice.training_metrics.each do |training_metric| %>
+
+              <li>
+                <div class="card-metric mt-2">
+                  <p class="margin-0"><%= training_metric.metric %> \ <%= training_metric.unit %></p>
+
+                  <div class="d-flex">
+                    <i class="ri-drag-move-2-fill font-size-15 pe-2"></i>
+                    <%= link_to training_metric_path(training_metric), data: { turbo_method: :delete } do %>
+                      <div><i class="ri-close-line"></i></i></div>
+                    <% end %>
+                  </div>
+                </div>
+              </li>
+
           <% end %>
-        </p>
-      <% end %>
+        </ul>
+
+        <h3 class="ps-3 mb-2 mt-2">Données personelles</h3>
+
+        <%# -------------------FORM NESTE----------------------------- %>
+
+        <%= form_with model: training_exercice, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |training_exercice_form| %>
+            <%= training_exercice_form.simple_fields_for :training_metrics do |f| %>
+
+              <template data-nested-form-target="template">
+                <%= training_exercice_form.fields_for :training_metrics, TrainingMetric.new, child_index: 'NEW_RECORD' do |training_metric_fields| %>
+                  <%= render "shared/training_metric_form", training_exercice_form: training_metric_fields %>
+                <% end %>
+              </template>
+
+            <% end %>
+            <div data-nested-form-target="target"></div>
+              <button class="btn btn-secondary btn-background-white mb-2" type="button" data-action="nested-form#add">Ajouter une donnée</button>
+            <%= training_exercice_form.submit 'Confirmer', class: "btn btn-secondary btn-background-white" %>
+        <% end %>
+      </div>
     <% end %>
 
-    <%= training_exercice_form.submit %>
-  <% end %>
+    <%= link_to training_path(@training), class: "btn btn-primary mb-5" do %>
+        <h3>Enregistrer</h3>
+    <% end %>
 
-<% end %>
+</div>

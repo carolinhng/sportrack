@@ -11,16 +11,13 @@ UserSport.destroy_all
 Sport.destroy_all
 User.destroy_all
 
+
 # Création d'une instance User
 pierre = User.create!(nick_name: "Pierre", password: "azerty", email: "pierre@gmail.com")
 
-## Création du sport (Natation)
+# Création du sport (Natation)
 natation = Sport.create!(name: 'Natation')
 user_sport = UserSport.create!(user: pierre, sport: natation)
-
-## Création de faux sports (Yoga, Cyclisme)
-yoga = Sport.create!(name: 'Yoga')
-cyclisme = Sport.create!(name: 'Cyclisme')
 
 # # Création des exercices pour la natation
 crawl = Exercice.create!(name: 'Crawl', sport: natation)
@@ -38,16 +35,19 @@ end
 
 # Création des metrics
 distance = Metric.create!(metric: 'Distance', unit: 'mètre', exercice: crawl)
-vitesse = Metric.create!(metric: 'Vitesse moyenne', unit: 'km/h', exercice: crawl)
+vitesse = Metric.create!(metric: 'Vitesse', unit: 'km/h', exercice: crawl)
+# vitesse_moyenne = Metric.create!(metric: 'Vitesse moyenne', unit: 'km/h', exercice: crawl)
 temps = Metric.create!(metric: 'Temps', unit: 'minutes', exercice: crawl)
 temperature_eau = Metric.create!(metric: "Température de l'eau", unit: 'degrés', exercice: crawl)
 
-
 # # Création des entraînements
-sprint = Training.create!(user_sport: UserSport.first, name: 'Sprint', description: 'Entraînement de sprint pour ma prochaine course')
-endurance = Training.create!(user_sport: UserSport.first, name: 'Endurance', description: "Entraînement d'endurance pour le Triathlon de Juin")
+# endurance = Training.create(user_sport: user_sport, name: 'Endurance', description: 'Entraînement axé sur l\'endurance')
+# sprint = Training.create(user_sport: user_sport, name: 'Sprint', description: 'Entraînement axé sur la vitesse')
 
 
+# Trainings
+sprint = Training.create!(user_sport: UserSport.first, name: 'Sprint', description: 'Entraînement de sprint')
+endurance = Training.create!(user_sport: UserSport.first, name: 'Endurance', description: 'Entraînement d\'endurance')
 
 # Seances (200 séances sur une période de 1 an)
 start_date = Date.today - 1.year
@@ -62,25 +62,24 @@ sprint_brasse = TrainingExercice.create!(training: sprint, exercice: brasse, pos
 
 endurance_crawl = TrainingExercice.create!(training: endurance, exercice: crawl, position: 1)
 endurance_dos_crawle = TrainingExercice.create!(training: endurance, exercice: dos_crawle, position: 2)
-endurance_dos_papillon = TrainingExercice.create!(training: endurance, exercice: papillon, position: 3)
 
-TrainingMetric.create!(training_exercice: sprint_crawl, metric: distance.metric, unit: "mètres")
-TrainingMetric.create!(training_exercice: sprint_crawl, metric: vitesse.metric, unit: "km/h")
+TrainingMetric.create!(training_exercice: sprint_crawl, metric: distance.metric, unit: "mètres", position: 1)
+TrainingMetric.create!(training_exercice: sprint_crawl, metric: vitesse.metric, unit: "km/h", position: 2)
 
-TrainingMetric.create!(training_exercice: sprint_dos_crawle, metric: distance.metric, unit: "mètres")
-TrainingMetric.create!(training_exercice: sprint_dos_crawle, metric: vitesse.metric, unit: "km/h")
+TrainingMetric.create!(training_exercice: sprint_dos_crawle, metric: distance.metric, unit: "mètres", position: 1)
+TrainingMetric.create!(training_exercice: sprint_dos_crawle, metric: vitesse.metric, unit: "km/h", position: 2)
 
-TrainingMetric.create!(training_exercice: sprint_papillon, metric: distance.metric, unit: "mètres")
-TrainingMetric.create!(training_exercice: sprint_papillon, metric: vitesse.metric, unit: "km/h")
+TrainingMetric.create!(training_exercice: sprint_papillon, metric: distance.metric, unit: "mètres", position: 1)
+TrainingMetric.create!(training_exercice: sprint_papillon, metric: vitesse.metric, unit: "km/h", position: 2)
 
-TrainingMetric.create!(training_exercice: sprint_brasse, metric: distance.metric, unit: "mètres")
-TrainingMetric.create!(training_exercice: sprint_brasse, metric: vitesse.metric, unit: "km/h")
+TrainingMetric.create!(training_exercice: sprint_brasse, metric: distance.metric, unit: "mètres", position: 1)
+TrainingMetric.create!(training_exercice: sprint_brasse, metric: vitesse.metric, unit: "km/h", position: 2)
 
-TrainingMetric.create!(training_exercice: endurance_crawl, metric: distance.metric, unit: "mètres")
-TrainingMetric.create!(training_exercice: endurance_crawl, metric: vitesse.metric, unit: "km/h")
+TrainingMetric.create!(training_exercice: endurance_crawl, metric: distance.metric, unit: "mètres", position: 1)
+TrainingMetric.create!(training_exercice: endurance_crawl, metric: vitesse.metric, unit: "km/h", position: 2)
 
-TrainingMetric.create!(training_exercice: endurance_dos_crawle, metric: distance.metric, unit: "mètres")
-TrainingMetric.create!(training_exercice: endurance_dos_crawle, metric: vitesse.metric, unit: "km/h")
+TrainingMetric.create!(training_exercice: endurance_dos_crawle, metric: distance.metric, unit: "mètres", position: 1)
+TrainingMetric.create!(training_exercice: endurance_dos_crawle, metric: vitesse.metric, unit: "km/h", position: 2)
 
 
 seance_dates.each do |date|
@@ -93,6 +92,15 @@ seance_dates.each do |date|
     end
   end
 end
+  # TrainingsExercices avec des positions différentes
+  # TrainingValues associées à chaque séance
+  # TrainingExercice.where(training: seance.training).each do |training_exercice|
+  #   metric_values = {}
+  #   metric_values[distance] = rand(100..2000) # Distance entre 100 et 2000 mètres
+  #   metric_values[vitesse] = rand(5..25) # Vitesse entre 5 et 25 km/h
+  #   metric_values[vitesse_moyenne] = rand(5..20) # Vitesse moyenne entre 5 et 20 km/h
+  #   metric_values[temps] = rand(10..120) # Temps entre 10 et 120 minutes
+  #   metric_values[temperature_eau] = rand(10..30) # Température de l'eau entre 10 et 30 degrés
 
 puts "Seed natation success"
 #------------------------------------------------------------------------------------------------------------
