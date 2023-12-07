@@ -11,81 +11,84 @@ export default class extends Controller {
   static targets = ["chart"]
 
   connect() {
-
     this.chartTargets.forEach(char => {
       const serializedData = char.dataset.chartDataTrainingExerciceMetricsValue
+      const serializeSeanceDate = char.dataset.chartDataSeanceDateValue
+      const serializeExerciceName = char.dataset.chartDataTrainingExerciceNameValue
+      console.log(serializeExerciceName)
       const data = JSON.parse(serializedData)
-      const labels = data.map((metric) => metric.x)
-      const dataset = data.map((metric) => metric.y)
-      dataset.unshift("0")
+      const labels = JSON.parse(serializeSeanceDate)
+
 
       const gradient = char.getContext('2d').createLinearGradient(0, 0, 0, char.height);
-      gradient.addColorStop(0, '#D0B3E1');
-      gradient.addColorStop(1, 'rgba(208, 179, 225, 0.00)');
+      gradient.addColorStop(0, '#D0B3E1');  // You can replace this color as well if needed
+      gradient.addColorStop(1, 'rgba(183, 195, 243, 00.00)');
 
-      new Chart(char, {
-        type: 'line',
-        data: {
+        const data2 = {
           labels: labels,
           datasets: [{
-            label: char.dataset.chartDataTrainingExerciceNameValue,
-            data: dataset,
-            backgroundColor : gradient,
-            borderColor: 'rgba(13, 19, 33, 1)',
+            label: serializeExerciceName,
+            data: data.data,
+            borderColor: '#D0B3E1',
+            backgroundColor: gradient,
             borderWidth: true,
             fill: true,
-            tension: .5
+            tension: 0.5
           }]
-        },
-        options: {
-          plugins: {
-            legend: {
-              display: false,
+        };
+
+        const stackedLine = new Chart(char, {
+          type: 'line',
+          data: data2,
+          options: {
+            plugins: {
+              legend: {
+                display: false,
+              },
+              subtitle: {
+                margin: 1,
+                display: true,
+                text: char.dataset.chartDataTrainingExerciceNameValue,
+              }
             },
-            subtitle: {
-              margin: 1,
-              display: true,
-              text: char.dataset.chartDataTrainingExerciceNameValue,
-            }
-        },
-          scales: {
-              y: {
-                beginAtZero: true,
-                title: {
-                  display: true,
-                  text: 'X-Axis Label'
-                },
-                ticks: {
-                  font: {
-                    size: 10,
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  title: {
+                    display: true,
+                    text: data.label,
+                  },
+                  ticks: {
+                    font: {
+                      size: 10,
+                    }
+                  },
+                  grid: {
+                    color: 'rgba(245, 245, 246, 1)'
                   }
                 },
-                grid: {
-                  color: 'rgba(245, 245, 246, 1)'
-                }
-              },
-              x: {
-                grid: {
-                  display: false,
+                x: {
+                  grid: {
+                    display: false,
+                  },
+
+                  ticks: {
+                    font: {
+                      size: 10,
+                    }
+                  }
                 },
 
-                ticks: {
-                  font: {
-                    size: 10,
-                  }
-                }
-              },
+              }
+          }
+        });
 
-          },
-      }
-      });
+
+
+
     });
   }
   inject(event) {
-    // this.containerTarget.innerHTML = event.currentTarget.parentElement
-    // console.log(this.containerTarget)
-    // const dataToStore = { key: event.currentTarget.parentElement };
-    // sessionStorage.setItem('maCle', JSON.stringify(dataToStore));
     const divToInject = event.currentTarget.parentElement;
     // Stocker la div dans localStorage
     localStorage.setItem('divToInject', divToInject.outerHTML);
