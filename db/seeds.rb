@@ -88,7 +88,7 @@ TrainingMetric.create!(training_exercice: endurance_dos_crawle, metric: vitesse.
 
 
 seance_dates.each do |date|
-  seance = Seance.create!(date: date, training: [sprint, endurance].sample, comment: 'Commentaire de la séance', rating: rand(1..5), duration: Time.at(rand * Time.now.to_i))
+  seance = Seance.create!(date: date, training: [sprint, endurance].sample, comment: 'Commentaire de la séance', rating: rand(1..5), duration: rand(30..160))
   seance.training_metrics.each do |training_metric|
     if training_metric.metric == "Vitesse"
       TrainingValue.create(seance: seance, training_metric: training_metric, value: rand(5..25))
@@ -187,7 +187,7 @@ TrainingMetric.create!(training_exercice: elevation_laterale_training, metric: s
 
 
 seance_dates.each do |date|
-  seance = Seance.create!(date: date, training: [force, hypertrophie].sample, comment: 'Commentaire de la séance', rating: rand(1..5), duration: Time.at(rand * Time.now.to_i))
+  seance = Seance.create!(date: date, training: [force, hypertrophie].sample, comment: 'Commentaire de la séance', rating: rand(1..5), duration: rand(30..160))
   seance.training_metrics.each do |training_metric|
       case training_metric.metric
       when "Repetitions"
