@@ -62,7 +62,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_07_095132) do
     t.bigint "training_exercice_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.time "duration"
     t.string "metric"
     t.string "unit"
     t.integer "position"
