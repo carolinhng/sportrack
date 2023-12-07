@@ -8,8 +8,8 @@
 
 <div class="container">
     <%= simple_form_for [@user_sport, @training] do |f| %>
-      <%= f.input :name, label: "Nom de l'entrainement", placeholder: "Donner un nom à votre entrainement", class: "forminput" %>
-      <%= f.input :description, label: 'Description', placeholder: "Décrire votre entrainement", class: "forminput" %>
+      <%= f.input :name, label: "Nom de l'entrainement", placeholder: "Donnez un nom à votre entrainement", class: "forminput" %>
+      <%= f.input :description, label: 'Description', placeholder: "Décrivez votre entrainement", class: "forminput" %>
       <%= f.button :submit, 'Ajouter des exercices', class: "btn-secondary btn-background-white forminput" %>
     <% end %>
 </div>
