@@ -33,16 +33,16 @@
                   <h3><%= training.name %></h3>
                   <div class="defaultcardt d-flex mt-2">
                     <i class="fa-solid fa-person-walking me-2" style="color: #000000; font-size: 18px;"></i>
-                    <h3 class="padding-top-1"><%= training.exercices.count %> <%= training.exercices.count <= 1 ? 'exercice' : 'exercices' %></h3>
+                    <p><%= training.exercices.count %> <%= training.exercices.count <= 1 ? 'exercice' : 'exercices' %></p>
                   </div>
                 </div>
 
-                <%# Commenté car le redirect to doit etre sur la show de usersport, à voir plus tard %>
-                <%# <div> %>
-                  <%#<%= link_to training_path(training), data: {turbo_method: :delete } do %>
-                    <%#i class="ri-delete-bin-line"></i>
+                <div>
+                  <%= link_to training_path(training), data: {turbo_method: :delete } do %>
+                    <i class="ri-delete-bin-line"></i>
                   <% end %>
-                <%# <%div> %>
+                </div>
+
             </div>
           <% end %>
       <% end %>
@@ -67,26 +67,40 @@
     </div>
 
         <% @seances.order(date: :desc).each do |seance|%>
-        <%= link_to seance_path(seance) do %>
-        <div class="bloc mt-2 d-flex justify-content-between align-items-center">
-        <div>
-          <h3><%= seance.training.name %></h3>
-          <div class="defaultcardt d-flex mt-2">
-          <i class="ri-time-fill me-2" style="color: #000000; font-size: 18px;"></i>
-          <% if seance.date.present? %>
-            <h3 class="padding-top-1"><%= seance.date.strftime("%d/%m/%Y") %></h3>
+
+          <%= link_to seance_path(seance) do %>
+            <div class="bloc mt-2 d-flex justify-content-between align-items-center">
+
+              <div>
+
+
+                <div class="defaultcardt d-flex mt-2">
+                  <i class="ri-time-fill me-2" style="color: #000000; font-size: 18px;"></i>
+                   <% if seance.date.present? %>
+                  <h3 class="mt-2">Séance du <%= seance.date %></h3>
+                   <% else %>
+                  <h3 class="mt-2">Séance </h3>
+               <% end %>
+                  
+                </div>
+
+                <p><%= seance.training.name %></p>
+
+                <div class="defaultcardt d-flex">
+                  <i class="ri-heart-fill me-2" style="color: #000000; font-size: 18px;"></i>
+                  <p><%= seance.rating%></p>
+                </div>
+
+              </div>
+
+            </div>
           <% end %>
-        </div>
-        <div class="defaultcardt d-flex mt-2">
-        <i class="ri-heart-fill me-2" style="color: #000000; font-size: 18px;"></i>
-        <h3 class="padding-top-1"><%= seance.rating%></h3>
-          </div>
-          </div>
-          </div>
-        <% end %>
+        
         <% end %>
 
 
 
   </div>
 </div>
+
+<div class="mb-5"></div>

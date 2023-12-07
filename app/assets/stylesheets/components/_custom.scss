@@ -1,8 +1,18 @@
 @import "config/_bootstrap_override";
 // flex
 
+
+.font-size-23 {
+  font-size: 23px!important;
+}
+
+
 .color-white {
   color: $color-white!important;
+}
+
+.padding-0 {
+  padding-left: 0px;
 }
 
 ul {
@@ -170,4 +180,9 @@ hr {
 
 .pb-chart {
   padding-bottom: 16px;
+}
+
+
+.padding-0-entete {
+  padding: 0px!important;
 }

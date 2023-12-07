@@ -14,7 +14,7 @@
     </div>
 
     <p class="color-white"><%= @training.sport.name %> -
-    Crée le <%= @training.created_at.to_date.strftime('%d-%m-%Y') %></p>
+    Crée le <%= @training.created_at.to_date %></p>
 
 
 </div>
@@ -47,12 +47,19 @@
 
   <%# -------------------EXERCICE LIST----------------------------- %>
 
-  <h2>Exercices</h2>
+  <h2 class="mt-2">Exercices</h2>
 
   <% @training.training_exercices.order(:position).each do |training_exercice| %>
     <div class="card_exercice margin-top-0">
       <%= training_exercice.exercice.name %>
     </div>
+
+    <div class="ps-3">
+      <% training_exercice.training_metrics.each do |training_metric| %>
+          <p><span class="fw-bolder"><%= training_metric.metric %></span> \ <%= training_metric.unit %></p>
+        <% end %>
+    </div>
+
   <% end %>
 </div>
 

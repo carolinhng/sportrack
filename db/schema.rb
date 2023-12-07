@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_05_134342) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_07_095132) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,7 +38,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_05_134342) do
     t.datetime "updated_at", null: false
     t.string "comment"
     t.integer "rating"
-    t.time "duration"
+    t.integer "duration"
     t.index ["training_id"], name: "index_seances_on_training_id"
   end
 
@@ -62,9 +62,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_05_134342) do
     t.bigint "training_exercice_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.time "duration"
     t.string "metric"
     t.string "unit"
+    t.integer "position"
     t.index ["training_exercice_id"], name: "index_training_metrics_on_training_exercice_id"
   end
 

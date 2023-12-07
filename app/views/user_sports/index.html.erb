@@ -2,11 +2,11 @@
   <%= image_tag "" %>
   <div>
     <h3 class="mb-3">Bonjour <%= current_user.nick_name %>,</h3>
-    <h1>Prêt pour un entrainement ?</h1>
+    <h1 class="font-size-23">Prêt pour un entrainement ?</h1>
   </div>
 
-  <%= link_to sports_path, class:"indexcard" do %>
-      <h3>Commencez par créer votre premier entrainement</h3>
+  <%= link_to sports_path, class:"indexcard mt-3" do %>
+      <h3>Commencez par créer votre entrainement</h3>
       <i class="ri-arrow-left-s-line"></i>
   <% end %>
 </div>
@@ -28,7 +28,7 @@
           <h3><%= training.name %></h3>
           <div class="defaultcardt d-flex mt-2">
             <i class="fa-solid fa-person-walking me-2" style="color: #000000; font-size: 18px;"></i>
-            <h3 class="padding-top-1"><%= training.exercices.count %> <%= training.exercices.count <= 1 ? 'exercice' : 'exercices' %></h3>
+            <p class="padding-top-1"><%= training.exercices.count %> <%= training.exercices.count <= 1 ? 'exercice' : 'exercices' %></p>
           </div>
         </div>
       </div>

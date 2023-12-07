@@ -1,0 +1,32 @@
+.cardform {
+  border-radius: 12px;
+  border: 1px solid $color-grey-dark;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.entete-card {
+  padding: 0px 16px 16px 16px;
+}
+
+.border-bottom {
+  border-bottom: 1px solid $color-grey-dark;
+}
+
+.margin-0 {
+  margin-bottom: 0px!important;
+}
+
+.card-metric {
+  border-radius: 8px;
+  background-color: $color-grey;
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+
+  i {
+    font-size: 16px;
+    color: black;
+  }
+}
