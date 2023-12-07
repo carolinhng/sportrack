@@ -29,8 +29,11 @@
     <h2 class="mb-3 mt-3">Données de votre séance</h2>
     <div>
       <%# -------------------input seance----------------------------- %>
-      <%= seance_form.input :date, order: [:day, :month, :year] %>
-      <%#<%= seance_form.date_field :date %>
+      <%# <%= seance_form.input :date, order: [:day, :month, :year] %>
+<%= seance_form.input :date,
+            as: :string,
+            input_html: { data: { controller: "datepicker" } } %>
+
       <%= seance_form.input :comment,
         label: "Commentaire",
         placeholder: "Ajouter un commentaire à votre entrainement",
@@ -42,14 +45,13 @@
         collection: 1..5 %>
 
       <%= seance_form.input :duration,
-        collection: 1..200,
         label: "Durée (minutes)",
         placeholder: "Durée de l'entrainement",
         class: "forminput" %>
     </div>
     <h2 class="mb-3 mt-5">Données par exercices</h2>
     <% @training_exercices.each do |training_exercice|  %>
-      <p class="fw-bold"><%= training_exercice.exercice.name %></p>
+      <p class="fw-bold h3 my-3"><%= training_exercice.exercice.name %> :</p>
       <% training_exercice.training_metrics.each do |training_metric| %>
         <%= seance_form.simple_fields_for :training_values, training_metric.training_values.find_by(seance: @seance) do |f| %>
         <%# -------------------input training_value----------------------------- %>
@@ -60,6 +62,7 @@
             </div>
         <% end %>
       <% end %>
+       <hr class="my-4">
     <% end %>
       <%= seance_form.button :submit, 'Enregistrer', class: "btn-primary forminput mb-5" %>
   <% end %>
