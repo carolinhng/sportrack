@@ -8,12 +8,14 @@
 <div class="container">
 
   <div data-controller="chart-data">
+
     <% @training_exercices.each do |training_exercice| %>
+
       <div class="chart-card" data-controller="dataindex">
         <div data-action="click->dataindex#delete" class="delete-chart d-none">
           <i class="ri-close-line" style="font-size: 20px;"></i>
         </div>
-      <%# ajout de la data sur le dashboard avec data-action %>
+
         <div class="widget-chart" data-action="click->chart-data#inject">
           <p>Ajouter</p>
           <i class="ri-dashboard-line" style="font-size: 20px;"></i>
