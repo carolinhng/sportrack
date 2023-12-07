@@ -1,6 +1,8 @@
 class Seance < ApplicationRecord
 
   belongs_to :training
+  has_one :user_sport, through: :training
+  has_one :sport, through: :user_sport
   has_many :training_exercices, through: :training
   has_many :training_values, dependent: :destroy
   has_many :training_metrics, through: :training_exercices
@@ -16,7 +18,17 @@ class Seance < ApplicationRecord
   against: [ :training_id ],
   associated_against: {
     training: [ :name ],
-    exercices: [ :name ]
+    exercices: [ :name ],
+  },
+  using: {
+    tsearch: { prefix: true }
+  }
+
+  pg_search_scope :search_seance_sport_and_training,
+  against: [ :training_id ],
+  associated_against: {
+    training: [ :name ],
+    sport: [ :name ]
   },
 
   using: {
