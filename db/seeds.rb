@@ -16,8 +16,13 @@ User.destroy_all
 pierre = User.create!(nick_name: "Pierre", password: "azerty", email: "pierre@gmail.com")
 
 # Création du sport (Natation)
+
+yoga = Sport.create!(name: 'Yoga')
+cyclisme = Sport.create!(name: 'Cyclisme')
 natation = Sport.create!(name: 'Natation')
 user_sport = UserSport.create!(user: pierre, sport: natation)
+UserSport.create!(user: pierre, sport: yoga)
+UserSport.create!(user: pierre, sport: cyclisme)
 
 # # Création des exercices pour la natation
 crawl = Exercice.create!(name: 'Crawl', sport: natation)
