@@ -76,7 +76,7 @@
                 <div class="defaultcardt d-flex mt-2">
                   <i class="ri-time-fill me-2" style="color: #000000; font-size: 18px;"></i>
                    <% if seance.date.present? %>
-                  <h3 class="mt-2">Séance du <%= seance.date %></h3>
+                  <h3 class="mt-2">Séance du <%= seance.date.strftime('%d-%m-%g').downcase %></h3>
                    <% else %>
                   <h3 class="mt-2">Séance </h3>
                <% end %>
@@ -86,7 +86,7 @@
                 <p><%= seance.training.name %></p>
 
                 <div class="defaultcardt d-flex">
-                  <i class="ri-heart-fill me-2" style="color: #000000; font-size: 18px;"></i>
+                  <i class="ri-star-s-fill me-2" style="color: #000000; font-size: 18px;"></i>
                   <p><%= seance.rating%></p>
                 </div>
 

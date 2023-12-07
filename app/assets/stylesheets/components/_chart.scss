@@ -44,3 +44,14 @@
   width: 34px;
   text-align: center;
 }
+
+.temporary-card {
+  background-color: $color-grey;
+  height: 200px;
+  border-radius: $radius;
+  text-align: center;
+
+  .data-img {
+    height: 150px;
+  }
+}

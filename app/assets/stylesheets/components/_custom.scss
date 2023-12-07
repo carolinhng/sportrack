@@ -22,8 +22,14 @@ ul {
   list-style-type: none;
 }
 
+// ------------------- FLEX -----------------------
+
 .flex {
   display: flex;
+}
+
+.aicenter {
+  align-items: center;
 }
 .jcsb {
   justify-content: space-between;
@@ -35,8 +41,18 @@ ul {
 .gap2 {
   gap: 16px;
 }
+// -----------------------------------
+
+
 
 // button card sports
+.tag {
+  background-color: $color-tertiary ;
+  border-radius: $radius * 4;
+  padding: 8px 12px;
+  width: fit-content;
+}
+
 .formbutton {
   width: 100%;
   padding: 16px 24px;
@@ -55,25 +71,32 @@ ul {
   font-family: $Outfit-font;
 }
 
+.logo {
+  width: 150px;
+}
+
+// .hero {
+//   background-color: $color-primary;
+// }
+
 .indexcard {
-  padding: 16px;
   justify-content: space-between;
+  padding: 16px 24px;
   display: flex;
   align-items: center;
-  background: $color-secondary;
-  border-radius: $radius * 3;
+  background: $color-grey;
+  border-radius: $radius;
   text-decoration: none;
   i {
     height: 40px;
     padding: 8px;
     background: $color-primary;
-    border-radius: $radius * 1.5;
+    border-radius: $radius * 4;
     display: flex;
     align-items: center;
-    transform: rotate(180deg);
   }
   h3 {
-    color: white!important;
+    font-weight: 500!important;
   }
 }
 
@@ -83,6 +106,12 @@ ul {
 
 .btn-background-white {
   background-color: white!important;
+}
+
+.training-card {
+  background-color: $color-grey;
+  margin-bottom: 16px;
+  border-radius: $radius ;
 }
 
 .card_exercice {
@@ -118,10 +147,8 @@ ul {
     position: fixed;
     bottom: 100px;
     width: 78%!important;
-    /* Ajoutez d'autres styles au besoin */
 }
 
-// color pour le header de l'index
 // tab entrainement - historique
 .nav-pills, .nav-link, .nav-pills .show > .nav-link {
   width: 100%;

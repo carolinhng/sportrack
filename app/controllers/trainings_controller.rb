@@ -3,7 +3,12 @@ class TrainingsController < ApplicationController
   def index
     # index vers page entrainements
     @trainings = current_user.trainings
-    @seances = Seance.all
+    @active = params[:query].present?
+    if @active
+      @seances = Seance.search_seance_sport_and_training(params[:query])
+    else
+      @seances = Seance.all
+    end
   end
 
   def new
@@ -25,6 +30,7 @@ class TrainingsController < ApplicationController
   def show
     @training = Training.find(params[:id])
   end
+
 
   def destroy
     @training = Training.find(params[:id])
