@@ -31,7 +31,10 @@
 </div>
 
 
-<div class="container">
+<%# ------------------- TEST ACCORDEON----------------------------- %>
+
+
+<div class="container flex-gap-16">
   <h2 class="mb-3">Choix de vos données</h2>
 
     <% @training_exercices.each do |training_exercice|  %>
@@ -41,14 +44,14 @@
         <div class="accordion" id="accordionPanelsStayOpenExample">
           <div class="accordion-item">
 
-            <h2 class="accordion-header" id="panelsStayOpen-heading<%= training_exercice.id%>">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%= training_exercice.id%>" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+            <h2 class="accordion-header" id="panelsStayOpen-heading<%= training_exercice.id %>">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%= training_exercice.id %>" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
 
                 <h3 class="entete-card font-weight-700 padding-0-entete"><%= training_exercice.exercice.name %></h3>
 
               </button>
               </h2>
-              <div id="panelsStayOpen-collapse<%= training_exercice.id%>" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-heading<%= training_exercice.id%>">
+              <div id="panelsStayOpen-collapse<%= training_exercice.id %>" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading<%= training_exercice.id %>">
               <div class="accordion-body">
 
         <%# -------------------CONTENUE ACCORDEON----------------------------- %>
@@ -60,7 +63,7 @@
                   <ul class="padding-0" data-controller="sortable" data-sortable-resource-name-value="training_metric">
                     <% training_exercice.training_metrics.each do |training_metric| %>
 
-                        <li>
+                        <li data-sortable-update-url="<%= training_metric_path(training_metric) %>">
                           <div class="card-metric mt-2">
                             <p class="margin-0"><%= training_metric.metric %> \ <%= training_metric.unit %></p>
 

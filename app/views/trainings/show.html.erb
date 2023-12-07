@@ -50,18 +50,29 @@
   <h2 class="mt-2">Exercices</h2>
 
   <% @training.training_exercices.order(:position).each do |training_exercice| %>
-    <div class="card_exercice margin-top-0">
-      <%= training_exercice.exercice.name %>
-    </div>
 
-    <div class="ps-3">
-      <% training_exercice.training_metrics.order(:position).each do |training_metric| %>
-          <p><span class="fw-bolder"><%= training_metric.metric %></span> \ <%= training_metric.unit %></p>
-        <% end %>
+
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-heading<%=training_exercice.id%>">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<%=training_exercice.id%>" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+            <%= training_exercice.exercice.name %>
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapse<%=training_exercice.id%>" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading<%=training_exercice.id%>">
+          <div class="accordion-body">
+            <% training_exercice.training_metrics.order(:position).each do |training_metric| %>
+              <p><span class="fw-bolder"><%= training_metric.metric %></span> \ <%= training_metric.unit %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
 
   <% end %>
 </div>
+
+
 
 <%# -------------------BUTTON DU BAS----------------------------- %>
 
