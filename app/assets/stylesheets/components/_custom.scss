@@ -1,5 +1,4 @@
 @import "config/_bootstrap_override";
-// flex
 
 
 .font-size-23 {
@@ -11,6 +10,10 @@
   color: $color-white!important;
 }
 
+
+.background-grey {
+  background: $color-grey;
+}
 .padding-0 {
   padding-left: 0px;
 }
@@ -29,16 +32,20 @@ ul {
   gap: 8px;
 }
 
+.gap2 {
+  gap: 16px;
+}
+
 // button card sports
 .formbutton {
   width: 100%;
   padding: 16px 24px;
   margin-bottom: 8px;
 
-.sportcard {
-  // width: 390px;
-  padding: 10px 0px;
-}
+  .sportcard {
+    // width: 390px;
+    padding: 10px 0px;
+  }
   justify-content: space-between;
   border-radius: $radius * 1.5;
   border: 1px solid $color-grey;
@@ -49,7 +56,8 @@ ul {
 }
 
 .indexcard {
-  padding: 24px;
+  padding: 16px;
+  justify-content: space-between;
   display: flex;
   align-items: center;
   background: $color-secondary;
@@ -59,7 +67,7 @@ ul {
     height: 40px;
     padding: 8px;
     background: $color-primary;
-    border-radius: $radius * 4;
+    border-radius: $radius * 1.5;
     display: flex;
     align-items: center;
     transform: rotate(180deg);
@@ -114,9 +122,6 @@ ul {
 }
 
 // color pour le header de l'index
-.grey {
-  background: $color-grey;
-}
 // tab entrainement - historique
 .nav-pills, .nav-link, .nav-pills .show > .nav-link {
   width: 100%;
@@ -150,6 +155,10 @@ ul {
 
 a {
   text-decoration: none;
+}
+
+hr {
+  color: $color-grey-dark
 }
 
 .search {

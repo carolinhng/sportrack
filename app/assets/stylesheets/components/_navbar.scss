@@ -9,10 +9,17 @@
   position: fixed;
   bottom: 0px;
   overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
   .linknav {
     text-align: center;
+
+    .active-icon {
+      background: $color-primary;
+      padding: 8px 13px;
+      border-radius: 16px;
+      color: $color-secondary;
+    }
   }
 
 }

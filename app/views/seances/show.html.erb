@@ -12,7 +12,13 @@
           <div><i class="ri-more-2-line icone-sans-fond"></i></div>
     </div>
     <div class="margin-top-16">
+
+    <% if @seance.date.present? %>
+      <p class="color-white"> Réalisée le <%= @seance.date.strftime('%d-%m-%Y') %></p>
+    <% end %>
+
       <p class="color-white"> Séance réalisée le <%= @seance.date %></p>
+
       <p class="color-white">Note : <%= @seance.rating %></p>
       <p class="color-white">Durée : <%= @seance.duration %> min</p>
     </div>

@@ -66,14 +66,21 @@
       </div>
     </div>
 
-        <% @seances.each do |seance|%>
+
+        <% @seances.order(date: :desc).each do |seance|%>
+
           <%= link_to seance_path(seance) do %>
             <div class="bloc mt-2 d-flex justify-content-between align-items-center">
               <div>
 
                 <div class="defaultcardt d-flex mt-2">
                   <i class="ri-time-fill me-2" style="color: #000000; font-size: 18px;"></i>
+                   <% if seance.date.present? %>
                   <h3 class="mt-2">Séance du <%= seance.date %></h3>
+                   <% else %>
+                  <h3 class="mt-2">Séance </h3>
+               <% end %>
+                  
                 </div>
 
                 <p><%= seance.training.name %></p>
@@ -87,6 +94,7 @@
 
             </div>
           <% end %>
+        
         <% end %>
 
 
