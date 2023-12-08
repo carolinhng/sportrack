@@ -3,9 +3,11 @@
 
   <h1 class="mb-4">Rapport</h1>
 
+  <h3 class="mb-3">Données globales</h3>
+
   <div class="flex gap">
     <div class="block1">
-      <h3 class="mb-2">Nombre <br>d'entrainements</h3>
+      <h3 class="mb-2">Nombre <br>d'entraînements</h3>
       <p><%= current_user.trainings.count %></p>
     </div>
 
@@ -16,16 +18,19 @@
 
   </div>
 
-  <h3 class="mt-4">Nombre d'entrainement</h3>
+  <hr class="mt-4">
+
+  <h3 class="mt-4 mb-3">Nombre d'entraînements</h3>
   <div data-controller="data-user"
       data-data-user-seance-value="<%= @seances_by_dates.to_json %>">
     <canvas data-data-user-target="chart">
     </canvas>
   </div>
+  <hr>
 
  <% training = current_user.user_sports.first.trainings.first %>
-
-    <div class="wrapper training-card mt-4">
+    <h3 class="mb-3 mt-4">Entraînement favoris</h3>
+    <div class="wrapper training-card">
       <div class="flex jcsb mb-3 aicenter">
         <h3><%= training.name %></h3>
         <p class="<%= training.user_sport.sport.name == 'Natation' ? 'tag' : 'tag-other' %>">
