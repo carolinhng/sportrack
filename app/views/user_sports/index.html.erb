@@ -3,13 +3,13 @@
   <div class="flex jcsb gap2 mb-3">
     <div>
       <p class="mb-2">Bonjour <%= current_user.nick_name %>,</p>
-      <h1>Prêt pour un entrainement ?</h1>
+      <h1>Prêt pour un entraînement ?</h1>
     </div>
     <%= image_tag "profil.jpg", class:"avatar"%>
   </div>
 
   <%= link_to sports_path, class:"indexcard" do %>
-  <h3 class="color-white">Créer un entrainement</h3>
+  <h3 class="color-white">Créer un entraînement</h3>
 
   <i class="ri-arrow-right-line"></i>
   <% end %>
@@ -20,7 +20,7 @@
 
 <div class="container">
   <div class="flex jcsb padding-b aicenter">
-    <h2>Vos entrainements</h2>
+    <h2>Vos entraînements</h2>
     <%= link_to trainings_path, class:"flex aicenter gap" do %>
     <p>voir tout</p>
     <i class="ri-arrow-right-line"></i>
@@ -62,7 +62,7 @@
 
 
         <div class="temporary-card">
-            <p class="mb-3">Ajoutez vos données préférés à partir de vos entrainements !</p>
+            <p class="mb-3">Ajoutez vos données préférées à partir de vos entraînements !</p>
             <%= image_tag "data.png", class:"data-img"%>
         </div>
 
