@@ -55,7 +55,7 @@
     <h2 class="mb-3 mt-5">Données par exercice</h2>
     <% @training_exercices.each do |training_exercice|  %>
       <p class="fw-bold h3 my-3"><%= training_exercice.exercice.name %> :</p>
-      <% training_exercice.training_metrics.each do |training_metric| %>
+      <% training_exercice.training_metrics.order(:position).each do |training_metric| %>
         <%= seance_form.simple_fields_for :training_values, training_metric.training_values.find_by(seance: @seance) do |f| %>
         <%# -------------------input training_value----------------------------- %>
             <div>
