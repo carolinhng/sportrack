@@ -21,6 +21,13 @@ $ rails db:migrate
 $ rails db:seed
 $ rails s
 ```
+
+## Database schema
+
+We used PostegreSQL to manage our database.
+
+![alt text](public/dbsportrack.png)
+
 ## Demo
 Watch our demo on youtube.
 
